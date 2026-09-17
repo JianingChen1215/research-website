@@ -52,8 +52,22 @@ Replace this list with your actual workflow:
 
 Replace the placeholder below with your own figure:
 
-```markdown
-![Framework](../images/framework.png)
+![Framework](../images/ieee39.png)
+
+## Python Code
+
+```python
+import numpy as np
+
+x = np.array([1, 2, 3])
+print(x.mean())
+```
+
+## Matlab Code
+
+```matlab
+A = [1 2; 3 4];
+eig(A)
 ```
 
 ## Key Results
