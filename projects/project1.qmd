@@ -42,8 +42,6 @@ This section can contain as much LaTeX as needed.
 
 Replace this list with your actual workflow:
 
-![Framework](../images/ieee39.pdf)
-
 1. DAE elimination
 2. Polynomial reformulation
 3. Linearization / lifting
