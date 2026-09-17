@@ -15,12 +15,13 @@ website:
         text: About
   page-footer:
     center: "Built with Quarto"
-
+    
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
     smooth-scroll: true
+    include-in-header: mathjax-config.html
 
 bibliography: references.bib
