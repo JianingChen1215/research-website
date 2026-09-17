@@ -144,14 +144,14 @@
     "href": "projects/project1.html",
     "title": "Project 1 — Quantum Dynamic Simulation",
     "section": "",
-    "text": "Write a short 2–4 sentence summary of the project here."
+    "text": "Write a short overview."
   },
   {
     "objectID": "projects/project1.html#overview",
     "href": "projects/project1.html#overview",
     "title": "Project 1 — Quantum Dynamic Simulation",
     "section": "",
-    "text": "Write a short 2–4 sentence summary of the project here."
+    "text": "Write a short overview."
   },
   {
     "objectID": "projects/project1.html#motivation",
@@ -165,7 +165,7 @@
     "href": "projects/project1.html#core-idea",
     "title": "Project 1 — Quantum Dynamic Simulation",
     "section": "Core Idea",
-    "text": "Core Idea\nA generic nonlinear system may be written as\n\\[\n\\dot{x}=f(x,y), \\qquad 0=g(x,y).\n\\]\nAfter model transformation, one may obtain a polynomial system\n\\[\n\\dot{z}=A_1z+A_2z^{\\otimes 2}+\\cdots+A_Rz^{\\otimes R}.\n\\]\nThis section can contain as much LaTeX as needed."
+    "text": "Core Idea\nA generic nonlinear system may be written as\n\\[\n\\dot{x}=f(x,y), \\qquad 0=g(x,y).\n\\]\n$ _{G} =\n\\[\\begin{pmatrix}\n\\mathbf{0} & \\mathbf{G} \\\\\n\\mathbf{G}^{\\dagger} & \\mathbf{0}\n\\end{pmatrix}\\]\n. $\nAfter model transformation, one may obtain a polynomial system\n\\[\n\\dot{z}=A_1z+A_2z^{\\otimes 2}+\\cdots+A_Rz^{\\otimes R}.\n\\]\nThis section can contain as much LaTeX as needed."
   },
   {
     "objectID": "projects/project1.html#method",
