@@ -165,7 +165,7 @@
     "href": "projects/project1.html#core-idea",
     "title": "Project 1 — Quantum Dynamic Simulation",
     "section": "Core Idea",
-    "text": "Core Idea\nA generic nonlinear system may be written as\n\\[\n\\dot{x}=f(x,y), \\qquad 0=g(x,y).\n\\]\n$ _{G} =\n\\[\\begin{pmatrix}\n\\mathbf{0} & \\mathbf{G} \\\\\n\\mathbf{G}^{\\dagger} & \\mathbf{0}\n\\end{pmatrix}\\]\n. $\nAfter model transformation, one may obtain a polynomial system\n\\[\n\\dot{z}=A_1z+A_2z^{\\otimes 2}+\\cdots+A_Rz^{\\otimes R}.\n\\]\nThis section can contain as much LaTeX as needed."
+    "text": "Core Idea\nA generic nonlinear system may be written as\n\\[\n\\dot{x}=f(x,y), \\qquad 0=g(x,y).\n\\]\n\\[\n\\mathbf{H}_{G}\n=\n\\begin{pmatrix}\n\\mathbf{0} & \\mathbf{G} \\\\\n\\mathbf{G}^{\\dagger} & \\mathbf{0}\n\\end{pmatrix}.\n\\]\n\\[\n\\mathbf{G} = \\sum_{k=0}^{T-1}|k\\rangle \\langle k|\\otimes\\mathbf{I} -\\sum_{k=1}^{T-1}|k\\rangle \\langle k-1|\\otimes(\\mathbf{I}+\\mathbf{A}\\Delta t),\n\\] After model transformation, one may obtain a polynomial system\n\\[\n\\dot{z}=A_1z+A_2z^{\\otimes 2}+\\cdots+A_Rz^{\\otimes R}.\n\\]\nThis section can contain as much LaTeX as needed."
   },
   {
     "objectID": "projects/project1.html#method",
