@@ -1,0 +1,55 @@
+---
+title: "Research Portfolio"
+subtitle: "Selected projects in machine learning, quantum computing, and power systems"
+page-layout: full
+---
+
+## Welcome
+
+This is a lightweight research website template. Replace the placeholder text with your own project summaries, figures, equations, and publications.
+
+::: {.hero}
+### Research Focus
+
+I work on computational methods for complex engineering systems, with interests spanning **machine learning**, **quantum computing**, and **power-system dynamics**.
+:::
+
+## Featured Projects
+
+::: {.project-grid}
+
+::: {.project-card}
+### Project 1 — Quantum Dynamic Simulation
+
+Transform nonlinear dynamic models into forms compatible with quantum algorithms.
+
+[View project →](projects/project1.qmd)
+:::
+
+::: {.project-card}
+### Project 2 — Stability Optimization
+
+Gradient-aware optimization for improving small-signal stability in inverter-dominated systems.
+
+[View project →](projects/project2.qmd)
+:::
+
+::: {.project-card}
+### Project 3 — Federated Forecasting
+
+Initialization-aware federated learning for heterogeneous short-term load forecasting.
+
+[View project →](projects/project3.qmd)
+:::
+
+:::
+
+## Example Equation
+
+Quarto renders LaTeX directly:
+
+$$
+\dot{x}=f(x,y), \qquad 0=g(x,y)
+$$
+
+and inline math such as $\lambda_i \in \mathbb{C}$ works as well.

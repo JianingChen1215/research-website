@@ -1,0 +1,62 @@
+---
+title: "Project 1 — Quantum Dynamic Simulation"
+---
+
+## Overview
+
+Write a short 2–4 sentence summary of the project here.
+
+## Motivation
+
+Explain the engineering/scientific challenge and why it matters.
+
+## Core Idea
+
+A generic nonlinear system may be written as
+
+$$
+\dot{x}=f(x,y), \qquad 0=g(x,y).
+$$
+
+After model transformation, one may obtain a polynomial system
+
+$$
+\dot{z}=A_1z+A_2z^{\otimes 2}+\cdots+A_Rz^{\otimes R}.
+$$
+
+This section can contain as much LaTeX as needed.
+
+## Method
+
+Replace this list with your actual workflow:
+
+1. DAE elimination
+2. Polynomial reformulation
+3. Linearization / lifting
+4. Quantum or numerical solver
+5. Reconstruction of physical variables
+
+## Framework Figure
+
+Replace the placeholder below with your own figure:
+
+```markdown
+![Framework](../images/framework.png)
+```
+
+## Key Results
+
+| Metric | Baseline | Proposed |
+|---|---:|---:|
+| Error | 1.2e-3 | 3.1e-8 |
+| Runtime | — | — |
+
+## Main Contributions
+
+- Contribution 1
+- Contribution 2
+- Contribution 3
+
+## Related Publication
+
+Example citation: [@sample2026].

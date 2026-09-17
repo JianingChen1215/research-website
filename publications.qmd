@@ -1,0 +1,20 @@
+---
+title: "Publications"
+---
+
+## Selected Publications
+
+You can either type publications manually or use BibTeX citations.
+
+### 2026
+
+- **Your Name**, Coauthor A, Coauthor B. *Paper Title*. Journal Name, 2026.
+- **Your Name**, Coauthor C. *Another Paper Title*. Conference Name, 2026.
+
+## BibTeX Example
+
+The project includes `references.bib`. You can cite an entry in any page using:
+
+```markdown
+[@sample2026]
+```

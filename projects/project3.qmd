@@ -1,0 +1,30 @@
+---
+title: "Project 3 — Federated Forecasting"
+---
+
+## Overview
+
+Describe the forecasting task and why federated learning is useful.
+
+## Federated Objective
+
+A generic federated objective is
+
+$$
+\min_w \sum_{k=1}^{K} p_k F_k(w).
+$$
+
+## Method
+
+Describe client sampling, initialization, aggregation, and local training.
+
+## Evaluation
+
+| Model | MSE | MAE |
+|---|---:|---:|
+| Baseline | 0.136 | 0.199 |
+| Proposed | 0.095 | 0.166 |
+
+## Related Publication
+
+Replace this section with your actual paper.

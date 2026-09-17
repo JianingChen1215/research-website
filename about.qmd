@@ -1,0 +1,21 @@
+---
+title: "About"
+---
+
+## About Me
+
+Add a short bio here.
+
+### Research Interests
+
+- Machine Learning
+- Large Language Models
+- Quantum Computing
+- Power Systems
+
+### Contact
+
+- Email: your-email@example.com
+- Google Scholar: add link
+- GitHub: add link
+- LinkedIn: add link

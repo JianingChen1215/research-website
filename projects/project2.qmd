@@ -1,0 +1,36 @@
+---
+title: "Project 2 — Stability Optimization"
+---
+
+## Overview
+
+Summarize the project in plain language first.
+
+## Problem
+
+Consider the eigenvalue problem
+
+$$
+Av_i=\lambda_i v_i.
+$$
+
+The sensitivity of an eigenvalue to parameter $k$ can be written as
+
+$$
+\frac{\partial \lambda_i}{\partial k}
+=
+\frac{w_i^H \left(\frac{\partial A}{\partial k}\right) v_i}
+{w_i^H v_i}.
+$$
+
+## Proposed Method
+
+Explain your optimization algorithm, gradient calculation, and controller parameters here.
+
+## Results
+
+Add figures, tables, or before/after eigenvalue plots.
+
+## Related Publication
+
+Replace this section with your actual paper information.
