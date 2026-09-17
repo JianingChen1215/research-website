@@ -1,0 +1,226 @@
+[
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
+    "section": "",
+    "text": "You can either type publications manually or use BibTeX citations.\n\n\n\nYour Name, Coauthor A, Coauthor B. Paper Title. Journal Name, 2026.\nYour Name, Coauthor C. Another Paper Title. Conference Name, 2026."
+  },
+  {
+    "objectID": "publications.html#selected-publications",
+    "href": "publications.html#selected-publications",
+    "title": "Publications",
+    "section": "",
+    "text": "You can either type publications manually or use BibTeX citations.\n\n\n\nYour Name, Coauthor A, Coauthor B. Paper Title. Journal Name, 2026.\nYour Name, Coauthor C. Another Paper Title. Conference Name, 2026."
+  },
+  {
+    "objectID": "publications.html#bibtex-example",
+    "href": "publications.html#bibtex-example",
+    "title": "Publications",
+    "section": "BibTeX Example",
+    "text": "BibTeX Example\nThe project includes references.bib. You can cite an entry in any page using:\n[@sample2026]"
+  },
+  {
+    "objectID": "projects/project2.html",
+    "href": "projects/project2.html",
+    "title": "Project 2 — Stability Optimization",
+    "section": "",
+    "text": "Summarize the project in plain language first."
+  },
+  {
+    "objectID": "projects/project2.html#overview",
+    "href": "projects/project2.html#overview",
+    "title": "Project 2 — Stability Optimization",
+    "section": "",
+    "text": "Summarize the project in plain language first."
+  },
+  {
+    "objectID": "projects/project2.html#problem",
+    "href": "projects/project2.html#problem",
+    "title": "Project 2 — Stability Optimization",
+    "section": "Problem",
+    "text": "Problem\nConsider the eigenvalue problem\n\\[\nAv_i=\\lambda_i v_i.\n\\]\nThe sensitivity of an eigenvalue to parameter \\(k\\) can be written as\n\\[\n\\frac{\\partial \\lambda_i}{\\partial k}\n=\n\\frac{w_i^H \\left(\\frac{\\partial A}{\\partial k}\\right) v_i}\n{w_i^H v_i}.\n\\]"
+  },
+  {
+    "objectID": "projects/project2.html#proposed-method",
+    "href": "projects/project2.html#proposed-method",
+    "title": "Project 2 — Stability Optimization",
+    "section": "Proposed Method",
+    "text": "Proposed Method\nExplain your optimization algorithm, gradient calculation, and controller parameters here."
+  },
+  {
+    "objectID": "projects/project2.html#results",
+    "href": "projects/project2.html#results",
+    "title": "Project 2 — Stability Optimization",
+    "section": "Results",
+    "text": "Results\nAdd figures, tables, or before/after eigenvalue plots."
+  },
+  {
+    "objectID": "projects/project2.html#related-publication",
+    "href": "projects/project2.html#related-publication",
+    "title": "Project 2 — Stability Optimization",
+    "section": "Related Publication",
+    "text": "Related Publication\nReplace this section with your actual paper information."
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Use one page per project. A useful structure is:\n\nMotivation\nProblem\nProposed Method\nTechnical Framework\nKey Results\nPublications\n\n\nProject 1 — Quantum Dynamic Simulation\nProject 2 — Stability Optimization\nProject 3 — Federated Forecasting"
+  },
+  {
+    "objectID": "projects/index.html#research-projects",
+    "href": "projects/index.html#research-projects",
+    "title": "Projects",
+    "section": "",
+    "text": "Use one page per project. A useful structure is:\n\nMotivation\nProblem\nProposed Method\nTechnical Framework\nKey Results\nPublications\n\n\nProject 1 — Quantum Dynamic Simulation\nProject 2 — Stability Optimization\nProject 3 — Federated Forecasting"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Add a short bio here.\n\n\n\nMachine Learning\nLarge Language Models\nQuantum Computing\nPower Systems\n\n\n\n\n\nEmail: your-email@example.com\nGoogle Scholar: add link\nGitHub: add link\nLinkedIn: add link"
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About",
+    "section": "",
+    "text": "Add a short bio here.\n\n\n\nMachine Learning\nLarge Language Models\nQuantum Computing\nPower Systems\n\n\n\n\n\nEmail: your-email@example.com\nGoogle Scholar: add link\nGitHub: add link\nLinkedIn: add link"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Research Portfolio",
+    "section": "",
+    "text": "This is a lightweight research website template. Replace the placeholder text with your own project summaries, figures, equations, and publications.\n\n\nI work on computational methods for complex engineering systems, with interests spanning machine learning, quantum computing, and power-system dynamics."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Research Portfolio",
+    "section": "",
+    "text": "This is a lightweight research website template. Replace the placeholder text with your own project summaries, figures, equations, and publications.\n\n\nI work on computational methods for complex engineering systems, with interests spanning machine learning, quantum computing, and power-system dynamics."
+  },
+  {
+    "objectID": "index.html#featured-projects",
+    "href": "index.html#featured-projects",
+    "title": "Research Portfolio",
+    "section": "Featured Projects",
+    "text": "Featured Projects\n\n\nProject 1 — Quantum Dynamic Simulation\nTransform nonlinear dynamic models into forms compatible with quantum algorithms.\nView project →\n\n\nProject 2 — Stability Optimization\nGradient-aware optimization for improving small-signal stability in inverter-dominated systems.\nView project →\n\n\nProject 3 — Federated Forecasting\nInitialization-aware federated learning for heterogeneous short-term load forecasting.\nView project →"
+  },
+  {
+    "objectID": "index.html#example-equation",
+    "href": "index.html#example-equation",
+    "title": "Research Portfolio",
+    "section": "Example Equation",
+    "text": "Example Equation\nQuarto renders LaTeX directly:\n\\[\n\\dot{x}=f(x,y), \\qquad 0=g(x,y)\n\\]\nand inline math such as \\(\\lambda_i \\in \\mathbb{C}\\) works as well."
+  },
+  {
+    "objectID": "projects/project1.html",
+    "href": "projects/project1.html",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "",
+    "text": "Write a short 2–4 sentence summary of the project here."
+  },
+  {
+    "objectID": "projects/project1.html#overview",
+    "href": "projects/project1.html#overview",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "",
+    "text": "Write a short 2–4 sentence summary of the project here."
+  },
+  {
+    "objectID": "projects/project1.html#motivation",
+    "href": "projects/project1.html#motivation",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Motivation",
+    "text": "Motivation\nExplain the engineering/scientific challenge and why it matters."
+  },
+  {
+    "objectID": "projects/project1.html#core-idea",
+    "href": "projects/project1.html#core-idea",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Core Idea",
+    "text": "Core Idea\nA generic nonlinear system may be written as\n\\[\n\\dot{x}=f(x,y), \\qquad 0=g(x,y).\n\\]\nAfter model transformation, one may obtain a polynomial system\n\\[\n\\dot{z}=A_1z+A_2z^{\\otimes 2}+\\cdots+A_Rz^{\\otimes R}.\n\\]\nThis section can contain as much LaTeX as needed."
+  },
+  {
+    "objectID": "projects/project1.html#method",
+    "href": "projects/project1.html#method",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Method",
+    "text": "Method\nReplace this list with your actual workflow:\n\nDAE elimination\nPolynomial reformulation\nLinearization / lifting\nQuantum or numerical solver\nReconstruction of physical variables"
+  },
+  {
+    "objectID": "projects/project1.html#framework-figure",
+    "href": "projects/project1.html#framework-figure",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Framework Figure",
+    "text": "Framework Figure\nReplace the placeholder below with your own figure:\n![Framework](../images/framework.png)"
+  },
+  {
+    "objectID": "projects/project1.html#key-results",
+    "href": "projects/project1.html#key-results",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Key Results",
+    "text": "Key Results\n\n\n\nMetric\nBaseline\nProposed\n\n\n\n\nError\n1.2e-3\n3.1e-8\n\n\nRuntime\n—\n—"
+  },
+  {
+    "objectID": "projects/project1.html#main-contributions",
+    "href": "projects/project1.html#main-contributions",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Main Contributions",
+    "text": "Main Contributions\n\nContribution 1\nContribution 2\nContribution 3"
+  },
+  {
+    "objectID": "projects/project1.html#related-publication",
+    "href": "projects/project1.html#related-publication",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Related Publication",
+    "text": "Related Publication\nExample citation: (Name and Coauthor 2026)."
+  },
+  {
+    "objectID": "projects/project3.html",
+    "href": "projects/project3.html",
+    "title": "Project 3 — Federated Forecasting",
+    "section": "",
+    "text": "Describe the forecasting task and why federated learning is useful."
+  },
+  {
+    "objectID": "projects/project3.html#overview",
+    "href": "projects/project3.html#overview",
+    "title": "Project 3 — Federated Forecasting",
+    "section": "",
+    "text": "Describe the forecasting task and why federated learning is useful."
+  },
+  {
+    "objectID": "projects/project3.html#federated-objective",
+    "href": "projects/project3.html#federated-objective",
+    "title": "Project 3 — Federated Forecasting",
+    "section": "Federated Objective",
+    "text": "Federated Objective\nA generic federated objective is\n\\[\n\\min_w \\sum_{k=1}^{K} p_k F_k(w).\n\\]"
+  },
+  {
+    "objectID": "projects/project3.html#method",
+    "href": "projects/project3.html#method",
+    "title": "Project 3 — Federated Forecasting",
+    "section": "Method",
+    "text": "Method\nDescribe client sampling, initialization, aggregation, and local training."
+  },
+  {
+    "objectID": "projects/project3.html#evaluation",
+    "href": "projects/project3.html#evaluation",
+    "title": "Project 3 — Federated Forecasting",
+    "section": "Evaluation",
+    "text": "Evaluation\n\n\n\nModel\nMSE\nMAE\n\n\n\n\nBaseline\n0.136\n0.199\n\n\nProposed\n0.095\n0.166"
+  },
+  {
+    "objectID": "projects/project3.html#related-publication",
+    "href": "projects/project3.html#related-publication",
+    "title": "Project 3 — Federated Forecasting",
+    "section": "Related Publication",
+    "text": "Related Publication\nReplace this section with your actual paper."
+  }
+]
