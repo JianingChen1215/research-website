@@ -18,15 +18,18 @@ $$
 \dot{x}=f(x,y), \qquad 0=g(x,y).
 $$
 
-$
+$$
 \mathbf{H}_{G}
 =
 \begin{pmatrix}
 \mathbf{0} & \mathbf{G} \\
 \mathbf{G}^{\dagger} & \mathbf{0}
 \end{pmatrix}.
-$
+$$
 
+$$
+\mathbf{G} = \sum_{k=0}^{T-1}|k\rangle \langle k|\otimes\mathbf{I} -\sum_{k=1}^{T-1}|k\rangle \langle k-1|\otimes(\mathbf{I}+\mathbf{A}\Delta t),
+$$
 After model transformation, one may obtain a polynomial system
 
 $$
