@@ -4,8 +4,6 @@ title: "Projects"
 
 ## Research Projects
 
-Use one page per project. A useful structure is:
-
 1. Motivation
 2. Problem
 3. Proposed Method
