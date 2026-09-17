@@ -4,7 +4,7 @@ title: "Project 1 — Quantum Dynamic Simulation"
 
 ## Overview
 
-Write a short 2–4 sentence summary of the project here.
+Write a short overview.
 
 ## Motivation
 
@@ -17,6 +17,15 @@ A generic nonlinear system may be written as
 $$
 \dot{x}=f(x,y), \qquad 0=g(x,y).
 $$
+
+$
+\mathbf{H}_{G}
+=
+\begin{pmatrix}
+\mathbf{0} & \mathbf{G} \\
+\mathbf{G}^{\dagger} & \mathbf{0}
+\end{pmatrix}.
+$
 
 After model transformation, one may obtain a polynomial system
 
