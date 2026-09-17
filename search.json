@@ -179,7 +179,21 @@
     "href": "projects/project1.html#framework-figure",
     "title": "Project 1 — Quantum Dynamic Simulation",
     "section": "Framework Figure",
-    "text": "Framework Figure\nReplace the placeholder below with your own figure:\n![Framework](../images/framework.png)"
+    "text": "Framework Figure\nReplace the placeholder below with your own figure:\n\n\n\nFramework"
+  },
+  {
+    "objectID": "projects/project1.html#python-code",
+    "href": "projects/project1.html#python-code",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Python Code",
+    "text": "Python Code\nimport numpy as np\n\nx = np.array([1, 2, 3])\nprint(x.mean())"
+  },
+  {
+    "objectID": "projects/project1.html#matlab-code",
+    "href": "projects/project1.html#matlab-code",
+    "title": "Project 1 — Quantum Dynamic Simulation",
+    "section": "Matlab Code",
+    "text": "Matlab Code\nA = [1 2; 3 4];\neig(A)"
   },
   {
     "objectID": "projects/project1.html#key-results",
