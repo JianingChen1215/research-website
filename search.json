@@ -172,7 +172,7 @@
     "href": "projects/project1.html#method",
     "title": "Project 1 — Quantum Dynamic Simulation",
     "section": "Method",
-    "text": "Method\nReplace this list with your actual workflow:\n\n\n\nFramework\n\n\n\nDAE elimination\nPolynomial reformulation\nLinearization / lifting\nQuantum or numerical solver\nReconstruction of physical variables"
+    "text": "Method\nReplace this list with your actual workflow:\n\nDAE elimination\nPolynomial reformulation\nLinearization / lifting\nQuantum or numerical solver\nReconstruction of physical variables"
   },
   {
     "objectID": "projects/project1.html#framework-figure",
