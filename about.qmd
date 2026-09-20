@@ -1,21 +1,33 @@
 ---
-title: "About"
+title: "People"
 ---
 
-## About Me
+---
 
-Add a short bio here. ABC
+## Principal Investigator (PI)
 
-### Research Interests
+* **Yan Li**, Associate Professor — Penn State University, Electrical Engineering
 
-- Machine Learning
-- Large Language Models
-- Quantum Computing
-- Power Systems
+## Trainees
 
-### Contact
+### Graduate Trainees
 
-- Email: your-email@example.com
-- Google Scholar: add link
-- GitHub: add link
-- LinkedIn: add link
+* **Joseph Maxwell Lange** — Penn State University, Electrical Engineering
+* **Yuqi Jiang** — Penn State University, Electrical Engineering
+* **Jianing Chen** — Penn State University, Electrical Engineering
+* **Shuyang Ma** — Penn State University, Electrical Engineering
+* **Yitong Pan** — Penn State University, Electrical Engineering
+* **Yuchen Luo** — Penn State University, Electrical Engineering
+
+### Undergraduate Trainees
+
+* **Joseph William Brogan** — Penn State University, Electrical Engineering
+* **Ainsley Marie Gulden** — Penn State University, Computer Science Engineering
+* **Shaivi Tomar** — Penn State University, Computer Science Engineering
+* **Naobi Chang** — Penn State University, Electrical Engineering
+* **Dylan Dress** — Penn State University, Electrical Engineering
+* **Ananya Vyas** — Penn State University, Electrical Engineering
+* **Taemin Kang** — Penn State University, Computational Data Science and Statistics
+* **Anant Ruminkumar Patel** — Penn State University, Computational Data Science
+* **Swarnanathan Mahalingam** — Penn State University, Electrical Engineering
+

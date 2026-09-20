@@ -2,19 +2,24 @@
 title: "Publications"
 ---
 
-## Selected Publications
+## Publications by Year
 
-You can either type publications manually or use BibTeX citations.
+- J. Chen, Y. Li, S. He, and D. Huang, “Eigenvalue- and Gradient-Aware Optimization for Small-Signal Stability via the Adjoint Method,” *IEEE Transactions on Power Systems*, 2026. [doi:10.1109/TPWRS.2026.3725599](https://doi.org/10.1109/TPWRS.2026.3725599)
 
-### 2026
+- Y. Pan, Y. Li, L. Du, M. Ismail, and W. Saad, “Constrained Quantum Approximate Optimization for Modular Multilevel Converter Cell Selection,” in *2026 IEEE Transportation Electrification Conference & Expo and Electric Aircraft Technologies Symposium (ITEC+EATS)*, 2026. [doi:10.1109/ITECEATS66641.2026.11593062](https://doi.org/10.1109/ITECEATS66641.2026.11593062)
 
-- **Your Name**, Coauthor A, Coauthor B. *Paper Title*. Journal Name, 2026.
-- **Your Name**, Coauthor C. *Another Paper Title*. Conference Name, 2026.
+- J. M. Lange and Y. Li, “Contingency Analysis via QAOA in the NISQ Era,” in *2026 IEEE Transportation Electrification Conference & Expo and Electric Aircraft Technologies Symposium (ITEC+EATS)*, 2026, pp. 1–5. [doi:10.1109/ITECEATS66641.2026.11592846](https://doi.org/10.1109/ITECEATS66641.2026.11592846)
 
-## BibTeX Example
+- S. Ma and Y. Li, “Qubit-Efficient Formulation of the Constrained Shortest Path Problem for Power System Communication Networks,” in *2026 IEEE 19th Dallas Circuits and Systems Conference (DCAS)*, 2026. [doi:10.1109/DCAS69364.2026.11544856](https://doi.org/10.1109/DCAS69364.2026.11544856)
 
-The project includes `references.bib`. You can cite an entry in any page using:
+- Y. Jiang and Y. Li, “Graph-Adaptive QAOA for Power Grid PMU Placement with Joint Parameter Initialization and Circuit-Depth Optimization,” in *2026 IEEE 19th Dallas Circuits and Systems Conference (DCAS)*, 2026. [doi:10.1109/DCAS69364.2026.11544662](https://doi.org/10.1109/DCAS69364.2026.11544662)
 
-```markdown
-[@sample2026]
-```
+- Y. Jiang, X. Wang, Z. Liang, Y. Li, T. Morstyn, P. L. S. Lopes, and M. J. Brandsema, “QAOA-Driven PMU Placement Optimization with Graph Learning-Based Parameter Initialization Refinement,” *Quantum Machine Intelligence*, vol. 8, no. 1, Art. no. 32, 2026. [doi:10.1007/s42484-026-00354-z](https://doi.org/10.1007/s42484-026-00354-z)
+
+- Y. Jiang, Z. Liang, Y. Li, Q. Guan, and G. K. Venayagamoorthy, “Quantum Computing-Enabled Contingency Analysis for Power Systems,” in *Proceedings of the 2025 IEEE International Conference on Quantum Computing and Engineering (QCE)*, 2025, pp. 1938–1944. [doi:10.1109/QCE65121.2025.00211](https://doi.org/10.1109/QCE65121.2025.00211)
+
+- Y. Jiang, X. Wang, Z. Liang, Y. Li, T. Morstyn, and L. Du, “Accelerating Quantum Optimization with Graph Learning for Optimal PMU Placement,” in *2025 IEEE/AIAA Transportation Electrification Conference and Electric Aircraft Technologies Symposium (ITEC+EATS)*, 2025, pp. 1–5. [doi:10.1109/ITEC63604.2025.11097914](https://doi.org/10.1109/ITEC63604.2025.11097914)
+
+- J. M. Lange, J. Chen, Y. Li, and L. Du, “Quantum Computing for Analyzing Microgrid Systems With Uncertainties,” in *2025 IEEE/AIAA Transportation Electrification Conference and Electric Aircraft Technologies Symposium (ITEC+EATS)*, 2025. [doi:10.1109/ITEC63604.2025.11098157](https://doi.org/10.1109/ITEC63604.2025.11098157)
+
+- Y. Jiang, Z. Liang, Y. Li, and T. Morstyn, “Optimal PMU Placement via Quantum Optimization,” *IEEE Transactions on Smart Grid*, vol. 16, no. 4, pp. 3125–3141, 2025. [doi:10.1109/TSG.2025.3564889](https://doi.org/10.1109/TSG.2025.3564889)

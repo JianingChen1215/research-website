@@ -1,0 +1,23 @@
+---
+title: "Presentations & Tutorials"
+---
+
+## Selected Academic Talks and Tutorials
+
+- [July 2026] Quantum Computing for Power Systems, 2026 IEEE Power & Energy Society General Meeting, Montreal, Canada
+- [March 2026] Quantum Computing-Enabled Power System Islanding, HAIQ Workshop at HPCA 2026, Pittsburgh, PA, U.S.
+- [February 2026] Quantum Computing-Enabled Power System Partitioning, Guest Lecture, Clemson University
+- [January 2026] QAOA-Driven PMU Placement Optimization with Graph Learning-based Parameter Initialization Refinement, Quantum Machine Intelligence
+- [October 2025] Enabling Resilient Cyber-Physical Power Systems: Integrating Quantum Computing and Machine Learning for Future Grids, ECE Department Seminar, Lehigh University
+- [September 2025] Quantum Computing-Enabled Contingency Analysis for Power Systems, 2025 IEEE Quantum Week
+- [July 2025] Quantum Computing for Power System Optimization, 2025 IEEE Power & Energy Society General Meeting, Austin, TX
+- [July 2025] Opportunities and Challenges in Research and Education of Quantum Computing for Power Systems, 2025 IEEE Power & Energy Society General Meeting, Austin, TX
+- [May 2025] Quantum-Accelerated Optimal Meter Placement in Energy Systems, North Carolina State Quantum Initiative’s Annual Symposium, North Carolina State University
+- [March 2025] Enhancing Distribution Network Observability: A Quantum Solution, HAIQ Workshop at HPCA 2025, Las Vegas
+- [January 2025] Cyber-Physical Power Systems, ECE Department Seminar, Huston University
+- [January 2025] Enabling Resilient Cyber-Physical Microgrids, Department of Nuclear Engineering, Penn State University
+- [November 2024] Power System Dynamic Simulation with Generalized Quantum Carleman Linearization, AVS 70 Mini Symposium on Quantum Science & Technology, Tampa, FL
+- [October 2024] Quantum-Enabled Analysis in Renewable Energy Systems, Quantum Computing Applications and System Workshop, Newark, NJ
+- [October 2024] Harnessing Quantum Computing For Power System Applications, Department of Computer Science, Rensselaer Polytechnic Institute
+- [September 2024] Quantum-Enabled Optimal Placement of Meters in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada
+- [September 2024] Quantum-Enabled Optimal Placement of PMUs in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada

@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Project 5 — Advanced Computational Methods for Power System Stability Enhancement – CyberTraining</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+
+window.MathJax = {
+
+  options: {
+
+    enableExplorerHelp: false
+
+  }
+
+};
+
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CyberTraining</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../presentation.html"> 
+<span class="menu-text">Presentations &amp; Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">People</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#framework" id="toc-framework" class="nav-link" data-scroll-target="#framework">Framework</a></li>
+  <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea">Core Idea</a></li>
+  <li><a href="#adjoint-eigenvalue-gradient-computation" id="toc-adjoint-eigenvalue-gradient-computation" class="nav-link" data-scroll-target="#adjoint-eigenvalue-gradient-computation">Adjoint Eigenvalue-Gradient Computation</a></li>
+  <li><a href="#progressive-megao-framework" id="toc-progressive-megao-framework" class="nav-link" data-scroll-target="#progressive-megao-framework">Progressive MEGAO Framework</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
+  <li><a href="#representative-python-implementation" id="toc-representative-python-implementation" class="nav-link" data-scroll-target="#representative-python-implementation">Representative Python Implementation</a>
+  <ul class="collapse">
+  <li><a href="#critical-eigenvalue-identification" id="toc-critical-eigenvalue-identification" class="nav-link" data-scroll-target="#critical-eigenvalue-identification">1. Critical Eigenvalue Identification</a></li>
+  <li><a href="#adjoint-eigenvalue-gradients" id="toc-adjoint-eigenvalue-gradients" class="nav-link" data-scroll-target="#adjoint-eigenvalue-gradients">2. Adjoint Eigenvalue Gradients</a></li>
+  <li><a href="#eigenvalue--and-gradient-aware-direction" id="toc-eigenvalue--and-gradient-aware-direction" class="nav-link" data-scroll-target="#eigenvalue--and-gradient-aware-direction">3. Eigenvalue- and Gradient-Aware Direction</a></li>
+  <li><a href="#progressive-optimization-loop" id="toc-progressive-optimization-loop" class="nav-link" data-scroll-target="#progressive-optimization-loop">4. Progressive Optimization Loop</a></li>
+  </ul></li>
+  <li><a href="#bus-test-system" id="toc-bus-test-system" class="nav-link" data-scroll-target="#bus-test-system">10-Bus Test System</a></li>
+  <li><a href="#computational-efficiency" id="toc-computational-efficiency" class="nav-link" data-scroll-target="#computational-efficiency">Computational Efficiency</a></li>
+  <li><a href="#ieee-39-bus-case-study" id="toc-ieee-39-bus-case-study" class="nav-link" data-scroll-target="#ieee-39-bus-case-study">IEEE 39-Bus Case Study</a></li>
+  <li><a href="#effect-of-active-parameter-selection" id="toc-effect-of-active-parameter-selection" class="nav-link" data-scroll-target="#effect-of-active-parameter-selection">Effect of Active Parameter Selection</a></li>
+  <li><a href="#parallel-gradient-computation" id="toc-parallel-gradient-computation" class="nav-link" data-scroll-target="#parallel-gradient-computation">Parallel Gradient Computation</a></li>
+  <li><a href="#main-contributions" id="toc-main-contributions" class="nav-link" data-scroll-target="#main-contributions">Main Contributions</a></li>
+  <li><a href="#related-publication" id="toc-related-publication" class="nav-link" data-scroll-target="#related-publication">Related Publication</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 5 — Advanced Computational Methods for Power System Stability Enhancement</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="hero">
+<p>This project develops a Multi-objective Eigenvalue- and Gradient-Aware Optimization (MEGAO) framework for improving power-system small-signal stability through controller-parameter tuning.</p>
+<p>An adjoint-based analytical method is introduced to efficiently compute the sensitivities of critical eigenvalues with respect to controller parameters. The framework combines eigenvalue distributions and gradient information to coordinate multiple stability objectives and progressively focus the optimization on the most critical modes.</p>
+<p>Numerical studies show that critical eigenvalues can be shifted further into the stable region while system damping is substantially improved. In the larger test system, low-frequency oscillations are eliminated and voltage returns to a stable state within approximately one second.</p>
+<p>The gradient-aware parameter-selection strategy further improves computational efficiency. Selecting the most influential <strong>5–10%</strong> of controller parameters reduces convergence from approximately <strong>97 iterations to 49–50 iterations</strong>, while parallel computation reduces the gradient-calculation time for 29 eigenvalues from <strong>816.59 seconds to 204.57 seconds per iteration</strong>.</p>
+</div>
+<hr>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>Power systems with high penetration of inverter-based resources can exhibit reduced inertia and poorly damped oscillatory modes. Their small-signal stability depends strongly on controller parameters such as PLL gains and inner/outer control-loop gains.</p>
+<p>A nonlinear IBR-based power-system model can be represented by differential-algebraic equations,</p>
+<p><span class="math display">\[
+\dot{\mathbf{x}}
+=
+\mathbf{F}(\mathbf{x},\mathbf{y},\mathbf{k}),
+\qquad
+\mathbf{0}
+=
+\mathbf{G}(\mathbf{x},\mathbf{y},\mathbf{k}),
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\mathbf{x}\)</span> contains dynamic states,</li>
+<li><span class="math inline">\(\mathbf{y}\)</span> contains algebraic variables,</li>
+<li><span class="math inline">\(\mathbf{k}\)</span> contains tunable controller parameters.</li>
+</ul>
+<p>Linearization around an equilibrium point gives</p>
+<p><span class="math display">\[
+\Delta\dot{\mathbf{x}}
+=
+\mathbf{A}(\mathbf{k})\Delta\mathbf{x},
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+\mathbf{A}
+=
+\mathbf{F}_{\mathbf{x}}
+-
+\mathbf{F}_{\mathbf{y}}
+\mathbf{G}_{\mathbf{y}}^{-1}
+\mathbf{G}_{\mathbf{x}}.
+\]</span></p>
+<p>The eigenvalue problem is</p>
+<p><span class="math display">\[
+\mathbf{A}\mathbf{v}
+=
+\lambda\mathbf{v}.
+\]</span></p>
+<p>Small-signal stability requires all eigenvalues to satisfy</p>
+<p><span class="math display">\[
+\Re(\lambda_i)&lt;0.
+\]</span></p>
+<p>The optimization problem is therefore to determine how controller parameters should be changed so that critical eigenvalues move toward more negative real parts.</p>
+<hr>
+</section>
+<section id="framework" class="level2">
+<h2 class="anchored" data-anchor-id="framework">Framework</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/megao_framework.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Gradient-driven small-signal-stability enhancement framework. The optimization iteratively evaluates eigenvalues, computes their gradients, updates controller parameters, and repeats until the selected modes satisfy the stability threshold.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="core-idea" class="level2">
+<h2 class="anchored" data-anchor-id="core-idea">Core Idea</h2>
+<p>Instead of repeatedly perturbing every controller parameter and recomputing the full system eigenvalues, the proposed method analytically evaluates the sensitivity of each eigenvalue to the controller parameters.</p>
+<p>Let <span class="math inline">\(\mathbf{v}\)</span> and <span class="math inline">\(\widetilde{\mathbf{v}}\)</span> denote the right and left eigenvectors associated with an eigenvalue <span class="math inline">\(\lambda\)</span>. The sensitivity of its real part to the state matrix can be written as</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}\Re(\lambda)}
+{\mathrm{d}\mathbf{A}}
+=
+\Re\left(
+\frac{
+\widetilde{\mathbf{v}}\mathbf{v}^{*}
+}{
+\mathbf{v}^{*}\widetilde{\mathbf{v}}
+}
+\right).
+\]</span></p>
+<p>Using the chain rule, the eigenvalue gradient with respect to the controller parameters is</p>
+<p><span class="math display">\[
+\mathbf{g}_r
+=
+\frac{\mathrm{d}\Re(\lambda)}
+{\mathrm{d}\mathbf{k}}
+=
+\Re\left(
+\frac{
+\widetilde{\mathbf{v}}\mathbf{v}^{*}
+}{
+\mathbf{v}^{*}\widetilde{\mathbf{v}}
+}
+\right)
+\frac{\partial\mathbf{A}}{\partial\mathbf{k}}.
+\]</span></p>
+<p>The matrix derivative and the parameter derivative are therefore <strong>decoupled</strong>:</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}\lambda}{\mathrm{d}\mathbf{k}}
+=
+\frac{\mathrm{d}\lambda}{\mathrm{d}\mathbf{A}}
+\frac{\partial\mathbf{A}}{\partial\mathbf{k}}.
+\]</span></p>
+<p>This structure is particularly useful when the number of tunable parameters is large because the operator associated with the eigenvalue derivative can be reused across all parameters.</p>
+<hr>
+</section>
+<section id="adjoint-eigenvalue-gradient-computation" class="level2">
+<h2 class="anchored" data-anchor-id="adjoint-eigenvalue-gradient-computation">Adjoint Eigenvalue-Gradient Computation</h2>
+<p>The adjoint formulation avoids evaluating each parameter sensitivity through repeated model perturbations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/adjoint_gradient_workflow.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Adjoint workflow for analytical eigenvalue-gradient computation.</figcaption>
+</figure>
+</div>
+<p>For a selected eigenvalue, the derivative can be implemented as a tensor contraction between</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}\Re(\lambda)}{\mathrm{d}\mathbf{A}}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{\partial\mathbf{A}}{\partial\mathbf{k}}.
+\]</span></p>
+<p>Because <span class="math inline">\(\partial\mathbf{A}/\partial\mathbf{k}\)</span> is typically sparse and its sparsity pattern remains fixed for a fixed system structure, it can be precomputed and efficiently reused during optimization.</p>
+<hr>
+</section>
+<section id="progressive-megao-framework" class="level2">
+<h2 class="anchored" data-anchor-id="progressive-megao-framework">Progressive MEGAO Framework</h2>
+<p>Optimizing every system eigenvalue at every iteration is unnecessary. The framework first defines a set of critical or <strong>danger eigenvalues</strong>,</p>
+<p><span class="math display">\[
+\mathcal{E}(\tau)
+=
+\left\{
+\lambda_i
+\mid
+\Re(\lambda_i)\geq\tau
+\right\},
+\]</span></p>
+<p>where <span class="math inline">\(\tau\)</span> is a stability threshold.</p>
+<p>Eigenvalues with larger real parts receive larger weights,</p>
+<p><span class="math display">\[
+w_i
+=
+\frac{
+\exp(\Re(\lambda_i))
+}{
+\sum_{j=1}^{s}\exp(\Re(\lambda_j))
+}.
+\]</span></p>
+<p>To reduce conflicting parameter-update directions, the importance of controller parameter <span class="math inline">\(j\)</span> is evaluated as</p>
+<p><span class="math display">\[
+\mathcal{G}(j)
+=
+\left|
+\sum_{i=1}^{s}
+g_j^{(i)}
+\right|.
+\]</span></p>
+<p>Only the top-<span class="math inline">\(h\)</span> entries are retained in each eigenvalue gradient. The final parameter update is</p>
+<p><span class="math display">\[
+\mathbf{k}_{N+1}
+=
+\mathbf{k}_N
+-
+\eta
+\sum_{i=1}^{s}
+w_i
+\,
+\widehat{\mathbf{k}}_N
+\odot
+\widetilde{\mathbf{g}}_N^{(i)}.
+\]</span></p>
+<p>The threshold <span class="math inline">\(\tau\)</span> is progressively decreased so that optimization first focuses on the most critical modes before gradually including additional eigenvalues.</p>
+<hr>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
+<p>The overall workflow consists of:</p>
+<ol type="1">
+<li><p><strong>Build the nonlinear IBR power-system model</strong><br>
+Represent system dynamics using differential-algebraic equations.</p></li>
+<li><p><strong>Linearize around an operating point</strong><br>
+Construct the small-signal state matrix <span class="math inline">\(\mathbf{A}(\mathbf{k})\)</span>.</p></li>
+<li><p><strong>Identify critical eigenvalues</strong><br>
+Select eigenvalues satisfying <span class="math inline">\(\Re(\lambda_i)\geq\tau\)</span>.</p></li>
+<li><p><strong>Compute analytical eigenvalue gradients</strong><br>
+Use left and right eigenvectors together with <span class="math inline">\(\partial\mathbf{A}/\partial\mathbf{k}\)</span>.</p></li>
+<li><p><strong>Rank influential controller parameters</strong><br>
+Retain the top-<span class="math inline">\(h\)</span> gradient components based on aggregated gradient importance.</p></li>
+<li><p><strong>Perform eigenvalue-aware parameter updates</strong><br>
+Apply softmax weighting and feature-wise parameter scaling.</p></li>
+<li><p><strong>Progressively tighten the stability threshold</strong><br>
+Reduce <span class="math inline">\(\tau\)</span> as the most critical eigenvalues become sufficiently damped.</p></li>
+<li><p><strong>Validate in the time domain</strong><br>
+Compare system trajectories before and after optimization.</p></li>
+</ol>
+<hr>
+</section>
+<section id="representative-python-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="representative-python-implementation">Representative Python Implementation</h2>
+<p>The following snippets illustrate the main numerical modules of the MEGAO framework.<br>
+The implementation is organized into four steps: <strong>critical-mode identification, adjoint gradient computation, gradient-aware parameter selection, and progressive optimization</strong>.</p>
+<section id="critical-eigenvalue-identification" class="level3">
+<h3 class="anchored" data-anchor-id="critical-eigenvalue-identification">1. Critical Eigenvalue Identification</h3>
+<p>At each optimization stage, only eigenvalues inside the current danger region,</p>
+<p><span class="math display">\[
+\Re(\lambda_i)\geq\tau,
+\]</span></p>
+<p>are retained.</p>
+<p>The corresponding left and right eigenvectors are also extracted because they are required by the adjoint sensitivity calculation.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> eig</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> critical_modes(A, tau):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    lam, vl, vr <span class="op">=</span> eig(A, left<span class="op">=</span><span class="va">True</span>, right<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> np.flatnonzero(lam.real <span class="op">&gt;=</span> tau)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lam[idx], vl[:, idx], vr[:, idx]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This module reduces the multi-objective problem to the modes that currently require stability improvement.</p>
+<hr>
+</section>
+<section id="adjoint-eigenvalue-gradients" class="level3">
+<h3 class="anchored" data-anchor-id="adjoint-eigenvalue-gradients">2. Adjoint Eigenvalue Gradients</h3>
+<p>For each active eigenvalue, the controller-parameter sensitivity is</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}\lambda_i}{\mathrm{d}k_j}
+=
+\frac{
+\mathbf{w}_i^H
+\frac{\partial A}{\partial k_j}
+\mathbf{v}_i
+}{
+\mathbf{w}_i^H\mathbf{v}_i
+}.
+\]</span></p>
+<p>All parameter gradients are evaluated simultaneously using one tensor contraction.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adjoint_gradients(vl, vr, dA_dk):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    den <span class="op">=</span> np.einsum(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"im,im-&gt;m"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        vl.conj(),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        vr</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> np.einsum(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"im,pij,jm-&gt;mp"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        vl.conj(),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        dA_dk,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        vr</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (num <span class="op">/</span> den[:, <span class="va">None</span>]).real</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output has shape</p>
+<p><span class="math display">\[
+N_{\mathrm{modes}}
+\times
+N_{\mathrm{parameters}},
+\]</span></p>
+<p>so each row contains the controller sensitivities of one critical eigenvalue.</p>
+<hr>
+</section>
+<section id="eigenvalue--and-gradient-aware-direction" class="level3">
+<h3 class="anchored" data-anchor-id="eigenvalue--and-gradient-aware-direction">3. Eigenvalue- and Gradient-Aware Direction</h3>
+<p>MEGAO gives larger weights to eigenvalues closer to instability and retains only the <span class="math inline">\(h\)</span> most influential controller parameters.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> megao_direction(lam, G, h, scale):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> np.exp(lam.real <span class="op">-</span> lam.real.<span class="bu">max</span>())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">/=</span> w.<span class="bu">sum</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> np.<span class="bu">abs</span>(G.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    keep <span class="op">=</span> np.argsort(score)[<span class="op">-</span>h:]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> np.zeros(G.shape[<span class="dv">1</span>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    mask[keep] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> scale <span class="op">*</span> np.<span class="bu">sum</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        w[:, <span class="va">None</span>] <span class="op">*</span> G <span class="op">*</span> mask,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        axis<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here,</p>
+<ul>
+<li><code>w</code> implements the eigenvalue-aware weighting,</li>
+<li><code>score</code> measures aggregated gradient importance,</li>
+<li><code>keep</code> selects the top-<span class="math inline">\(h\)</span> controller parameters.</li>
+</ul>
+<p>The returned vector is the joint update direction for the current set of critical modes.</p>
+<hr>
+</section>
+<section id="progressive-optimization-loop" class="level3">
+<h3 class="anchored" data-anchor-id="progressive-optimization-loop">4. Progressive Optimization Loop</h3>
+<p>The complete optimization repeatedly builds the state matrix, identifies critical modes, evaluates their gradients, and updates the controller parameters.</p>
+<p>As the system becomes more stable, the threshold <span class="math inline">\(\tau\)</span> is progressively tightened.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optimize_megao(k, build_A, build_dA, thresholds, h, lr, steps, scale):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> []</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tau <span class="kw">in</span> thresholds:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            A <span class="op">=</span> build_A(k)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            lam, vl, vr <span class="op">=</span> critical_modes(A, tau)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(lam) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            G <span class="op">=</span> adjoint_gradients(vl, vr, build_dA(k))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            direction <span class="op">=</span> megao_direction(lam, G, h, scale(k))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            k <span class="op">-=</span> lr <span class="op">*</span> direction</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            history.append([tau, lam.real.<span class="bu">max</span>()])</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> k, np.asarray(history)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This operator-level formulation eliminates the Python loop over controller parameters and maps naturally to optimized tensor kernels.</p>
+<hr>
+</section>
+</section>
+<section id="bus-test-system" class="level2">
+<h2 class="anchored" data-anchor-id="bus-test-system">10-Bus Test System</h2>
+<p>The first benchmark contains <strong>2 IBRs and 5 constant-power loads</strong>. The IBR at Bus 1 uses voltage-frequency control, while the IBR at Bus 6 uses active-reactive power control.</p>
+<p>A total of <strong>14 controller parameters</strong> are optimized.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ten_bus_system.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>10-bus system containing two inverter-based resources and five loads.</figcaption>
+</figure>
+</div>
+<p>For this system, the stability threshold is fixed at</p>
+<p><span class="math display">\[
+\tau=-2.5,
+\]</span></p>
+<p>and five critical eigenvalues are selected for optimization.</p>
+<p>Two eigenvalues initially have positive real parts. The proposed optimization rapidly shifts them into the left-half complex plane, after which the remaining danger eigenvalues progressively move toward the safe region.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ten_bus_eigenvalues.png" class="img-fluid figure-img" style="width:82.0%"></p>
+<figcaption>Evolution of the critical eigenvalues during optimization of the 10-bus system.</figcaption>
+</figure>
+</div>
+<p>A disturbance is applied at Load 7 at <span class="math inline">\(t=0.1\,\mathrm{s}\)</span>. Before tuning, the voltage trajectories exhibit unstable behavior; after optimization, the trajectories converge to stable operating values.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ten_bus_voltage_response.png" class="img-fluid figure-img" style="width:82.0%"></p>
+<figcaption>Voltage trajectories of the 10-bus system before and after controller-parameter optimization.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="computational-efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="computational-efficiency">Computational Efficiency</h2>
+<p>The adjoint formulation is benchmarked against a conventional matrix-perturbation approach.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Gradient Method</th>
+<th style="text-align: right;">Total Optimization Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Matrix Perturbation</td>
+<td style="text-align: right;">6851.78 s</td>
+</tr>
+<tr class="even">
+<td><strong>Adjoint Method</strong></td>
+<td style="text-align: right;"><strong>1243.64 s</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Speedup</strong></td>
+<td style="text-align: right;"><strong>≈ 5.5×</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/gradient_runtime.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Total optimization runtime using matrix perturbation and the adjoint formulation.</figcaption>
+</figure>
+</div>
+<p>The formulation was also benchmarked using NumPy and PyTorch implementations. On GPU, the proposed tensor formulation substantially reduced the per-iteration eigenvalue-gradient evaluation time.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>State / Parameter Dimensions</th>
+<th style="text-align: right;">Magnus-Based GPU</th>
+<th style="text-align: right;">Proposed GPU</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(80 / 70\)</span></td>
+<td style="text-align: right;">8.0365 ms</td>
+<td style="text-align: right;"><strong>0.0292 ms</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(400 / 100\)</span></td>
+<td style="text-align: right;">11.6844 ms</td>
+<td style="text-align: right;"><strong>0.4435 ms</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(800 / 200\)</span></td>
+<td style="text-align: right;">17.5915 ms</td>
+<td style="text-align: right;"><strong>3.0129 ms</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1200 / 400\)</span></td>
+<td style="text-align: right;">124.5014 ms</td>
+<td style="text-align: right;"><strong>12.8081 ms</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The largest speedup in these GPU benchmarks occurs for the <span class="math inline">\(80\times80\)</span> state matrix with 70 tunable parameters, where the proposed implementation is approximately <strong>275× faster</strong> for the gradient-evaluation kernel.</p>
+<hr>
+</section>
+<section id="ieee-39-bus-case-study" class="level2">
+<h2 class="anchored" data-anchor-id="ieee-39-bus-case-study">IEEE 39-Bus Case Study</h2>
+<p>The second benchmark extends the framework to the <strong>New England IEEE 39-bus system</strong> with</p>
+<ul>
+<li><strong>10 IBRs</strong>,</li>
+<li><strong>70 tunable controller parameters</strong>,</li>
+<li>one voltage-frequency controlled IBR at Bus 31,</li>
+<li>nine active-reactive power controlled IBRs.</li>
+</ul>
+<p>Initially, <strong>29 eigenvalues</strong> have real parts greater than <span class="math inline">\(-0.3\)</span>, creating a much larger multi-objective optimization problem.</p>
+<p>The progressive threshold schedule is</p>
+<p><span class="math display">\[
+\tau:
+-0.3
+\rightarrow
+-0.6
+\rightarrow
+-1
+\rightarrow
+-1.5
+\rightarrow
+-2
+\rightarrow
+-2.5
+\rightarrow
+-3.
+\]</span></p>
+<p>This progressive strategy avoids activating too many competing eigenvalue objectives at once.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee39_eigenvalues.png" class="img-fluid figure-img" style="width:98.0%"></p>
+<figcaption>Progressive evolution of the IEEE 39-bus eigenvalue distribution as the stability threshold is tightened.</figcaption>
+</figure>
+</div>
+<p>The optimization improves system damping and enables bus-voltage trajectories to return to stable values within approximately <strong>1 s</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee39_voltage_response.png" class="img-fluid figure-img" style="width:88.0%"></p>
+<figcaption>Voltage-magnitude trajectories at Buses 30–39 before and after optimization.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="effect-of-active-parameter-selection" class="level2">
+<h2 class="anchored" data-anchor-id="effect-of-active-parameter-selection">Effect of Active Parameter Selection</h2>
+<p>The gradient-aware parameter ranking allows only a fraction of the 70 controller parameters to be updated at each iteration.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Active Parameter Ratio</th>
+<th style="text-align: right;">Iterations to Convergence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>100%</td>
+<td style="text-align: right;">97</td>
+</tr>
+<tr class="even">
+<td>50%</td>
+<td style="text-align: right;">97</td>
+</tr>
+<tr class="odd">
+<td>30%</td>
+<td style="text-align: right;">97</td>
+</tr>
+<tr class="even">
+<td>20%</td>
+<td style="text-align: right;">98</td>
+</tr>
+<tr class="odd">
+<td><strong>10%</strong></td>
+<td style="text-align: right;"><strong>50</strong></td>
+</tr>
+<tr class="even">
+<td><strong>5%</strong></td>
+<td style="text-align: right;"><strong>49</strong></td>
+</tr>
+<tr class="odd">
+<td>3%</td>
+<td style="text-align: right;">98</td>
+</tr>
+<tr class="even">
+<td>1%</td>
+<td style="text-align: right;">98</td>
+</tr>
+</tbody>
+</table>
+<p>In this experiment, retaining approximately <strong>5–10% of the controller parameters</strong> provides the fastest convergence. Using too few parameters limits available search directions, while using too many increases coupling and gradient conflicts.</p>
+<hr>
+</section>
+<section id="parallel-gradient-computation" class="level2">
+<h2 class="anchored" data-anchor-id="parallel-gradient-computation">Parallel Gradient Computation</h2>
+<p>The gradients of different critical eigenvalues can be computed independently.</p>
+<p>For the IEEE 39-bus case, computing gradients for 29 critical eigenvalues gives:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Computing Mode</th>
+<th style="text-align: right;">Per-Iteration Gradient Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sequential</td>
+<td style="text-align: right;">816.59 s</td>
+</tr>
+<tr class="even">
+<td><strong>Parallel</strong></td>
+<td style="text-align: right;"><strong>204.57 s</strong></td>
+</tr>
+</tbody>
+</table>
+<p>This provides an additional approximately <strong>4× reduction</strong> in gradient-evaluation time and makes the framework suitable for multi-core and accelerator-based implementations.</p>
+<hr>
+</section>
+<section id="main-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="main-contributions">Main Contributions</h2>
+<ul>
+<li><p>Developed a <strong>Multi-objective Eigenvalue- and Gradient-Aware Optimization (MEGAO)</strong> framework for small-signal stability enhancement in IBR-dominated power systems.</p></li>
+<li><p>Derived an <strong>adjoint-based analytical eigenvalue-gradient formulation</strong> that decouples eigenvalue sensitivity from the controller-parameter Jacobian.</p></li>
+<li><p>Introduced <strong>eigenvalue-aware softmax weighting</strong> to prioritize the modes closest to instability.</p></li>
+<li><p>Developed a <strong>gradient-aware parameter-selection strategy</strong> that retains only the most influential controller parameters and mitigates conflicting update directions.</p></li>
+<li><p>Introduced a <strong>progressive eigenvalue-threshold strategy</strong> that improves scalability by optimizing only a subset of critical modes at each stage.</p></li>
+<li><p>Demonstrated the method on both a <strong>10-bus IBR system</strong> and an <strong>IEEE 39-bus system with 70 tunable parameters</strong>.</p></li>
+<li><p>Demonstrated substantial computational acceleration using <strong>vectorized tensor operations, GPU execution, and parallel eigenvalue-gradient evaluation</strong>.</p></li>
+</ul>
+<hr>
+</section>
+<section id="related-publication" class="level2">
+<h2 class="anchored" data-anchor-id="related-publication">Related Publication</h2>
+<p><strong>J. Chen, Y. Li, S. He, and D. Huang</strong>,<br>
+<em>“Eigenvalue- and Gradient-Aware Optimization for Small-Signal Stability via the Adjoint Method.”</em></p>
+<p>This work develops the adjoint eigenvalue-sensitivity formulation and the progressive MEGAO framework presented on this page.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

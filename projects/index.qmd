@@ -4,13 +4,14 @@ title: "Projects"
 
 ## Research Projects
 
-1. Motivation
-2. Problem
-3. Proposed Method
-4. Technical Framework
-5. Key Results
-6. Publications
+1. [Quantum Data Encoding for Power System Modeling](project1.qmd)
 
-- [Project 1 — Quantum Dynamic Simulation](project1.qmd)
-- [Project 2 — Stability Optimization](project2.qmd)
-- [Project 3 — Federated Forecasting](project3.qmd)
+2. [Quantum Optimization for Optimal Placement of PMUs in Power Systems](project2.qmd)
+
+3. [Constrained Quantum Optimization for Power-Electronic Converter Control](project3.qmd)
+
+4. [Quantum Computing for Contingency Analysis](project4.qmd)
+
+5. [Advanced Computational Methods for Power System Stability Enhancement](project5.qmd)
+
+6. [Quantum Computing for Power System Dynamic Simulation](project6.qmd)

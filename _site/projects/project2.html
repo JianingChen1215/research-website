@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project 2 — Stability Optimization – Research Portfolio</title>
+<title>Project 2 — Quantum Optimization for Optimal Placement of PMUs in Power Systems – CyberTraining</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -74,6 +109,19 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script>
+
+window.MathJax = {
+
+  options: {
+
+    enableExplorerHelp: false
+
+  }
+
+};
+
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -116,7 +164,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Research Portfolio</span>
+    <span class="navbar-title">CyberTraining</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -138,8 +186,12 @@ window.Quarto = {
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../presentation.html"> 
+<span class="menu-text">Presentations &amp; Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">People</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -158,9 +210,31 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#problem" id="toc-problem" class="nav-link" data-scroll-target="#problem">Problem</a></li>
-  <li><a href="#proposed-method" id="toc-proposed-method" class="nav-link" data-scroll-target="#proposed-method">Proposed Method</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#framework" id="toc-framework" class="nav-link" data-scroll-target="#framework">Framework</a></li>
+  <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea">Core Idea</a></li>
+  <li><a href="#graph-based-observability-modeling" id="toc-graph-based-observability-modeling" class="nav-link" data-scroll-target="#graph-based-observability-modeling">Graph-Based Observability Modeling</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
+  <li><a href="#representative-qiskit-implementation" id="toc-representative-qiskit-implementation" class="nav-link" data-scroll-target="#representative-qiskit-implementation">Representative Qiskit Implementation</a>
+  <ul class="collapse">
+  <li><a href="#observability-module" id="toc-observability-module" class="nav-link" data-scroll-target="#observability-module">1. Observability Module</a></li>
+  <li><a href="#pmu-placement-cost" id="toc-pmu-placement-cost" class="nav-link" data-scroll-target="#pmu-placement-cost">2. PMU Placement Cost</a></li>
+  <li><a href="#qaoa-circuit" id="toc-qaoa-circuit" class="nav-link" data-scroll-target="#qaoa-circuit">3. QAOA Circuit</a></li>
+  <li><a href="#hybrid-objective" id="toc-hybrid-objective" class="nav-link" data-scroll-target="#hybrid-objective">4. Hybrid Objective</a></li>
+  <li><a href="#classical-parameter-update" id="toc-classical-parameter-update" class="nav-link" data-scroll-target="#classical-parameter-update">5. Classical Parameter Update</a></li>
+  <li><a href="#strategic-landscape-penalty" id="toc-strategic-landscape-penalty" class="nav-link" data-scroll-target="#strategic-landscape-penalty">6. Strategic Landscape Penalty</a></li>
+  <li><a href="#channel-limited-pmus" id="toc-channel-limited-pmus" class="nav-link" data-scroll-target="#channel-limited-pmus">7. Channel-Limited PMUs</a></li>
+  </ul></li>
+  <li><a href="#benchmark-systems" id="toc-benchmark-systems" class="nav-link" data-scroll-target="#benchmark-systems">Benchmark Systems</a></li>
+  <li><a href="#pmu-placement-results" id="toc-pmu-placement-results" class="nav-link" data-scroll-target="#pmu-placement-results">PMU Placement Results</a>
+  <ul class="collapse">
+  <li><a href="#zero--and-non-zero-injection-cases" id="toc-zero--and-non-zero-injection-cases" class="nav-link" data-scroll-target="#zero--and-non-zero-injection-cases">Zero- and Non-Zero-Injection Cases</a></li>
+  </ul></li>
+  <li><a href="#channel-limited-placement" id="toc-channel-limited-placement" class="nav-link" data-scroll-target="#channel-limited-placement">Channel-Limited Placement</a></li>
+  <li><a href="#landscape-optimization" id="toc-landscape-optimization" class="nav-link" data-scroll-target="#landscape-optimization">Landscape Optimization</a></li>
+  <li><a href="#complexity-and-theoretical-scaling" id="toc-complexity-and-theoretical-scaling" class="nav-link" data-scroll-target="#complexity-and-theoretical-scaling">Complexity and Theoretical Scaling</a></li>
+  <li><a href="#effect-of-qaoa-parameter-count" id="toc-effect-of-qaoa-parameter-count" class="nav-link" data-scroll-target="#effect-of-qaoa-parameter-count">Effect of QAOA Parameter Count</a></li>
+  <li><a href="#main-contributions" id="toc-main-contributions" class="nav-link" data-scroll-target="#main-contributions">Main Contributions</a></li>
   <li><a href="#related-publication" id="toc-related-publication" class="nav-link" data-scroll-target="#related-publication">Related Publication</a></li>
   </ul>
 </nav>
@@ -170,7 +244,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project 2 — Stability Optimization</h1>
+<h1 class="title">Project 2 — Quantum Optimization for Optimal Placement of PMUs in Power Systems</h1>
 </div>
 
 
@@ -189,33 +263,546 @@ window.Quarto = {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Summarize the project in plain language first.</p>
+<div class="hero">
+<p>This project applies quantum computing to enhance power system resilience, with a focus on optimal Phasor Measurement Unit (PMU) placement under high renewable penetration. It develops a hybrid quantum-classical approach based on the Quantum Approximate Optimization Algorithm (QAOA) to address PMU installation under both normal and communication-constrained scenarios.</p>
+<p>A tailored objective function balances PMU placement cost with system observability requirements. Recursion-based Depth-First Search (DFS) and Breadth-First Search (BFS) algorithms are used to evaluate network observability. Complexity analysis shows that the proposed formulation reduces computational burden compared with conventional polynomial- or exponential-scale approaches.</p>
+<p>The framework is validated on IEEE 9-, 14-, 24-, and 30-bus test systems, where the quantum-enhanced approach achieves improved PMU placement results compared with the classical benchmarks considered in the study. The project also investigates landscape-optimization strategies for improving QAOA solution quality.</p>
+</div>
+<hr>
 </section>
-<section id="problem" class="level2">
-<h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>Consider the eigenvalue problem</p>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>PMUs provide synchronized measurements of voltage and current phasors and are important for real-time monitoring of modern power systems. Installing a PMU at every bus, however, is unnecessary and expensive.</p>
+<p>Let a power grid be represented as</p>
 <p><span class="math display">\[
-Av_i=\lambda_i v_i.
+G=(\mathcal{V},E),
 \]</span></p>
-<p>The sensitivity of an eigenvalue to parameter <span class="math inline">\(k\)</span> can be written as</p>
+<p>where <span class="math inline">\(N=|\mathcal{V}|\)</span> is the number of buses and <span class="math inline">\(M=|E|\)</span> is the number of branches.</p>
+<p>Define a binary placement vector</p>
 <p><span class="math display">\[
-\frac{\partial \lambda_i}{\partial k}
+\mathbf{X}=[x_1,x_2,\ldots,x_N]^T,
+\qquad
+x_i\in\{0,1\},
+\]</span></p>
+<p>where <span class="math inline">\(x_i=1\)</span> means a PMU is installed at bus <span class="math inline">\(i\)</span>.</p>
+<p>The placement problem is</p>
+<p><span class="math display">\[
+\min_{\mathbf{X}} \sum_{i=1}^{N}x_i
+\]</span></p>
+<p>subject to full system observability,</p>
+<p><span class="math display">\[
+O(\mathbf{X})=N.
+\]</span></p>
+<p>A penalty form used by the hybrid optimizer is</p>
+<p><span class="math display">\[
+C(\mathbf{X})
 =
-\frac{w_i^H \left(\frac{\partial A}{\partial k}\right) v_i}
-{w_i^H v_i}.
+\sum_{i=1}^{N}x_i
++
+\lambda\bigl(N-O(\mathbf{X})\bigr).
 \]</span></p>
+<p>The challenge is that PMU placement is a binary combinatorial optimization problem whose search space grows as <span class="math inline">\(2^N\)</span>.</p>
+<hr>
 </section>
-<section id="proposed-method" class="level2">
-<h2 class="anchored" data-anchor-id="proposed-method">Proposed Method</h2>
-<p>Explain your optimization algorithm, gradient calculation, and controller parameters here.</p>
+<section id="framework" class="level2">
+<h2 class="anchored" data-anchor-id="framework">Framework</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/qaoa_pmu_workflow.png" class="img-fluid figure-img" style="width:96.0%"></p>
+<figcaption>Hybrid QAOA framework for optimal PMU placement, from graph abstraction of the power grid to the quantum circuit and candidate PMU placements.</figcaption>
+</figure>
+</div>
+<p>The workflow keeps the expensive combinatorial search in the QAOA loop while evaluating observability with lightweight graph operations on a classical computer.</p>
+<hr>
 </section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-<p>Add figures, tables, or before/after eigenvalue plots.</p>
+<section id="core-idea" class="level2">
+<h2 class="anchored" data-anchor-id="core-idea">Core Idea</h2>
+<p>The framework separates the problem into a <strong>quantum search module</strong> and a <strong>classical observability module</strong>.</p>
+<p>The binary placement variable is mapped to the QAOA spin convention by</p>
+<p><span class="math display">\[
+y_i=-2x_i+1,
+\qquad
+y_i\in\{-1,+1\}.
+\]</span></p>
+<p>The cost Hamiltonian is decomposed into</p>
+<p><span class="math display">\[
+H_C=H_A+H_{A'},
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+H_A
+=
+-\sum_{i=1}^{N}
+\frac{\sigma_i^z-1}{2}
+\]</span></p>
+<p>represents the number of installed PMUs, while</p>
+<p><span class="math display">\[
+H_{A'}
+=
+\lambda
+\left[
+N-\mathcal{M}(\mathbf{X})
+\right]
+\]</span></p>
+<p>contains the observability penalty evaluated by the classical graph algorithm <span class="math inline">\(\mathcal{M}\)</span>.</p>
+<p>For an <span class="math inline">\(s\)</span>-layer QAOA circuit,</p>
+<p><span class="math display">\[
+|\psi_s(\boldsymbol{\gamma},\boldsymbol{\beta})\rangle
+=
+\prod_{l=1}^{s}
+e^{-i\beta_l H_B}
+e^{-i\gamma_l H_C}
+|+\rangle^{\otimes N},
+\]</span></p>
+<p>with mixer Hamiltonian</p>
+<p><span class="math display">\[
+H_B=\sum_{i=1}^{N}\sigma_i^x.
+\]</span></p>
+<p>A classical optimizer updates <span class="math inline">\(\boldsymbol{\gamma}\)</span> and <span class="math inline">\(\boldsymbol{\beta}\)</span>, while sampled bit strings are evaluated for PMU count and observability.</p>
+<hr>
+</section>
+<section id="graph-based-observability-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="graph-based-observability-modeling">Graph-Based Observability Modeling</h2>
+<p>A PMU directly measures the voltage at its bus and currents on connected branches. Additional states can be inferred using Ohm’s law and Kirchhoff’s Current Law (KCL).</p>
+<p>The proposed recursive observability method propagates known information across the network until no new buses can be determined. Each bus is processed at most once and each branch at most a constant number of times, giving</p>
+<p><span class="math display">\[
+\boxed{\mathcal{O}(N+M)}.
+\]</span></p>
+<p>This replaces inequality-based observability checks whose matrix operations scale as approximately</p>
+<p><span class="math display">\[
+\mathcal{O}(N^2).
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/observability_comparison.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>IEEE 9-bus observability example. The recursive graph method identifies buses that can be inferred through network laws but are missed by a simpler nearest-neighbor rule.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
+<p>The project follows this workflow:</p>
+<ol type="1">
+<li><strong>Represent the grid as a graph</strong> <span class="math inline">\(G=(\mathcal{V},E)\)</span>.</li>
+<li><strong>Encode PMU placement as binary variables</strong> <span class="math inline">\(\mathbf{X}\)</span>.</li>
+<li><strong>Evaluate observability recursively</strong> using PMU measurements, Ohm’s law, and KCL.</li>
+<li><strong>Construct the QAOA objective</strong> from PMU count and observability penalties.</li>
+<li><strong>Run the parameterized QAOA circuit</strong> and sample placement strings.</li>
+<li><strong>Score samples classically</strong> using the graph-based observability module.</li>
+<li><strong>Update QAOA parameters</strong> using COBYLA.</li>
+<li><strong>Optionally reshape the landscape</strong> using strategic placement penalties.</li>
+<li><strong>Extend the observability module</strong> to non-zero injection and channel-limited PMUs.</li>
+</ol>
+<hr>
+</section>
+<section id="representative-qiskit-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="representative-qiskit-implementation">Representative Qiskit Implementation</h2>
+<p>The code below is intentionally compact. Each block represents one module in the hybrid workflow rather than a full research implementation.</p>
+<section id="observability-module" class="level3">
+<h3 class="anchored" data-anchor-id="observability-module">1. Observability Module</h3>
+<p>This module evaluates a sampled PMU placement. It implements the recursive propagation idea used by the graph-based observability model.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> observable_count(graph, pmus):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    seen, hits <span class="op">=</span> <span class="bu">set</span>(pmus), defaultdict(<span class="bu">int</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> visit(u):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> v <span class="kw">in</span> graph[u]:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> v <span class="kw">in</span> seen:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            hits[v] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> hits[v] <span class="op">&gt;=</span> <span class="bu">len</span>(graph[v]) <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                seen.add(v)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                visit(v)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> u <span class="kw">in</span> <span class="bu">list</span>(pmus):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        visit(u)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(seen)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output is the number of fully observable buses <span class="math inline">\(O\)</span>, which is used directly by the objective function.</p>
+</section>
+<section id="pmu-placement-cost" class="level3">
+<h3 class="anchored" data-anchor-id="pmu-placement-cost">2. PMU Placement Cost</h3>
+<p>This small module combines installation cost and the observability penalty.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> placement_cost(bits, graph, lam):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    pmus <span class="op">=</span> {i <span class="cf">for</span> i, b <span class="kw">in</span> <span class="bu">enumerate</span>(bits) <span class="cf">if</span> b}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    O <span class="op">=</span> observable_count(graph, pmus)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(pmus) <span class="op">+</span> lam <span class="op">*</span> (<span class="bu">len</span>(graph) <span class="op">-</span> O)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Feasible strings have <span class="math inline">\(O=N\)</span>, so the objective reduces to the number of installed PMUs.</p>
+</section>
+<section id="qaoa-circuit" class="level3">
+<h3 class="anchored" data-anchor-id="qaoa-circuit">3. QAOA Circuit</h3>
+<p>The quantum module prepares a superposition, applies the PMU-count cost phase, and mixes the candidate strings. The observability penalty is evaluated classically after sampling, consistent with the hybrid formulation.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit <span class="im">import</span> QuantumCircuit</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> qaoa_circuit(n, gamma, beta):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    qc.h(<span class="bu">range</span>(n))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> g, b <span class="kw">in</span> <span class="bu">zip</span>(gamma, beta):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            qc.rz(<span class="op">-</span>g, q)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            qc.rx(<span class="dv">2</span> <span class="op">*</span> b, q)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    qc.measure_all()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="hybrid-objective" class="level3">
+<h3 class="anchored" data-anchor-id="hybrid-objective">4. Hybrid Objective</h3>
+<p>The circuit produces a distribution of candidate placements. This module scores that distribution using the classical observability model.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit <span class="im">import</span> transpile</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit_aer <span class="im">import</span> AerSimulator</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sim <span class="op">=</span> AerSimulator()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expected_cost(qc, graph, lam, shots<span class="op">=</span><span class="dv">10000</span>):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> sim.run(transpile(qc, sim), shots<span class="op">=</span>shots).result()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> result.get_counts()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> state, count <span class="kw">in</span> counts.items():</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        bits <span class="op">=</span> [<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> state[::<span class="op">-</span><span class="dv">1</span>]]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> count <span class="op">*</span> placement_cost(bits, graph, lam)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total <span class="op">/</span> shots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="classical-parameter-update" class="level3">
+<h3 class="anchored" data-anchor-id="classical-parameter-update">5. Classical Parameter Update</h3>
+<p>COBYLA updates the <span class="math inline">\(2s\)</span> QAOA parameters using the sampled hybrid objective.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_qaoa(graph, layers, lam):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(graph)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> loss(theta):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        g, b <span class="op">=</span> np.split(theta, <span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> expected_cost(qaoa_circuit(n, g, b), graph, lam)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    x0 <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, np.pi, <span class="dv">2</span> <span class="op">*</span> layers)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> minimize(loss, x0, method<span class="op">=</span><span class="st">"COBYLA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The research experiments use deeper circuits and many more repeated circuit executions; this snippet only exposes the main software modules cleanly.</p>
+</section>
+<section id="strategic-landscape-penalty" class="level3">
+<h3 class="anchored" data-anchor-id="strategic-landscape-penalty">6. Strategic Landscape Penalty</h3>
+<p>The paper further penalizes placements on low-degree buses and solutions that use too many PMUs.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> strategic_penalty(bits, graph, T, P1<span class="op">=</span><span class="dv">500</span>, P2<span class="op">=</span><span class="dv">500</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    low_degree <span class="op">=</span> <span class="bu">any</span>(b <span class="kw">and</span> <span class="bu">len</span>(graph[i]) <span class="op">&lt;=</span> <span class="dv">2</span> <span class="cf">for</span> i, b <span class="kw">in</span> <span class="bu">enumerate</span>(bits))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    too_many <span class="op">=</span> <span class="bu">sum</span>(bits) <span class="op">&gt;</span> T</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P1 <span class="op">*</span> low_degree <span class="op">+</span> P2 <span class="op">*</span> too_many</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This module does not require additional qubits because the penalty is evaluated on the classical side of the hybrid algorithm.</p>
+</section>
+<section id="channel-limited-pmus" class="level3">
+<h3 class="anchored" data-anchor-id="channel-limited-pmus">7. Channel-Limited PMUs</h3>
+<p>For the greedy channel-limited strategy <span class="math inline">\(\mathcal{M}_2\)</span>, measurement channels are preferentially assigned toward higher-degree neighboring buses.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> select_channels(graph, bus, omega):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    nbrs <span class="op">=</span> <span class="bu">sorted</span>(graph[bus], key<span class="op">=</span><span class="kw">lambda</span> v: <span class="bu">len</span>(graph[v]), reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nbrs[:omega]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The complete channel-limited observability routine wraps this selection rule inside a BFS-style propagation process.</p>
+<hr>
+</section>
+</section>
+<section id="benchmark-systems" class="level2">
+<h2 class="anchored" data-anchor-id="benchmark-systems">Benchmark Systems</h2>
+<p>The numerical study uses IEEE 9-, 14-, 24-, and 30-bus systems.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>System</th>
+<th style="text-align: right;">Qubits</th>
+<th style="text-align: right;">QAOA Layers</th>
+<th style="text-align: right;">Circuit Repetitions <span class="math inline">\(R\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IEEE 9-bus</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10,000</td>
+</tr>
+<tr class="even">
+<td>IEEE 14-bus</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10,000</td>
+</tr>
+<tr class="odd">
+<td>IEEE 24-bus</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">300,000</td>
+</tr>
+<tr class="even">
+<td>IEEE 30-bus</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">500,000</td>
+</tr>
+</tbody>
+</table>
+<p>The 9-bus experiment is evaluated on both an IBM noiseless simulator and IBM Brisbane. The 14- and 24-bus experiments use the IBM simulator, while the 30-bus case is simulated on classical servers.</p>
+<hr>
+</section>
+<section id="pmu-placement-results" class="level2">
+<h2 class="anchored" data-anchor-id="pmu-placement-results">PMU Placement Results</h2>
+<section id="zero--and-non-zero-injection-cases" class="level3">
+<h3 class="anchored" data-anchor-id="zero--and-non-zero-injection-cases">Zero- and Non-Zero-Injection Cases</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Test System</th>
+<th style="text-align: right;">Zero Injection</th>
+<th style="text-align: right;">Non-Zero Injection</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IEEE 9-bus</td>
+<td style="text-align: right;"><strong>2</strong></td>
+<td style="text-align: right;"><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td>IEEE 14-bus</td>
+<td style="text-align: right;"><strong>3</strong></td>
+<td style="text-align: right;"><strong>7</strong></td>
+</tr>
+<tr class="odd">
+<td>IEEE 24-bus</td>
+<td style="text-align: right;"><strong>5</strong></td>
+<td style="text-align: right;"><strong>8</strong></td>
+</tr>
+<tr class="even">
+<td>IEEE 30-bus</td>
+<td style="text-align: right;"><strong>5</strong></td>
+<td style="text-align: right;"><strong>10</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The 9-bus result is reproduced on both the quantum simulator and the real quantum processor. Across the reported benchmark cases, the proposed method matches or improves the best listed PMU counts depending on the system and scenario.</p>
+<p>Representative zero-injection placements found in the study include:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>System</th>
+<th>PMU Buses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IEEE 9-bus</td>
+<td>4, 6</td>
+</tr>
+<tr class="even">
+<td>IEEE 14-bus</td>
+<td>2, 4, 13</td>
+</tr>
+<tr class="odd">
+<td>IEEE 24-bus</td>
+<td>6, 9, 10, 17, 23</td>
+</tr>
+<tr class="even">
+<td>IEEE 30-bus</td>
+<td>2, 6, 10, 12, 27</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="channel-limited-placement" class="level2">
+<h2 class="anchored" data-anchor-id="channel-limited-placement">Channel-Limited Placement</h2>
+<p>The framework is also tested when each PMU can monitor only <span class="math inline">\(\omega\)</span> branches.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System</th>
+<th style="text-align: right;"><span class="math inline">\(\omega=1\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\omega=2\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\omega=3\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\omega=4\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\omega=5\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9-bus, <span class="math inline">\(\mathcal{M}_2\)</span></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td>14-bus, <span class="math inline">\(\mathcal{M}_2\)</span></td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td>24-bus, <span class="math inline">\(\mathcal{M}_2\)</span></td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td>24-bus, <span class="math inline">\(\mathcal{M}_3\)</span></td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;"><strong>6</strong></td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td>30-bus, <span class="math inline">\(\mathcal{M}_2\)</span></td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;"><strong>6</strong></td>
+<td style="text-align: right;"><strong>6</strong></td>
+</tr>
+<tr class="even">
+<td>30-bus, <span class="math inline">\(\mathcal{M}_3\)</span></td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+</tr>
+</tbody>
+</table>
+<p>The randomized strategy <span class="math inline">\(\mathcal{M}_3\)</span> helps in some smaller cases, while the greedy <span class="math inline">\(\mathcal{M}_2\)</span> strategy becomes more favorable as the system size increases.</p>
+<hr>
+</section>
+<section id="landscape-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="landscape-optimization">Landscape Optimization</h2>
+<p>The raw QAOA distribution contains many infeasible or unnecessarily expensive placements. The paper introduces two strategic penalties:</p>
+<ul>
+<li><span class="math inline">\(P_1\)</span>: discourage PMUs at buses with degree 1 or 2 when higher-degree alternatives exist;</li>
+<li><span class="math inline">\(P_2\)</span>: discourage placements using more than a threshold <span class="math inline">\(T\)</span> PMUs.</li>
+</ul>
+<p>Both penalties are evaluated classically and therefore do not consume additional qubits.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/landscape_distribution.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>QAOA solution distributions before and after strategic landscape optimization for the IEEE 9-, 14-, 24-, and 30-bus systems.</figcaption>
+</figure>
+</div>
+<p>The optimization increases the probability of obtaining the best PMU placements while reducing total execution time.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Case</th>
+<th style="text-align: right;">Without Optimization</th>
+<th style="text-align: right;">With Optimization</th>
+<th style="text-align: right;">Time Reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9-bus simulator</td>
+<td style="text-align: right;">1062.90 s</td>
+<td style="text-align: right;">524.54 s</td>
+<td style="text-align: right;"><strong>50.7%</strong></td>
+</tr>
+<tr class="even">
+<td>9-bus real QC</td>
+<td style="text-align: right;">15571.54 s</td>
+<td style="text-align: right;">10124.87 s</td>
+<td style="text-align: right;"><strong>35.0%</strong></td>
+</tr>
+<tr class="odd">
+<td>14-bus simulator</td>
+<td style="text-align: right;">1187.03 s</td>
+<td style="text-align: right;">582.09 s</td>
+<td style="text-align: right;"><strong>51.0%</strong></td>
+</tr>
+<tr class="even">
+<td>24-bus simulator</td>
+<td style="text-align: right;">3631.72 s</td>
+<td style="text-align: right;">2866.49 s</td>
+<td style="text-align: right;"><strong>21.1%</strong></td>
+</tr>
+<tr class="odd">
+<td>30-bus classical simulation</td>
+<td style="text-align: right;">139308.93 s</td>
+<td style="text-align: right;">120724.99 s</td>
+<td style="text-align: right;"><strong>13.3%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>For the real 9-bus quantum-computer experiment, the probability assigned to the optimal result increases from <strong>0.01 to 0.04</strong> after landscape optimization.</p>
+<hr>
+</section>
+<section id="complexity-and-theoretical-scaling" class="level2">
+<h2 class="anchored" data-anchor-id="complexity-and-theoretical-scaling">Complexity and Theoretical Scaling</h2>
+<p>For one candidate placement, the proposed observability algorithms require</p>
+<p><span class="math display">\[
+\mathcal{O}(N+M)
+\]</span></p>
+<p>classical operations.</p>
+<p>Under the complexity assumptions used in the study, the full hybrid method is summarized as</p>
+<p><span class="math display">\[
+\mathcal{O}(RN)
+\]</span></p>
+<p>for quantum-circuit execution and</p>
+<p><span class="math display">\[
+\mathcal{O}(R(N+M))
+\]</span></p>
+<p>for classical post-processing, where <span class="math inline">\(R\)</span> is the number of circuit repetitions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/theoretical_speedup.png" class="img-fluid figure-img" style="width:74.0%"></p>
+<figcaption>Theoretical execution-count comparison between the QAOA formulation and exhaustive combinatorial search.</figcaption>
+</figure>
+</div>
+<p>The figure is a <strong>theoretical execution-count comparison</strong>, not a measured hardware speedup. Under the paper’s scaling model, small systems favor classical search because QAOA requires many repetitions, while the projected advantage grows with system size and reaches approximately <span class="math inline">\(10^4\)</span> at 40 buses.</p>
+<hr>
+</section>
+<section id="effect-of-qaoa-parameter-count" class="level2">
+<h2 class="anchored" data-anchor-id="effect-of-qaoa-parameter-count">Effect of QAOA Parameter Count</h2>
+<p>An <span class="math inline">\(s\)</span>-layer QAOA circuit contains <span class="math inline">\(2s\)</span> trainable parameters. Increasing the number of parameters increases circuit expressivity but also makes the optimization landscape more difficult.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/qaoa_parameter_study.png" class="img-fluid figure-img" style="width:88.0%"></p>
+<figcaption>Impact of QAOA parameter count on the number of PMUs returned for IEEE 9-, 14-, 24-, and 30-bus systems.</figcaption>
+</figure>
+</div>
+<p>The experiments show that more parameters do not automatically guarantee a better solution. Moderate depth can improve the 14- and 24-bus cases, whereas the larger 30-bus problem benefits more consistently from increased circuit expressivity.</p>
+<hr>
+</section>
+<section id="main-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="main-contributions">Main Contributions</h2>
+<ul>
+<li><p>Developed an <strong>end-to-end hybrid QAOA framework</strong> for optimal PMU placement under normal and channel-limited scenarios.</p></li>
+<li><p>Proposed a <strong>recursive graph-based observability algorithm</strong> with <span class="math inline">\(\mathcal{O}(N+M)\)</span> complexity, avoiding the additional qubit overhead of inequality-based observability constraints.</p></li>
+<li><p>Formulated PMU placement as a <strong>hybrid quantum-classical objective</strong> in which candidate placements are generated by QAOA and feasibility is evaluated classically.</p></li>
+<li><p>Extended the framework to <strong>zero-injection, non-zero-injection, and PMU-channel-limited</strong> power-system models.</p></li>
+<li><p>Introduced <strong>strategic landscape penalties</strong> that increase the probability of useful QAOA solutions and reduce execution time without adding qubits.</p></li>
+<li><p>Demonstrated the methodology on <strong>IEEE 9-, 14-, 24-, and 30-bus systems</strong>, including a real-quantum-computer experiment for the IEEE 9-bus case.</p></li>
+<li><p>Studied <strong>QAOA depth, solution distributions, and theoretical scaling</strong> to characterize the trade-off between quantum-circuit expressivity and optimization difficulty.</p></li>
+</ul>
+<hr>
 </section>
 <section id="related-publication" class="level2">
 <h2 class="anchored" data-anchor-id="related-publication">Related Publication</h2>
-<p>Replace this section with your actual paper information.</p>
+<p><strong>Y. Jiang, Z. Liang, Y. Li, and T. Morstyn</strong>,<br>
+<em>“Optimal PMU Placement via Quantum Optimization.”</em></p>
+<p>This work develops the QAOA formulation, graph-based observability models, channel-limited placement strategies, and landscape-optimization techniques presented on this page.</p>
 
 
 </section>
