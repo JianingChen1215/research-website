@@ -294,13 +294,6 @@
     "text": "Motivation\nTraditional contingency analysis often begins with the \\(N-1\\) security criterion, in which the grid is tested against the failure of one component.\nMore severe operating conditions require higher-order criteria,\n\\[\nN-k,\n\\qquad\nk&gt;1.\n\\]\nFor a system with \\(N\\) candidate components, the number of \\(k\\)-component outage combinations is\n\\[\n\\binom{N}{k}\n=\n\\frac{N!}{k!(N-k)!}.\n\\]\nFor example, an \\(N-4\\) study with 300 candidate components contains\n\\[\n\\binom{300}{4}\n=\n330{,}791{,}175\n\\]\npossible combinations.\nEach candidate scenario may require additional power-system analysis, making higher-order contingency screening computationally intensive.\nThis project investigates whether QAOA can provide a scalable quantum optimization framework for searching these combinatorial outage spaces."
   },
   {
-    "objectID": "projects/project4.html#framework",
-    "href": "projects/project4.html#framework",
-    "title": "Project 4 — Quantum Computing for Contingency Analysis",
-    "section": "Framework",
-    "text": "Framework\n\n\n\nHybrid quantum-classical workflow for QAOA-based power-system contingency analysis.\n\n\nThe quantum circuit prepares and samples candidate outage configurations, while the classical optimization loop updates the QAOA parameters to reduce the contingency objective."
-  },
-  {
     "objectID": "projects/project4.html#core-idea",
     "href": "projects/project4.html#core-idea",
     "title": "Project 4 — Quantum Computing for Contingency Analysis",

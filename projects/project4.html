@@ -205,7 +205,6 @@ window.Quarto = {
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#framework" id="toc-framework" class="nav-link" data-scroll-target="#framework">Framework</a></li>
   <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea">Core Idea</a></li>
   <li><a href="#line-contingency-formulation" id="toc-line-contingency-formulation" class="nav-link" data-scroll-target="#line-contingency-formulation">Line Contingency Formulation</a></li>
   <li><a href="#overall-contingency-formulation" id="toc-overall-contingency-formulation" class="nav-link" data-scroll-target="#overall-contingency-formulation">Overall Contingency Formulation</a></li>
@@ -295,17 +294,6 @@ k&gt;1.
 <p>possible combinations.</p>
 <p>Each candidate scenario may require additional power-system analysis, making higher-order contingency screening computationally intensive.</p>
 <p>This project investigates whether QAOA can provide a scalable quantum optimization framework for searching these combinatorial outage spaces.</p>
-<hr>
-</section>
-<section id="framework" class="level2">
-<h2 class="anchored" data-anchor-id="framework">Framework</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/qaoa_contingency_workflow.png" class="img-fluid figure-img" style="width:92.0%"></p>
-<figcaption>Hybrid quantum-classical workflow for QAOA-based power-system contingency analysis.</figcaption>
-</figure>
-</div>
-<p>The quantum circuit prepares and samples candidate outage configurations, while the classical optimization loop updates the QAOA parameters to reduce the contingency objective.</p>
 <hr>
 </section>
 <section id="core-idea" class="level2">
