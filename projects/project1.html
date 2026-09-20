@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project 1 — Quantum Dynamic Simulation – Research Portfolio</title>
+<title>Project 1 — Quantum Data Encoding for Power System Modeling – CyberTraining</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,26 +61,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -177,7 +158,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Research Portfolio</span>
+    <span class="navbar-title">CyberTraining</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -199,8 +180,12 @@ window.Quarto = {
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../presentation.html"> 
+<span class="menu-text">Presentations &amp; Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">People</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -221,11 +206,26 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea">Core Idea</a></li>
+  <li><a href="#variational-quantum-classifier" id="toc-variational-quantum-classifier" class="nav-link" data-scroll-target="#variational-quantum-classifier">Variational Quantum Classifier</a></li>
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
-  <li><a href="#framework-figure" id="toc-framework-figure" class="nav-link" data-scroll-target="#framework-figure">Framework Figure</a></li>
-  <li><a href="#python-code" id="toc-python-code" class="nav-link" data-scroll-target="#python-code">Python Code</a></li>
-  <li><a href="#matlab-code" id="toc-matlab-code" class="nav-link" data-scroll-target="#matlab-code">Matlab Code</a></li>
-  <li><a href="#key-results" id="toc-key-results" class="nav-link" data-scroll-target="#key-results">Key Results</a></li>
+  <li><a href="#framework" id="toc-framework" class="nav-link" data-scroll-target="#framework">Framework</a></li>
+  <li><a href="#complex-valued-quantum-encoding" id="toc-complex-valued-quantum-encoding" class="nav-link" data-scroll-target="#complex-valued-quantum-encoding">Complex-Valued Quantum Encoding</a></li>
+  <li><a href="#quantum-circuit" id="toc-quantum-circuit" class="nav-link" data-scroll-target="#quantum-circuit">Quantum Circuit</a></li>
+  <li><a href="#representative-qiskit-implementation" id="toc-representative-qiskit-implementation" class="nav-link" data-scroll-target="#representative-qiskit-implementation">Representative Qiskit Implementation</a>
+  <ul class="collapse">
+  <li><a href="#amplitude-encoding" id="toc-amplitude-encoding" class="nav-link" data-scroll-target="#amplitude-encoding">1. Amplitude Encoding</a></li>
+  <li><a href="#angle-encoding" id="toc-angle-encoding" class="nav-link" data-scroll-target="#angle-encoding">2. Angle Encoding</a></li>
+  <li><a href="#variational-quantum-circuit" id="toc-variational-quantum-circuit" class="nav-link" data-scroll-target="#variational-quantum-circuit">3. Variational Quantum Circuit</a></li>
+  <li><a href="#quantum-evaluation" id="toc-quantum-evaluation" class="nav-link" data-scroll-target="#quantum-evaluation">4. Quantum Evaluation</a></li>
+  <li><a href="#classical-training-loop" id="toc-classical-training-loop" class="nav-link" data-scroll-target="#classical-training-loop">5. Classical Training Loop</a></li>
+  </ul></li>
+  <li><a href="#power-system-case-study" id="toc-power-system-case-study" class="nav-link" data-scroll-target="#power-system-case-study">Power-System Case Study</a></li>
+  <li><a href="#key-results" id="toc-key-results" class="nav-link" data-scroll-target="#key-results">Key Results</a>
+  <ul class="collapse">
+  <li><a href="#data-encoding-comparison" id="toc-data-encoding-comparison" class="nav-link" data-scroll-target="#data-encoding-comparison">Data-Encoding Comparison</a></li>
+  </ul></li>
+  <li><a href="#effect-of-loss-functions" id="toc-effect-of-loss-functions" class="nav-link" data-scroll-target="#effect-of-loss-functions">Effect of Loss Functions</a></li>
+  <li><a href="#optimizer-comparison" id="toc-optimizer-comparison" class="nav-link" data-scroll-target="#optimizer-comparison">Optimizer Comparison</a></li>
   <li><a href="#main-contributions" id="toc-main-contributions" class="nav-link" data-scroll-target="#main-contributions">Main Contributions</a></li>
   <li><a href="#related-publication" id="toc-related-publication" class="nav-link" data-scroll-target="#related-publication">Related Publication</a></li>
   </ul>
@@ -236,7 +236,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project 1 — Quantum Dynamic Simulation</h1>
+<h1 class="title">Project 1 — Quantum Data Encoding for Power System Modeling</h1>
 </div>
 
 
@@ -255,112 +255,597 @@ window.Quarto = {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Write a short overview.</p>
+<div class="hero">
+<p>This project develops effective quantum data encoding methods for modeling power grids and performing advanced power system computations within quantum circuits.</p>
+<p>It begins with fundamental power system concepts, including the admittance matrix, phasor representation, and the computational challenges of classical methods.</p>
+<p>The project also introduces essential quantum computing concepts, such as qubits, the Bloch sphere, superposition, and entanglement.</p>
+<p>Building on this foundation, it explores multiple quantum data encoding strategies and compares their advantages, limitations, and practical applications across different power system analysis scenarios.</p>
+</div>
+<hr>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>Explain the engineering/scientific challenge and why it matters.</p>
+<p>Many engineering datasets are naturally represented by complex numbers. In AC power systems, for example, electrical quantities such as voltage, current, and power are commonly represented as phasors.</p>
+<p>Complex power is expressed as</p>
+<p><span class="math display">\[
+S = P + jQ = |S|e^{j\phi},
+\]</span></p>
+<p>where <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> denote active and reactive power.</p>
+<p>Most quantum machine-learning pipelines, however, encode real-valued features into quantum circuits and therefore require the real and imaginary components of complex data to be treated separately.</p>
+<p>This project investigates whether the <strong>complex Hilbert space of quantum states can be used directly to represent complex-valued engineering data</strong>, avoiding this separation and reducing the required number of qubits.</p>
+<hr>
 </section>
 <section id="core-idea" class="level2">
 <h2 class="anchored" data-anchor-id="core-idea">Core Idea</h2>
-<p>A generic nonlinear system may be written as</p>
+<p>For a normalized complex-valued feature vector</p>
 <p><span class="math display">\[
-\dot{x}=f(x,y), \qquad 0=g(x,y).
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{H}_{G}
+\mathbf{x}
 =
-\begin{pmatrix}
-\mathbf{0} &amp; \mathbf{G} \\
-\mathbf{G}^{\dagger} &amp; \mathbf{0}
-\end{pmatrix}.
+[x_1,x_2,\ldots,x_N]^T
+\in \mathbb{C}^{N},
 \]</span></p>
+<p>amplitude encoding maps the features directly into a quantum state,</p>
 <p><span class="math display">\[
-\mathbf{G} = \sum_{k=0}^{T-1}|k\rangle \langle k|\otimes\mathbf{I} -\sum_{k=1}^{T-1}|k\rangle \langle k-1|\otimes(\mathbf{I}+\mathbf{A}\Delta t),
-\]</span> After model transformation, one may obtain a polynomial system</p>
-<p><span class="math display">\[
-\dot{z}=A_1z+A_2z^{\otimes 2}+\cdots+A_Rz^{\otimes R}.
+|\Phi(\mathbf{x})\rangle
+=
+\sum_{k=1}^{N} x_k |k\rangle.
 \]</span></p>
-<p>This section can contain as much LaTeX as needed.</p>
+<p>For power-system data, the active and reactive powers can be combined into complex-valued features,</p>
+<p><span class="math display">\[
+\mathbf{s}
+=
+[P_1+jQ_1,\,
+P_2+jQ_2,\,
+\ldots,\,
+P_m+jQ_m]^T.
+\]</span></p>
+<p>Instead of separating <span class="math inline">\(P_i\)</span> and <span class="math inline">\(Q_i\)</span>, the proposed <strong>coupling encoding strategy</strong> embeds each complex power directly into the amplitude of the quantum state.</p>
+<p>After normalization and augmentation, the encoded state takes the form</p>
+<p><span class="math display">\[
+|\Phi(\mathbf{s})\rangle
+=
+\sum_{i=1}^{m}
+(\hat P_i+j\hat Q_i)|i\rangle
++
+\frac{1}{\sqrt{\|\mathbf{s}\|_2^2+1}}
+|m+1\rangle.
+\]</span></p>
+<p>This representation preserves both the real and imaginary components within a single quantum amplitude.</p>
+<hr>
+</section>
+<section id="variational-quantum-classifier" class="level2">
+<h2 class="anchored" data-anchor-id="variational-quantum-classifier">Variational Quantum Classifier</h2>
+<p>The encoded quantum state is processed by a parameterized quantum circuit</p>
+<p><span class="math display">\[
+W(\boldsymbol{\theta})
+=
+W_l(\boldsymbol{\theta}_l)
+\cdots
+W_2(\boldsymbol{\theta}_2)
+W_1(\boldsymbol{\theta}_1).
+\]</span></p>
+<p>Each layer contains parameterized <span class="math inline">\(R_Y\)</span> and <span class="math inline">\(R_Z\)</span> rotations together with controlled-<span class="math inline">\(Z\)</span> entangling gates between neighboring qubits.</p>
+<p>The classifier output is obtained from the expectation value of an observable <span class="math inline">\(O\)</span>,</p>
+<p><span class="math display">\[
+\hat y_i =
+\langle
+\Phi(\mathbf{x}_i)
+|
+W^\dagger(\boldsymbol{\theta})
+O
+W(\boldsymbol{\theta})
+|
+\Phi(\mathbf{x}_i)
+\rangle.
+\]</span></p>
+<p>The variational parameters are optimized classically by minimizing a classification loss,</p>
+<p><span class="math display">\[
+\mathcal{L}(\boldsymbol{\theta})
+=
+\sum_i
+f(y_i,\hat y_i).
+\]</span></p>
+<p>The project evaluates multiple combinations of <strong>data encoding methods, loss functions, and classical optimizers</strong>.</p>
+<hr>
 </section>
 <section id="method" class="level2">
 <h2 class="anchored" data-anchor-id="method">Method</h2>
-<p>Replace this list with your actual workflow:</p>
+<p>The overall workflow consists of:</p>
 <ol type="1">
-<li>DAE elimination</li>
-<li>Polynomial reformulation</li>
-<li>Linearization / lifting</li>
-<li>Quantum or numerical solver</li>
-<li>Reconstruction of physical variables</li>
+<li><p><strong>Generate power-system operating conditions</strong><br>
+Simulate stable and unstable equilibrium points of a 10-bus microgrid.</p></li>
+<li><p><strong>Construct complex-valued features</strong><br>
+Combine active and reactive power measurements as <span class="math inline">\(S_i=P_i+jQ_i\)</span>.</p></li>
+<li><p><strong>Encode classical data into quantum states</strong><br>
+Compare coupling amplitude encoding with splitting amplitude encoding, angle encoding, and Pauli feature maps.</p></li>
+<li><p><strong>Process the encoded states using a VQC</strong><br>
+Apply a hardware-efficient parameterized quantum circuit with <span class="math inline">\(R_Y\)</span>, <span class="math inline">\(R_Z\)</span>, and controlled-<span class="math inline">\(Z\)</span> gates.</p></li>
+<li><p><strong>Optimize the variational parameters</strong><br>
+Evaluate gradient-free optimizers (COBYLA and SPSA) and gradient-based optimizers (CG and AQGD).</p></li>
+<li><p><strong>Classify system stability</strong><br>
+Predict whether an operating point corresponds to a stable or unstable equilibrium.</p></li>
 </ol>
+<hr>
 </section>
-<section id="framework-figure" class="level2">
-<h2 class="anchored" data-anchor-id="framework-figure">Framework Figure</h2>
-<p>Replace the placeholder below with your own figure:</p>
+<section id="framework" class="level2">
+<h2 class="anchored" data-anchor-id="framework">Framework</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/ieee39.png" class="img-fluid figure-img"></p>
-<figcaption>Framework</figcaption>
+<p><img src="../images/vqc_framework.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>General framework of the variational quantum classifier, including data encoding, the parameterized quantum circuit, measurement, loss evaluation, and classical parameter optimization.</figcaption>
 </figure>
 </div>
+<hr>
 </section>
-<section id="python-code" class="level2">
-<h2 class="anchored" data-anchor-id="python-code">Python Code</h2>
+<section id="complex-valued-quantum-encoding" class="level2">
+<h2 class="anchored" data-anchor-id="complex-valued-quantum-encoding">Complex-Valued Quantum Encoding</h2>
+<p>The central idea is to exploit the fact that quantum-state amplitudes are themselves complex-valued.</p>
+<p>Rather than transforming</p>
+<p><span class="math display">\[
+P_i+jQ_i
+\]</span></p>
+<p>into two independent real-valued features, the proposed method keeps them coupled within the same quantum amplitude.</p>
+<p>This provides a compact representation: a complex vector with up to <span class="math inline">\(2^n\)</span> components can be represented using <span class="math inline">\(n\)</span> qubits.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/complex_phasor_encoding.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Complex-valued power-system data represented from the instantaneous waveform to phasor data and a quantum-state representation on the Bloch sphere.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="quantum-circuit" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-circuit">Quantum Circuit</h2>
+<p>A layered hardware-efficient ansatz is used for classification. Each layer consists of trainable single-qubit rotations followed by entangling operations,</p>
+<p><span class="math display">\[
+U_{\mathrm{loc}}^{(l)}
+=
+\bigotimes_{m=1}^{n}
+R_Z(\theta_{m,2}^{(l)})
+R_Y(\theta_{m,1}^{(l)}),
+\]</span></p>
+<p>with the entangling unitary</p>
+<p><span class="math display">\[
+U_{\mathrm{ent}}
+=
+\prod_{(i,j)\in E}
+CZ(i,j).
+\]</span></p>
+<p>The complete variational circuit is</p>
+<p><span class="math display">\[
+W(\boldsymbol{\theta})
+=
+U_{\mathrm{loc}}^{(l)}
+U_{\mathrm{ent}}
+\cdots
+U_{\mathrm{loc}}^{(2)}
+U_{\mathrm{ent}}
+U_{\mathrm{loc}}^{(1)}.
+\]</span></p>
+<p>A two-layer ansatz is used in the numerical experiments to balance circuit expressivity and trainability.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/vqc_ansatz.png" class="img-fluid figure-img" style="width:78.0%"></p>
+<figcaption>Layered VQC ansatz containing trainable <span class="math inline">\(R_Y\)</span> and <span class="math inline">\(R_Z\)</span> rotations and controlled-<span class="math inline">\(Z\)</span> entangling operations.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="representative-qiskit-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="representative-qiskit-implementation">Representative Qiskit Implementation</h2>
+<p>The following code illustrates the main components of the VQC framework.<br>
+Each block corresponds to one functional module in the workflow: <strong>data encoding, variational circuit construction, quantum evaluation, and classical optimization</strong>.</p>
+<section id="amplitude-encoding" class="level3">
+<h3 class="anchored" data-anchor-id="amplitude-encoding">1. Amplitude Encoding</h3>
+<p>The proposed coupling strategy directly treats complex power</p>
+<p><span class="math display">\[
+S_i=P_i+jQ_i
+\]</span></p>
+<p>as complex quantum amplitudes. A shared helper function handles normalization, zero-padding, and quantum-state preparation.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit <span class="im">import</span> QuantumCircuit</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit.circuit.library <span class="im">import</span> StatePreparation</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> amplitude_circuit(x):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.r_[x, <span class="fl">1.0</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x <span class="op">/</span> np.linalg.norm(x)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(np.ceil(np.log2(<span class="bu">len</span>(x))))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">**</span>n, dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    state[:<span class="bu">len</span>(x)] <span class="op">=</span> x</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    qc.append(StatePreparation(state), <span class="bu">range</span>(n))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <strong>coupling encoding</strong> keeps <span class="math inline">\(P_i\)</span> and <span class="math inline">\(Q_i\)</span> together as one complex feature.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coupling_encoding(P, Q):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> amplitude_circuit(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        np.asarray(P) <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> np.asarray(Q)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For comparison, <strong>splitting encoding</strong> treats the real and imaginary parts as independent features.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> splitting_encoding(P, Q):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> amplitude_circuit(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        np.r_[P, Q].astype(<span class="bu">complex</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For five complex power measurements,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> np.array([<span class="fl">0.52</span>, <span class="fl">0.31</span>, <span class="fl">0.47</span>, <span class="fl">0.28</span>, <span class="fl">0.36</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> np.array([<span class="fl">0.11</span>, <span class="fl">0.08</span>, <span class="fl">0.13</span>, <span class="fl">0.06</span>, <span class="fl">0.09</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>qc_coupling <span class="op">=</span> coupling_encoding(P, Q)   <span class="co"># 3 qubits</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>qc_split <span class="op">=</span> splitting_encoding(P, Q)     <span class="co"># 4 qubits</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This compactly illustrates one of the main motivations of the proposed encoding: preserving complex-valued information while reducing the required qubit count.</p>
+<hr>
 </section>
-<section id="matlab-code" class="level2">
-<h2 class="anchored" data-anchor-id="matlab-code">Matlab Code</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">A</span> <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span> <span class="fl">4</span>]<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">eig</span>(<span class="va">A</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="angle-encoding" class="level3">
+<h3 class="anchored" data-anchor-id="angle-encoding">2. Angle Encoding</h3>
+<p>Angle encoding first separates the real and imaginary components and maps them to parameterized rotations.</p>
+<p>The two variants investigated in the study differ in the rotation angle used by the <span class="math inline">\(R_Z\)</span> gates.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> angle_encoding(P, Q, mode<span class="op">=</span><span class="st">"A"</span>, reps<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.r_[P, Q]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(<span class="bu">len</span>(x))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(reps):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        qc.h(<span class="bu">range</span>(<span class="bu">len</span>(x)))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, xi <span class="kw">in</span> <span class="bu">enumerate</span>(x):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            angle <span class="op">=</span> (</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                <span class="dv">2</span> <span class="op">*</span> xi <span class="op">+</span> x[(i <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="bu">len</span>(x)]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> mode <span class="op">==</span> <span class="st">"A"</span> <span class="cf">else</span> xi</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            qc.rz(angle, i)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The two feature maps are then constructed as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>qc_A <span class="op">=</span> angle_encoding(P, Q, mode<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>qc_B <span class="op">=</span> angle_encoding(P, Q, mode<span class="op">=</span><span class="st">"B"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="variational-quantum-circuit" class="level3">
+<h3 class="anchored" data-anchor-id="variational-quantum-circuit">3. Variational Quantum Circuit</h3>
+<p>After encoding, the quantum state is processed by a two-layer hardware-efficient ansatz.</p>
+<p>Each layer contains trainable <span class="math inline">\(R_Y\)</span> and <span class="math inline">\(R_Z\)</span> rotations followed by neighboring controlled-<span class="math inline">\(Z\)</span> gates.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit.circuit <span class="im">import</span> ParameterVector</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_vqc(n, layers<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> ParameterVector(<span class="st">"θ"</span>, <span class="dv">2</span> <span class="op">*</span> n <span class="op">*</span> layers)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> layer <span class="kw">in</span> <span class="bu">range</span>(layers):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            qc.ry(theta[k], q)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            qc.rz(theta[k <span class="op">+</span> <span class="dv">1</span>], q)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            k <span class="op">+=</span> <span class="dv">2</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> layer <span class="op">&lt;</span> layers <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> q <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                qc.cz(q, q <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc, theta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For the coupling-amplitude representation,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ansatz, theta <span class="op">=</span> build_vqc(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    n<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    layers<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="quantum-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="quantum-evaluation">4. Quantum Evaluation</h3>
+<p>For each sample, the encoded state is passed through the trained VQC and an observable is measured.</p>
+<p>Here, the expectation value of <span class="math inline">\(Z\)</span> on the first qubit is used as the classifier score.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit.quantum_info <span class="im">import</span> Statevector, SparsePauliOp</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vqc_score(sample, params, ansatz, theta):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> coupling_encoding(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        sample.real,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        sample.imag</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    qc.compose(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        ansatz.assign_parameters(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">dict</span>(<span class="bu">zip</span>(theta, params))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        inplace<span class="op">=</span><span class="va">True</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> Statevector.from_instruction(qc)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    obs <span class="op">=</span> SparsePauliOp.from_list([</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"I"</span> <span class="op">*</span> (qc.num_qubits <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> <span class="st">"Z"</span>, <span class="fl">1.0</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> state.expectation_value(obs).real</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output is a continuous score in approximately <span class="math inline">\([-1,1]\)</span>, which can be mapped to the stable and unstable labels.</p>
+<hr>
+</section>
+<section id="classical-training-loop" class="level3">
+<h3 class="anchored" data-anchor-id="classical-training-loop">5. Classical Training Loop</h3>
+<p>The VQC parameters are optimized classically. The study evaluates several optimizers; the following example uses the <span class="math inline">\(l_2\)</span> loss and COBYLA.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mse_loss(params, X, y, ansatz, theta):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> np.array([</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        vqc_score(x, params, ansatz, theta)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> X</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean((pred <span class="op">-</span> y) <span class="op">**</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The complete optimization loop is then only a few lines:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_vqc(X, y, ansatz, theta):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    x0 <span class="op">=</span> np.random.uniform(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span>np.pi,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        np.pi,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">len</span>(theta)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> minimize(</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        mse_loss,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        x0,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        args<span class="op">=</span>(X, y, ansatz, theta),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        method<span class="op">=</span><span class="st">"COBYLA"</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Training can therefore be written as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> train_vqc(X_train, y_train, ansatz, theta)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span> <span class="cf">if</span> vqc_score(x, result.x, ansatz, theta) <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> X_test</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> np.mean(np.asarray(y_pred) <span class="op">==</span> y_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="power-system-case-study" class="level2">
+<h2 class="anchored" data-anchor-id="power-system-case-study">Power-System Case Study</h2>
+<p>The framework is evaluated using a <strong>10-bus microgrid</strong> containing:</p>
+<ul>
+<li>5 renewable energy sources,</li>
+<li>5 power loads,</li>
+<li>multiple stable and unstable equilibrium points.</li>
+</ul>
+<p>For each operating point, active and reactive power from the five renewable-energy buses are selected, giving</p>
+<p><span class="math display">\[
+[P_1,Q_1,P_2,Q_2,\ldots,P_5,Q_5].
+\]</span></p>
+<p>These ten real-valued quantities are combined into five complex-valued features,</p>
+<p><span class="math display">\[
+[P_1+jQ_1,\ldots,P_5+jQ_5].
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/microgrid_system.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption>Microgrid system used to generate stable and unstable operating points for the VQC classification study.</figcaption>
+</figure>
+</div>
+<hr>
 </section>
 <section id="key-results" class="level2">
 <h2 class="anchored" data-anchor-id="key-results">Key Results</h2>
+<section id="data-encoding-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="data-encoding-comparison">Data-Encoding Comparison</h3>
+<p>The proposed coupling amplitude encoding achieved the highest classification performance among the investigated encoding methods.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Metric</th>
-<th style="text-align: right;">Baseline</th>
-<th style="text-align: right;">Proposed</th>
+<th>Encoding Method</th>
+<th style="text-align: right;">Qubits</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">Precision</th>
+<th style="text-align: right;">Recall</th>
+<th style="text-align: right;">F1-score</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Error</td>
-<td style="text-align: right;">1.2e-3</td>
-<td style="text-align: right;">3.1e-8</td>
+<td>Angle Encoding A</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">66.5%</td>
+<td style="text-align: right;">63.8%</td>
+<td style="text-align: right;">98.2%</td>
+<td style="text-align: right;">77.3%</td>
 </tr>
 <tr class="even">
-<td>Runtime</td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
+<td>Angle Encoding B</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">73.2%</td>
+<td style="text-align: right;">73.6%</td>
+<td style="text-align: right;">84.1%</td>
+<td style="text-align: right;">78.5%</td>
+</tr>
+<tr class="odd">
+<td>Pauli Feature Map</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">85.1%</td>
+<td style="text-align: right;">80.0%</td>
+<td style="text-align: right;">99.1%</td>
+<td style="text-align: right;">88.5%</td>
+</tr>
+<tr class="even">
+<td>PCA + Angle Encoding A</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">86.6%</td>
+<td style="text-align: right;">81.3%</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">89.7%</td>
+</tr>
+<tr class="odd">
+<td>PCA + Angle Encoding B</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">82.5%</td>
+<td style="text-align: right;">77.6%</td>
+<td style="text-align: right;">98.2%</td>
+<td style="text-align: right;">86.7%</td>
+</tr>
+<tr class="even">
+<td>PCA + Pauli Feature Map</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">81.4%</td>
+<td style="text-align: right;">77.3%</td>
+<td style="text-align: right;">96.5%</td>
+<td style="text-align: right;">85.8%</td>
+</tr>
+<tr class="odd">
+<td>Splitting Amplitude Encoding</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">88.6%</td>
+<td style="text-align: right;">85.8%</td>
+<td style="text-align: right;">96.5%</td>
+<td style="text-align: right;">90.8%</td>
+</tr>
+<tr class="even">
+<td><strong>Coupling Amplitude Encoding</strong></td>
+<td style="text-align: right;"><strong>3</strong></td>
+<td style="text-align: right;"><strong>92.3%</strong></td>
+<td style="text-align: right;"><strong>89.5%</strong></td>
+<td style="text-align: right;"><strong>98.2%</strong></td>
+<td style="text-align: right;"><strong>93.7%</strong></td>
 </tr>
 </tbody>
 </table>
+<p>The coupling strategy therefore achieved both <strong>the highest test accuracy</strong> and a <strong>compact three-qubit representation</strong>.</p>
+<p>The result demonstrates the benefit of preserving complex-valued information directly within quantum-state amplitudes instead of separating the real and imaginary components.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/classification_results.png" class="img-fluid figure-img" style="width:92.0%"></p>
+<figcaption>Stable and unstable samples in the PCA feature space together with the VQC classification results.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="effect-of-loss-functions" class="level2">
+<h2 class="anchored" data-anchor-id="effect-of-loss-functions">Effect of Loss Functions</h2>
+<p>Four loss functions were evaluated using the same VQC framework.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Loss Function</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">Precision</th>
+<th style="text-align: right;">Recall</th>
+<th style="text-align: right;">F1-score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(l_1\)</span></td>
+<td style="text-align: right;">88.1%</td>
+<td style="text-align: right;">58.9%</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">74.1%</td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(l_2\)</span></strong></td>
+<td style="text-align: right;"><strong>92.3%</strong></td>
+<td style="text-align: right;"><strong>89.5%</strong></td>
+<td style="text-align: right;"><strong>98.2%</strong></td>
+<td style="text-align: right;"><strong>93.7%</strong></td>
+</tr>
+<tr class="odd">
+<td>Cross-Entropy</td>
+<td style="text-align: right;">89.1%</td>
+<td style="text-align: right;">85.4%</td>
+<td style="text-align: right;">98.2%</td>
+<td style="text-align: right;">91.4%</td>
+</tr>
+<tr class="even">
+<td><strong>Misclassification-based</strong></td>
+<td style="text-align: right;"><strong>92.3%</strong></td>
+<td style="text-align: right;"><strong>89.5%</strong></td>
+<td style="text-align: right;"><strong>98.2%</strong></td>
+<td style="text-align: right;"><strong>93.7%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Both the <span class="math inline">\(l_2\)</span> loss and the misclassification-based loss achieved the highest test accuracy of <strong>92.3%</strong>.</p>
+<p>The experiments also illustrate the non-convex optimization landscape of VQCs, including local minima and regions with small gradients.</p>
+<!-- Loss-landscape figure omitted from the website version to keep the project page concise. -->
+<hr>
+</section>
+<section id="optimizer-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="optimizer-comparison">Optimizer Comparison</h2>
+<p>The study also compares two gradient-free optimizers,</p>
+<ul>
+<li>COBYLA</li>
+<li>SPSA</li>
+</ul>
+<p>with two gradient-based optimizers,</p>
+<ul>
+<li>Conjugate Gradient (CG)</li>
+<li>Analytic Quantum Gradient Descent (AQGD).</li>
+</ul>
+<p>The gradient-based methods generally achieve slightly higher classification accuracy, while SPSA exhibits larger fluctuations during optimization.</p>
+<p>For example, with Angle Encoding B:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Optimizer</th>
+<th style="text-align: right;">Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>COBYLA</td>
+<td style="text-align: right;">86.6%</td>
+</tr>
+<tr class="even">
+<td>SPSA</td>
+<td style="text-align: right;">83.0%</td>
+</tr>
+<tr class="odd">
+<td><strong>CG</strong></td>
+<td style="text-align: right;"><strong>88.7%</strong></td>
+</tr>
+<tr class="even">
+<td>AQGD</td>
+<td style="text-align: right;">88.1%</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/optimizer_training.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Training-loss trajectories for COBYLA, SPSA, CG, and AQGD.</figcaption>
+</figure>
+</div>
+<hr>
 </section>
 <section id="main-contributions" class="level2">
 <h2 class="anchored" data-anchor-id="main-contributions">Main Contributions</h2>
 <ul>
-<li>Contribution 1</li>
-<li>Contribution 2</li>
-<li>Contribution 3</li>
+<li><p>Developed a <strong>coupling amplitude encoding strategy for complex-valued data</strong>, directly embedding real and imaginary information into complex quantum amplitudes.</p></li>
+<li><p>Demonstrated that the proposed representation can reduce the required quantum resources while improving classification performance, achieving <strong>92.3% accuracy with only 3 qubits</strong> on the microgrid dataset.</p></li>
+<li><p>Systematically compared multiple <strong>quantum data encoding methods</strong>, including angle encoding, Pauli feature maps, splitting amplitude encoding, and coupling amplitude encoding.</p></li>
+<li><p>Investigated the effects of <strong>loss functions and classical optimizers</strong> on VQC performance and optimization behavior.</p></li>
+<li><p>Demonstrated the applicability of variational quantum machine learning to a practical <strong>power-system stability classification</strong> problem using complex-valued electrical measurements.</p></li>
 </ul>
+<hr>
 </section>
 <section id="related-publication" class="level2">
 <h2 class="anchored" data-anchor-id="related-publication">Related Publication</h2>
-<p>Example citation: <span class="citation" data-cites="sample2026">(<a href="#ref-sample2026" role="doc-biblioref">Name and Coauthor 2026</a>)</span>.</p>
-
+<p><strong>J. Chen and Y. Li</strong>,<br>
+<em>“Empowering Complex-Valued Data Classification with the Variational Quantum Classifier.”</em></p>
+<p>This work develops and evaluates the complex-valued VQC framework presented on this page.</p>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-sample2026" class="csl-entry" role="listitem">
-Name, Your, and A. Coauthor. 2026. <span>“A Sample Research Paper.”</span> <em>Sample Journal</em>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

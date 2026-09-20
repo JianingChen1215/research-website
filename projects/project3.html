@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project 3 — Federated Forecasting – Research Portfolio</title>
+<title>Project 3 — Constrained Quantum Optimization for Power-Electronic Converter Control – CyberTraining</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -123,7 +158,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Research Portfolio</span>
+    <span class="navbar-title">CyberTraining</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -145,8 +180,12 @@ window.Quarto = {
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../presentation.html"> 
+<span class="menu-text">Presentations &amp; Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">People</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -165,9 +204,24 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#federated-objective" id="toc-federated-objective" class="nav-link" data-scroll-target="#federated-objective">Federated Objective</a></li>
-  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
-  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#finite-horizon-cell-selection-model" id="toc-finite-horizon-cell-selection-model" class="nav-link" data-scroll-target="#finite-horizon-cell-selection-model">Finite-Horizon Cell-Selection Model</a></li>
+  <li><a href="#feasible-subspace-qaoa" id="toc-feasible-subspace-qaoa" class="nav-link" data-scroll-target="#feasible-subspace-qaoa">Feasible-Subspace QAOA</a></li>
+  <li><a href="#qubo-and-ising-formulation" id="toc-qubo-and-ising-formulation" class="nav-link" data-scroll-target="#qubo-and-ising-formulation">QUBO and Ising Formulation</a></li>
+  <li><a href="#rolling-horizon-implementation" id="toc-rolling-horizon-implementation" class="nav-link" data-scroll-target="#rolling-horizon-implementation">Rolling-Horizon Implementation</a></li>
+  <li><a href="#representative-python-implementation" id="toc-representative-python-implementation" class="nav-link" data-scroll-target="#representative-python-implementation">Representative Python Implementation</a>
+  <ul class="collapse">
+  <li><a href="#capacitor-voltage-update" id="toc-capacitor-voltage-update" class="nav-link" data-scroll-target="#capacitor-voltage-update">1. Capacitor-Voltage Update</a></li>
+  <li><a href="#finite-horizon-objective" id="toc-finite-horizon-objective" class="nav-link" data-scroll-target="#finite-horizon-objective">2. Finite-Horizon Objective</a></li>
+  <li><a href="#feasible-xy-mixer" id="toc-feasible-xy-mixer" class="nav-link" data-scroll-target="#feasible-xy-mixer">3. Feasible XY Mixer</a></li>
+  <li><a href="#rolling-horizon-control" id="toc-rolling-horizon-control" class="nav-link" data-scroll-target="#rolling-horizon-control">4. Rolling-Horizon Control</a></li>
+  </ul></li>
+  <li><a href="#numerical-test-case" id="toc-numerical-test-case" class="nav-link" data-scroll-target="#numerical-test-case">Numerical Test Case</a></li>
+  <li><a href="#objective-comparison" id="toc-objective-comparison" class="nav-link" data-scroll-target="#objective-comparison">Objective Comparison</a></li>
+  <li><a href="#capacitor-voltage-performance" id="toc-capacitor-voltage-performance" class="nav-link" data-scroll-target="#capacitor-voltage-performance">Capacitor-Voltage Performance</a></li>
+  <li><a href="#modeling-assumptions" id="toc-modeling-assumptions" class="nav-link" data-scroll-target="#modeling-assumptions">Modeling Assumptions</a></li>
+  <li><a href="#scalability-discussion" id="toc-scalability-discussion" class="nav-link" data-scroll-target="#scalability-discussion">Scalability Discussion</a></li>
+  <li><a href="#main-contributions" id="toc-main-contributions" class="nav-link" data-scroll-target="#main-contributions">Main Contributions</a></li>
   <li><a href="#related-publication" id="toc-related-publication" class="nav-link" data-scroll-target="#related-publication">Related Publication</a></li>
   </ul>
 </nav>
@@ -177,7 +231,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project 3 — Federated Forecasting</h1>
+<h1 class="title">Project 3 — Constrained Quantum Optimization for Power-Electronic Converter Control</h1>
 </div>
 
 
@@ -196,46 +250,454 @@ window.Quarto = {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Describe the forecasting task and why federated learning is useful.</p>
+<div class="hero">
+<p>This project extends quantum optimization from grid-level applications to device-level control of power-electronic systems. It develops a constrained-QAOA framework for cell selection in modular multilevel converters (MMCs). The optimization determines which converter submodules should be inserted at each control step while maintaining the required insertion number, reducing switching activity, and regulating capacitor voltages.</p>
+<p>These objectives are formulated within a unified finite-horizon binary optimization framework. A key contribution is a feasible-subspace QAOA formulation that incorporates the insertion-number constraint directly into the quantum circuit. An XY mixer preserves the required Hamming weight, ensuring that quantum evolution remains within the physically admissible solution space.</p>
+<p>The project also develops a rolling-horizon implementation that divides the full control problem into smaller sequential optimization problems suitable for near-term quantum platforms.</p>
+<p>The framework is benchmarked against voltage-sorting greedy control, switching-aware greedy control, and feasible-subspace simulated annealing. The constrained-QAOA solution reduces the common objective by <strong>25.2%</strong> relative to voltage-sorting greedy control and by <strong>24.9%</strong> relative to switching-aware greedy control, while remaining within <strong>4.1%</strong> of simulated annealing.</p>
+</div>
+<hr>
 </section>
-<section id="federated-objective" class="level2">
-<h2 class="anchored" data-anchor-id="federated-objective">Federated Objective</h2>
-<p>A generic federated objective is</p>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>MMCs are widely used in high-voltage direct-current transmission because of their modular structure, scalability, and efficiency.</p>
+<p>Each converter arm contains many submodules. At every sampling instant, the modulation layer specifies how many cells must be inserted, but several different insertion patterns can satisfy the same commanded arm voltage.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/mmc_system.png" class="img-fluid figure-img" style="width:88.0%"></p>
+<figcaption>Three-phase modular multilevel converter and representative submodule structure.</figcaption>
+</figure>
+</div>
+<p>The cell-selection layer must therefore decide <strong>which</strong> cells should be inserted.</p>
+<p>These decisions are dynamically coupled because inserting a cell affects</p>
+<ol type="1">
+<li>the switching state at the current time step, and</li>
+<li>the capacitor voltage available at future time steps.</li>
+</ol>
+<p>This makes MMC cell selection a constrained combinatorial optimization problem rather than a purely local sorting task.</p>
+<hr>
+</section>
+<section id="finite-horizon-cell-selection-model" class="level2">
+<h2 class="anchored" data-anchor-id="finite-horizon-cell-selection-model">Finite-Horizon Cell-Selection Model</h2>
+<p>Let</p>
 <p><span class="math display">\[
-\min_w \sum_{k=1}^{K} p_k F_k(w).
+x_{i,t}\in\{0,1\}
 \]</span></p>
+<p>denote the insertion state of cell <span class="math inline">\(i\)</span> at time step <span class="math inline">\(t\)</span>.</p>
+<p>The modulation layer specifies the required number of inserted cells <span class="math inline">\(k_t\)</span>, giving the hard feasibility condition</p>
+<p><span class="math display">\[
+\sum_{i=1}^{N}x_{i,t}=k_t,
+\qquad
+t=1,\ldots,T.
+\]</span></p>
+<p>The capacitor-voltage dynamics are modeled as</p>
+<p><span class="math display">\[
+v_{i,t}
+=
+v_{i,t-1}
++
+x_{i,t}\Delta v_t,
+\]</span></p>
+<p>where <span class="math inline">\(\Delta v_t\)</span> is determined from the externally specified or measured arm-current trajectory.</p>
+<p>The finite-horizon objective balances switching activity and voltage regulation,</p>
+<p><span class="math display">\[
+F(\mathbf{x})
+=
+J_{\mathrm{sw}}(\mathbf{x})
++
+P_{\mathrm{track}}(\mathbf{x}).
+\]</span></p>
+<p>The switching term is</p>
+<p><span class="math display">\[
+J_{\mathrm{sw}}(\mathbf{x})
+=
+\sum_{i=1}^{N}
+\sum_{t=1}^{T}
+w_t
+\left(
+x_{i,t}-x_{i,t-1}
+\right)^2,
+\]</span></p>
+<p>which discourages unnecessary changes in cell status.</p>
+<p>The voltage-tracking term is</p>
+<p><span class="math display">\[
+P_{\mathrm{track}}(\mathbf{x})
+=
+\lambda_v
+\sum_{i=1}^{N}
+\sum_{t=1}^{T}
+\left(
+v_{i,t}-v_{\mathrm{ref}}
+\right)^2.
+\]</span></p>
+<p>Because the voltage trajectory is affine in the binary insertion variables, the complete finite-horizon objective remains quadratic.</p>
+<hr>
 </section>
-<section id="method" class="level2">
-<h2 class="anchored" data-anchor-id="method">Method</h2>
-<p>Describe client sampling, initialization, aggregation, and local training.</p>
+<section id="feasible-subspace-qaoa" class="level2">
+<h2 class="anchored" data-anchor-id="feasible-subspace-qaoa">Feasible-Subspace QAOA</h2>
+<p>A central feature of this project is that the insertion-number constraint is <strong>not enforced by a large penalty coefficient</strong>.</p>
+<p>Instead, the feasible set is defined as</p>
+<p><span class="math display">\[
+\Omega
+=
+\left\{
+\mathbf{x}\in\{0,1\}^{NT}
+\;\middle|\;
+\sum_{i=1}^{N}x_{i,t}=k_t,
+\ \forall t
+\right\}.
+\]</span></p>
+<p>The QAOA mixer is chosen so that the evolution remains inside this set.</p>
+<p>For each time slice, the XY mixer is</p>
+<p><span class="math display">\[
+H_M
+=
+\sum_{t=1}^{T}
+\sum_{1\le r&lt;s\le N}
+\left(
+X_{r,t}X_{s,t}
++
+Y_{r,t}Y_{s,t}
+\right).
+\]</span></p>
+<p>The corresponding excitation-number operator is</p>
+<p><span class="math display">\[
+\hat N_t
+=
+\sum_{i=1}^{N}
+\frac{I-Z_{i,t}}{2}.
+\]</span></p>
+<p>Because</p>
+<p><span class="math display">\[
+[H_M,\hat N_t]=0,
+\]</span></p>
+<p>the mixer preserves the number of inserted cells at every time step.</p>
+<p>Therefore, if the QAOA state is initialized from a feasible schedule,</p>
+<p><span class="math display">\[
+|\psi_0\rangle\in\Omega,
+\]</span></p>
+<p>the complete variational evolution remains feasible.</p>
+<p>This converts the insertion-number requirement from a penalty term into a structural property of the quantum circuit.</p>
+<hr>
 </section>
-<section id="evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="evaluation">Evaluation</h2>
+<section id="qubo-and-ising-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="qubo-and-ising-formulation">QUBO and Ising Formulation</h2>
+<p>The switching and voltage-tracking terms form a standard quadratic unconstrained binary optimization problem,</p>
+<p><span class="math display">\[
+F(\mathbf{x})
+=
+F_0
++
+\sum_q a_qx_q
++
+\sum_{q&lt;r}b_{qr}x_qx_r,
+\]</span></p>
+<p>where a single index <span class="math inline">\(q\)</span> represents a cell-time pair <span class="math inline">\((i,t)\)</span>.</p>
+<p>Using</p>
+<p><span class="math display">\[
+x_q
+=
+\frac{I-Z_q}{2},
+\]</span></p>
+<p>the QUBO is mapped to the Ising cost Hamiltonian</p>
+<p><span class="math display">\[
+H_C
+=
+E_0 I
++
+\sum_q h_q Z_q
++
+\sum_{q&lt;r}J_{qr}Z_qZ_r.
+\]</span></p>
+<p>The constrained-QAOA state is then</p>
+<p><span class="math display">\[
+|\psi(\boldsymbol{\gamma},\boldsymbol{\beta})\rangle
+=
+\prod_{\ell=1}^{p}
+e^{-i\beta_\ell H_M}
+e^{-i\gamma_\ell H_C}
+|\psi_0\rangle.
+\]</span></p>
+<p>The two Hamiltonians have distinct roles:</p>
+<ul>
+<li><span class="math inline">\(H_M\)</span> preserves physical feasibility;</li>
+<li><span class="math inline">\(H_C\)</span> evaluates the switching–voltage tradeoff.</li>
+</ul>
+<p>This separation allows QAOA to optimize performance <strong>within</strong> the admissible schedule space rather than spending search effort on infeasible schedules.</p>
+<hr>
+</section>
+<section id="rolling-horizon-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="rolling-horizon-implementation">Rolling-Horizon Implementation</h2>
+<p>A direct full-horizon formulation requires</p>
+<p><span class="math display">\[
+NT
+\]</span></p>
+<p>binary decision variables and therefore scales with the complete scheduling horizon.</p>
+<p>To improve tractability, the project uses a rolling-horizon strategy.</p>
+<p>Let</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span> be the optimization-window length,</li>
+<li><span class="math inline">\(d\)</span> be the number of committed steps per window.</li>
+</ul>
+<p>At each rolling step:</p>
+<ol type="1">
+<li>solve the constrained-QAOA problem over the next <span class="math inline">\(\mu\)</span> time steps;</li>
+<li>commit the first <span class="math inline">\(d\)</span> decisions;</li>
+<li>update the capacitor voltages and insertion boundary state;</li>
+<li>move the window forward and repeat.</li>
+</ol>
+<p>The instantaneous physical register width is therefore reduced from</p>
+<p><span class="math display">\[
+\mathcal{O}(NT)
+\]</span></p>
+<p>to</p>
+<p><span class="math display">\[
+\mathcal{O}(N\mu).
+\]</span></p>
+<p>The state update between windows preserves the temporal dependence of the capacitor-voltage dynamics.</p>
+<hr>
+</section>
+<section id="representative-python-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="representative-python-implementation">Representative Python Implementation</h2>
+<p>The following snippets show the main software modules behind the constrained-QAOA workflow.<br>
+The code is intentionally compact: <strong>MMC dynamics, objective evaluation, feasible mixing, and rolling-horizon control</strong> are kept separate.</p>
+<section id="capacitor-voltage-update" class="level3">
+<h3 class="anchored" data-anchor-id="capacitor-voltage-update">1. Capacitor-Voltage Update</h3>
+<p>This module propagates capacitor voltages for a candidate insertion schedule.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> voltage_trajectory(x, v0, dv):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> [np.asarray(v0)]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dv)):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        v.append(v[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> x[:, t] <span class="op">*</span> dv[t])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.asarray(v[<span class="dv">1</span>:])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The binary matrix <code>x[i, t]</code> represents whether cell <span class="math inline">\(i\)</span> is inserted at time <span class="math inline">\(t\)</span>.</p>
+</section>
+<section id="finite-horizon-objective" class="level3">
+<h3 class="anchored" data-anchor-id="finite-horizon-objective">2. Finite-Horizon Objective</h3>
+<p>The classical objective combines switching activity and capacitor-voltage tracking.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mmc_cost(x, x0, v, vref, lam):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    x_prev <span class="op">=</span> np.c_[x0, x[:, :<span class="op">-</span><span class="dv">1</span>]]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    switching <span class="op">=</span> np.<span class="bu">sum</span>((x <span class="op">-</span> x_prev) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    tracking <span class="op">=</span> np.<span class="bu">sum</span>((v <span class="op">-</span> vref) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> switching <span class="op">+</span> lam <span class="op">*</span> tracking</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This directly represents the two terms used in the finite-horizon optimization.</p>
+</section>
+<section id="feasible-xy-mixer" class="level3">
+<h3 class="anchored" data-anchor-id="feasible-xy-mixer">3. Feasible XY Mixer</h3>
+<p>The constrained QAOA uses an XY mixer so that each time slice preserves its required number of inserted cells.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> xy_mixer(qc, beta, n_cells, horizon):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(horizon):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        qubits <span class="op">=</span> <span class="bu">range</span>(t<span class="op">*</span>n_cells, (t<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>n_cells)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, j <span class="kw">in</span> combinations(qubits, <span class="dv">2</span>):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            qc.rxx(<span class="dv">2</span><span class="op">*</span>beta, i, j)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            qc.ryy(<span class="dv">2</span><span class="op">*</span>beta, i, j)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because the mixer exchanges excitations rather than creating or removing them, a feasible initial state remains inside the fixed-cardinality subspace.</p>
+</section>
+<section id="rolling-horizon-control" class="level3">
+<h3 class="anchored" data-anchor-id="rolling-horizon-control">4. Rolling-Horizon Control</h3>
+<p>The outer control loop repeatedly solves a short window, commits the first decision, and updates the physical state.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rolling_horizon(v, x_prev, steps, solve_window):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    schedule <span class="op">=</span> []</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        x_window <span class="op">=</span> solve_window(v, x_prev, t)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        x_now <span class="op">=</span> x_window[:, <span class="dv">0</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        schedule.append(x_now)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        x_prev <span class="op">=</span> x_now</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> update_state(v, x_now, t)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.asarray(schedule)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The quantum optimizer is isolated inside <code>solve_window()</code>, while the rolling-horizon controller handles state propagation and commitment.</p>
+<hr>
+</section>
+</section>
+<section id="numerical-test-case" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-test-case">Numerical Test Case</h2>
+<p>The framework is evaluated on a representative single MMC arm with</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Model</th>
-<th style="text-align: right;">MSE</th>
-<th style="text-align: right;">MAE</th>
+<th>Setting</th>
+<th style="text-align: right;">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Baseline</td>
-<td style="text-align: right;">0.136</td>
-<td style="text-align: right;">0.199</td>
+<td>Cells</td>
+<td style="text-align: right;"><span class="math inline">\(N=4\)</span></td>
 </tr>
 <tr class="even">
-<td>Proposed</td>
-<td style="text-align: right;">0.095</td>
-<td style="text-align: right;">0.166</td>
+<td>Horizon</td>
+<td style="text-align: right;"><span class="math inline">\(T=12\)</span></td>
+</tr>
+<tr class="odd">
+<td>Required inserted cells</td>
+<td style="text-align: right;"><span class="math inline">\(k_t=2\)</span></td>
+</tr>
+<tr class="even">
+<td>QAOA depth</td>
+<td style="text-align: right;"><span class="math inline">\(p=2\)</span></td>
+</tr>
+<tr class="odd">
+<td>Rolling window</td>
+<td style="text-align: right;"><span class="math inline">\(\mu=3\)</span></td>
+</tr>
+<tr class="even">
+<td>Commit length</td>
+<td style="text-align: right;"><span class="math inline">\(d=1\)</span></td>
+</tr>
+<tr class="odd">
+<td>Reference voltage</td>
+<td style="text-align: right;"><span class="math inline">\(1.0\)</span> p.u.</td>
+</tr>
+<tr class="even">
+<td>Monitoring range</td>
+<td style="text-align: right;"><span class="math inline">\(0.9\)</span>–<span class="math inline">\(1.1\)</span> p.u.</td>
 </tr>
 </tbody>
 </table>
+<p>The initial capacitor voltages are</p>
+<p><span class="math display">\[
+\mathbf{v}_0
+=
+[1.03,\ 0.98,\ 1.01,\ 0.99]
+\ \text{p.u.},
+\]</span></p>
+<p>and the initial insertion state is</p>
+<p><span class="math display">\[
+\mathbf{x}_0
+=
+[1,\ 0,\ 1,\ 0].
+\]</span></p>
+<p>The comparison includes four methods:</p>
+<ul>
+<li><strong>GreedySort</strong> — voltage-sorting greedy control,</li>
+<li><strong>GreedySw</strong> — switching-aware greedy control,</li>
+<li><strong>Window-SA</strong> — feasible-subspace simulated annealing,</li>
+<li><strong>QAOA (<span class="math inline">\(p=2\)</span>)</strong> — the proposed constrained quantum method.</li>
+</ul>
+<p>All methods are evaluated using the same finite-horizon objective</p>
+<p><span class="math display">\[
+F
+=
+J_{\mathrm{sw}}
++
+P_{\mathrm{track}}.
+\]</span></p>
+<hr>
+</section>
+<section id="objective-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="objective-comparison">Objective Comparison</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/objective_comparison.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Decomposition of the total finite-horizon objective into switching and capacitor-voltage tracking terms.</figcaption>
+</figure>
+</div>
+<p>The two greedy approaches emphasize different parts of the control objective.</p>
+<ul>
+<li><strong>GreedySort</strong> maintains stronger local voltage balancing but produces substantially more switching.</li>
+<li><strong>GreedySw</strong> reduces switching activity but produces a much larger voltage-tracking penalty.</li>
+<li><strong>Window-SA</strong> provides the lowest total cost on this small test instance.</li>
+<li><strong>QAOA</strong> produces a substantially better switching–tracking compromise than either greedy method and remains close to Window-SA.</li>
+</ul>
+<p>Relative to the common finite-horizon objective, QAOA achieves</p>
+<p><span class="math display">\[
+25.2\%
+\]</span></p>
+<p>lower cost than voltage-sorting greedy and</p>
+<p><span class="math display">\[
+24.9\%
+\]</span></p>
+<p>lower cost than switching-aware greedy.</p>
+<p>Its objective remains within</p>
+<p><span class="math display">\[
+4.1\%
+\]</span></p>
+<p>of feasible-subspace Window-SA.</p>
+<p>These results demonstrate competitive feasible scheduling on the representative small-scale instance, although the strongest classical baseline still obtains the lowest objective value.</p>
+<hr>
+</section>
+<section id="capacitor-voltage-performance" class="level2">
+<h2 class="anchored" data-anchor-id="capacitor-voltage-performance">Capacitor-Voltage Performance</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/voltage_envelope.png" class="img-fluid figure-img" style="width:86.0%"></p>
+<figcaption>Capacitor-voltage envelope produced by QAOA compared with feasible-subspace simulated annealing.</figcaption>
+</figure>
+</div>
+<p>The QAOA trajectory remains inside the monitoring interval</p>
+<p><span class="math display">\[
+0.9
+\le
+v_{i,t}
+\le
+1.1
+\quad \text{p.u.}
+\]</span></p>
+<p>throughout the simulated horizon.</p>
+<p>The QAOA voltage envelope is slightly wider than the Window-SA envelope at several time steps, but the overall voltage behavior remains well regulated.</p>
+<p>Importantly, these voltage limits are used in the present study for <strong>post-solution assessment</strong>, not as hard constraints in the QUBO. Enforcing them directly would require additional slack-variable encodings and would increase the binary-variable count, qubit requirements, and Hamiltonian coupling complexity.</p>
+<hr>
+</section>
+<section id="modeling-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-assumptions">Modeling Assumptions</h2>
+<p>The present study is designed to validate the constrained-QAOA formulation itself and therefore adopts several simplifying assumptions.</p>
+<ul>
+<li>The analysis considers a representative <strong>single MMC arm</strong>.</li>
+<li>Circulating-current effects are neglected.</li>
+<li>The arm-current trajectory is treated as externally specified or predicted.</li>
+<li>The insertion-number requirement is enforced as the primary hard operational constraint.</li>
+<li>Capacitor-voltage limits are monitored after optimization rather than directly encoded as hard quantum constraints.</li>
+<li>The numerical case is intentionally small enough to permit controlled comparison with classical feasible-subspace methods.</li>
+</ul>
+<p>These assumptions make it possible to isolate the main technical question: whether MMC cell selection can be represented as a feasible-subspace QAOA problem with a unified switching–voltage objective.</p>
+<hr>
+</section>
+<section id="scalability-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="scalability-discussion">Scalability Discussion</h2>
+<p>The direct finite-horizon formulation requires one binary variable for each cell-time pair,</p>
+<p><span class="math display">\[
+N_{\mathrm{var}}
+=
+NT.
+\]</span></p>
+<p>The rolling-horizon realization reduces the active problem size to approximately</p>
+<p><span class="math display">\[
+N_{\mathrm{var}}
+=
+N\mu.
+\]</span></p>
+<p>This reduction is important because the cost Hamiltonian contains temporal couplings generated by both switching transitions and cumulative capacitor-voltage evolution.</p>
+<p>The current numerical experiment establishes <strong>formulation-level viability</strong> rather than a practical quantum speedup. Larger MMC instances, hardware-efficient XY-mixer implementations, noise sensitivity, and direct voltage-bound encodings remain important directions for future work.</p>
+<hr>
+</section>
+<section id="main-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="main-contributions">Main Contributions</h2>
+<ul>
+<li><p>Formulated <strong>finite-horizon MMC cell selection</strong> as a constrained binary optimization problem that jointly considers switching activity and capacitor-voltage regulation.</p></li>
+<li><p>Developed a <strong>feasible-subspace QAOA formulation</strong> in which the insertion-number requirement is preserved directly by an XY mixer instead of enforced through large penalty coefficients.</p></li>
+<li><p>Constructed a <strong>QUBO/Ising representation</strong> of the switching–voltage objective without introducing auxiliary binary variables for the primary optimization model.</p></li>
+<li><p>Introduced a <strong>rolling-horizon realization</strong> that reduces the instantaneous quantum problem size from <span class="math inline">\(\mathcal{O}(NT)\)</span> to <span class="math inline">\(\mathcal{O}(N\mu)\)</span> while retaining temporal state evolution.</p></li>
+<li><p>Demonstrated feasible shallow-depth QAOA schedules that <strong>substantially outperform representative greedy baselines</strong> under a common finite-horizon objective.</p></li>
+<li><p>Showed that the QAOA solution remains <strong>close to feasible-subspace simulated annealing</strong> while maintaining capacitor voltages inside the monitored operating range on the representative test instance.</p></li>
+</ul>
+<hr>
 </section>
 <section id="related-publication" class="level2">
 <h2 class="anchored" data-anchor-id="related-publication">Related Publication</h2>
-<p>Replace this section with your actual paper.</p>
+<p><strong>Y. Pan, Y. Li, L. Du, M. Ismail, and W. Saad</strong>,<br>
+<em>“Constrained Quantum Approximate Optimization for Modular Multilevel Converter Cell Selection.”</em></p>
+<p>This work develops the feasible-subspace QAOA formulation, QUBO/Ising mapping, rolling-horizon implementation, and numerical MMC cell-selection validation presented on this page.</p>
 
 
 </section>

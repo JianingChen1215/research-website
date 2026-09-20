@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CyberTraining: Pilot: Immersive and Collaborative Quantum Computing Training for Power System Engineers – CyberTraining</title>
+<title>Presentations &amp; Tutorials – CyberTraining</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,35 +82,6 @@ window.MathJax = {
 };
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -133,7 +104,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -145,7 +116,7 @@ window.Quarto = {
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./presentation.html"> 
+    <a class="nav-link active" href="./presentation.html" aria-current="page"> 
 <span class="menu-text">Presentations &amp; Tutorials</span></a>
   </li>  
   <li class="nav-item">
@@ -160,7 +131,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -168,24 +139,21 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-goal" id="toc-project-goal" class="nav-link active" data-scroll-target="#project-goal">Project goal</a></li>
-  <li><a href="#quantum-computing-basics" id="toc-quantum-computing-basics" class="nav-link" data-scroll-target="#quantum-computing-basics">Quantum Computing Basics</a></li>
-  <li><a href="#featured-projects" id="toc-featured-projects" class="nav-link" data-scroll-target="#featured-projects">Featured Projects</a></li>
-  <li><a href="#acknowledgement" id="toc-acknowledgement" class="nav-link" data-scroll-target="#acknowledgement">Acknowledgement</a></li>
+  <li><a href="#selected-academic-talks-and-tutorials" id="toc-selected-academic-talks-and-tutorials" class="nav-link active" data-scroll-target="#selected-academic-talks-and-tutorials">Selected Academic Talks and Tutorials</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CyberTraining: Pilot: Immersive and Collaborative Quantum Computing Training for Power System Engineers</h1>
+<h1 class="title">Presentations &amp; Tutorials</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta">
 
     
   
@@ -197,88 +165,27 @@ window.Quarto = {
 </header>
 
 
-<section id="project-goal" class="level2">
-<h2 class="anchored" data-anchor-id="project-goal">Project goal</h2>
-<div class="hero">
-<p>The goal of this project is to establish a quantum-energy training program that addresses real-world challenges in power systems using quantum techniques and offers tailored cross-disciplinary training.</p>
-<p>First, create a project-based training program that synthesizes <strong>interdisciplinary knowledge from power engineering and quantum computing</strong>, thereby cultivating trainees who are proficient in both fields.</p>
-<p>Second, offer trainees <strong>hands-on experience and practical application</strong> in power system-oriented quantum computing, coupled with personalized feedback, to enhance the widespread adoption of quantum computing.</p>
-<p>Third, create a seamless integration between <strong>problem-solving, training, and career advancement</strong>.</p>
-<p>Overall, this project aims to train a quantum-ready workforce in power engineering, preparing them to meet future challenges and opportunities in this cross-disciplinary field.</p>
-</div>
-</section>
-<section id="quantum-computing-basics" class="level2">
-<h2 class="anchored" data-anchor-id="quantum-computing-basics">Quantum Computing Basics</h2>
-<p>Quantum computing represents information using <strong>qubits</strong> rather than classical bits. While a classical bit takes either the value 0 or 1, a qubit can exist in a superposition,</p>
-<p><span class="math display">\[
-|\psi\rangle
-=
-\alpha |0\rangle
-+
-\beta |1\rangle,
-\]</span></p>
-<p>where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are complex probability amplitudes satisfying</p>
-<p><span class="math display">\[
-|\alpha|^2+|\beta|^2=1.
-\]</span></p>
-<p>A single-qubit state can be visualized geometrically using the <strong>Bloch sphere</strong>. Different points on the sphere correspond to different quantum states, providing an intuitive picture of superposition, amplitude, and phase.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/quantum_state_evolution.gif" class="img-fluid figure-img" style="width:75.0%"></p>
-<figcaption>Bloch-sphere visualization of an evolving quantum state.</figcaption>
-</figure>
-</div>
-<p>Quantum computation is performed by applying <strong>quantum gates</strong> to these states. Single-qubit gates rotate an individual quantum state, while multi-qubit gates can create interactions and entanglement between qubits.</p>
-<p>The following example illustrates how a sequence of quantum gates changes a two-qubit state and how the corresponding state evolves during the circuit.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/bloch_sphere_state.gif" class="img-fluid figure-img" style="width:30.0%"></p>
-<figcaption>Quantum-state evolution through a sequence of quantum gates.</figcaption>
-</figure>
-</div>
-<p>These concepts—<strong>superposition, quantum gates, state evolution, and entanglement</strong>—form the foundation of the quantum algorithms explored throughout the projects below.</p>
-<hr>
-</section>
-<section id="featured-projects" class="level2">
-<h2 class="anchored" data-anchor-id="featured-projects">Featured Projects</h2>
-<div class="project-grid">
-<section id="project-1-quantum-data-encoding-for-power-system-modeling" class="level3 project-card">
-<h3 class="anchored" data-anchor-id="project-1-quantum-data-encoding-for-power-system-modeling">Project 1 — Quantum Data Encoding for Power System Modeling</h3>
-<p>Variational quantum classification for complex-valued power-system data.</p>
-<p><a href="./projects/project1.html">View project →</a></p>
-</section>
-<section id="project-2-quantum-optimization-for-optimal-placement-of-pmus-in-power-systems" class="level3 project-card">
-<h3 class="anchored" data-anchor-id="project-2-quantum-optimization-for-optimal-placement-of-pmus-in-power-systems">Project 2 — Quantum Optimization for Optimal Placement of PMUs in Power Systems</h3>
-<p>QAOA-based optimization for efficient power-system observability and PMU placement.</p>
-<p><a href="./projects/project2.html">View project →</a></p>
-</section>
-<section id="project-3-constrained-quantum-optimization-for-power-electronic-converter-control" class="level3 project-card">
-<h3 class="anchored" data-anchor-id="project-3-constrained-quantum-optimization-for-power-electronic-converter-control">Project 3 — Constrained Quantum Optimization for Power-Electronic Converter Control</h3>
-<p>Constrained QAOA for optimal modular multilevel converter cell selection.</p>
-<p><a href="./projects/project3.html">View project →</a></p>
-</section>
-<section id="project-4-quantum-computing-for-contingency-analysis" class="level3 project-card">
-<h3 class="anchored" data-anchor-id="project-4-quantum-computing-for-contingency-analysis">Project 4 — Quantum Computing for Contingency Analysis</h3>
-<p>QAOA-based combinatorial search for higher-order power-system contingencies.</p>
-<p><a href="./projects/project4.html">View project →</a></p>
-</section>
-<section id="project-5-advanced-computational-methods-for-power-system-stability-enhancement" class="level3 project-card">
-<h3 class="anchored" data-anchor-id="project-5-advanced-computational-methods-for-power-system-stability-enhancement">Project 5 — Advanced Computational Methods for Power System Stability Enhancement</h3>
-<p>Gradient-aware controller optimization for improving power-system small-signal stability.</p>
-<p><a href="./projects/project5.html">View project →</a></p>
-</section>
-<section id="project-6-quantum-computing-for-power-system-dynamic-simulation" class="level3 project-card">
-<h3 class="anchored" data-anchor-id="project-6-quantum-computing-for-power-system-dynamic-simulation">Project 6 — Quantum Computing for Power System Dynamic Simulation</h3>
-<p>Carleman-based transformation of nonlinear dynamics for quantum simulation.</p>
-<p><a href="./projects/project6.html">View project →</a></p>
-</section>
-</div>
-</section>
-<section id="acknowledgement" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgement">Acknowledgement</h2>
-<p>This work is supported by the <strong>National Science Foundation (NSF)</strong> under <strong>Award OAC-2417773</strong>. The views and conclusions presented here are those of the authors and do not necessarily reflect those of the NSF.</p>
-<p>Generative AI tools, including <strong>ChatGPT</strong>, were used to assist with drafting, editing, and code refinement. All AI-assisted content was reviewed by the authors.</p>
-<p>This website was built with <strong>Quarto</strong>, and we gratefully acknowledge the Quarto project for its open-source publishing tools.</p>
+<section id="selected-academic-talks-and-tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="selected-academic-talks-and-tutorials">Selected Academic Talks and Tutorials</h2>
+<ul>
+<li>[July 2026] Quantum Computing for Power Systems, 2026 IEEE Power &amp; Energy Society General Meeting, Montreal, Canada</li>
+<li>[March 2026] Quantum Computing-Enabled Power System Islanding, HAIQ Workshop at HPCA 2026, Pittsburgh, PA, U.S.</li>
+<li>[February 2026] Quantum Computing-Enabled Power System Partitioning, Guest Lecture, Clemson University</li>
+<li>[January 2026] QAOA-Driven PMU Placement Optimization with Graph Learning-based Parameter Initialization Refinement, Quantum Machine Intelligence</li>
+<li>[October 2025] Enabling Resilient Cyber-Physical Power Systems: Integrating Quantum Computing and Machine Learning for Future Grids, ECE Department Seminar, Lehigh University</li>
+<li>[September 2025] Quantum Computing-Enabled Contingency Analysis for Power Systems, 2025 IEEE Quantum Week</li>
+<li>[July 2025] Quantum Computing for Power System Optimization, 2025 IEEE Power &amp; Energy Society General Meeting, Austin, TX</li>
+<li>[July 2025] Opportunities and Challenges in Research and Education of Quantum Computing for Power Systems, 2025 IEEE Power &amp; Energy Society General Meeting, Austin, TX</li>
+<li>[May 2025] Quantum-Accelerated Optimal Meter Placement in Energy Systems, North Carolina State Quantum Initiative’s Annual Symposium, North Carolina State University</li>
+<li>[March 2025] Enhancing Distribution Network Observability: A Quantum Solution, HAIQ Workshop at HPCA 2025, Las Vegas</li>
+<li>[January 2025] Cyber-Physical Power Systems, ECE Department Seminar, Huston University</li>
+<li>[January 2025] Enabling Resilient Cyber-Physical Microgrids, Department of Nuclear Engineering, Penn State University</li>
+<li>[November 2024] Power System Dynamic Simulation with Generalized Quantum Carleman Linearization, AVS 70 Mini Symposium on Quantum Science &amp; Technology, Tampa, FL</li>
+<li>[October 2024] Quantum-Enabled Analysis in Renewable Energy Systems, Quantum Computing Applications and System Workshop, Newark, NJ</li>
+<li>[October 2024] Harnessing Quantum Computing For Power System Applications, Department of Computer Science, Rensselaer Polytechnic Institute</li>
+<li>[September 2024] Quantum-Enabled Optimal Placement of Meters in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada</li>
+<li>[September 2024] Quantum-Enabled Optimal Placement of PMUs in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada</li>
+</ul>
 
 
 </section>

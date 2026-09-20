@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Project 6 — Quantum Computing for Power System Dynamic Simulation – CyberTraining</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e9b1289f5f353c49b617ce48ad2bc38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+window.MathJax = {
+  options: {
+    enableExplorerHelp: false
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CyberTraining</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../presentation.html"> 
+<span class="menu-text">Presentations &amp; Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">People</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#framework" id="toc-framework" class="nav-link" data-scroll-target="#framework">Framework</a></li>
+  <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea">Core Idea</a></li>
+  <li><a href="#dae-to-ode-reformulation" id="toc-dae-to-ode-reformulation" class="nav-link" data-scroll-target="#dae-to-ode-reformulation">DAE-to-ODE Reformulation</a></li>
+  <li><a href="#polynomial-reformulation" id="toc-polynomial-reformulation" class="nav-link" data-scroll-target="#polynomial-reformulation">Polynomial Reformulation</a></li>
+  <li><a href="#center-shifted-carleman-linearization" id="toc-center-shifted-carleman-linearization" class="nav-link" data-scroll-target="#center-shifted-carleman-linearization">Center-Shifted Carleman Linearization</a></li>
+  <li><a href="#quantum-solver-1-dilated-hamiltonian-simulation" id="toc-quantum-solver-1-dilated-hamiltonian-simulation" class="nav-link" data-scroll-target="#quantum-solver-1-dilated-hamiltonian-simulation">Quantum Solver 1 — Dilated Hamiltonian Simulation</a></li>
+  <li><a href="#quantum-solver-2-qlsa-based-time-marching" id="toc-quantum-solver-2-qlsa-based-time-marching" class="nav-link" data-scroll-target="#quantum-solver-2-qlsa-based-time-marching">Quantum Solver 2 — QLSA-Based Time Marching</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
+  <li><a href="#representative-python-implementation" id="toc-representative-python-implementation" class="nav-link" data-scroll-target="#representative-python-implementation">Representative Python Implementation</a>
+  <ul class="collapse">
+  <li><a href="#jacobian-based-dae-embedding" id="toc-jacobian-based-dae-embedding" class="nav-link" data-scroll-target="#jacobian-based-dae-embedding">1. Jacobian-Based DAE Embedding</a></li>
+  <li><a href="#phase-reparameterization" id="toc-phase-reparameterization" class="nav-link" data-scroll-target="#phase-reparameterization">2. Phase Reparameterization</a></li>
+  <li><a href="#carleman-state-lifting" id="toc-carleman-state-lifting" class="nav-link" data-scroll-target="#carleman-state-lifting">3. Carleman State Lifting</a></li>
+  <li><a href="#classical-validation" id="toc-classical-validation" class="nav-link" data-scroll-target="#classical-validation">4. Classical Validation</a></li>
+  <li><a href="#qlsa-history-system" id="toc-qlsa-history-system" class="nav-link" data-scroll-target="#qlsa-history-system">5. QLSA History System</a></li>
+  <li><a href="#hermitian-dilation" id="toc-hermitian-dilation" class="nav-link" data-scroll-target="#hermitian-dilation">6. Hermitian Dilation</a></li>
+  <li><a href="#representative-qiskit-evolution" id="toc-representative-qiskit-evolution" class="nav-link" data-scroll-target="#representative-qiskit-evolution">7. Representative Qiskit Evolution</a></li>
+  </ul></li>
+  <li><a href="#bus-case-study" id="toc-bus-case-study" class="nav-link" data-scroll-target="#bus-case-study">10-Bus Case Study</a>
+  <ul class="collapse">
+  <li><a href="#truncation-accuracy" id="toc-truncation-accuracy" class="nav-link" data-scroll-target="#truncation-accuracy">Truncation Accuracy</a></li>
+  </ul></li>
+  <li><a href="#state-register-scaling" id="toc-state-register-scaling" class="nav-link" data-scroll-target="#state-register-scaling">State-Register Scaling</a></li>
+  <li><a href="#ieee-39-bus-case-study" id="toc-ieee-39-bus-case-study" class="nav-link" data-scroll-target="#ieee-39-bus-case-study">IEEE 39-Bus Case Study</a>
+  <ul class="collapse">
+  <li><a href="#voltage-magnitude" id="toc-voltage-magnitude" class="nav-link" data-scroll-target="#voltage-magnitude">Voltage Magnitude</a></li>
+  <li><a href="#voltage-angle" id="toc-voltage-angle" class="nav-link" data-scroll-target="#voltage-angle">Voltage Angle</a></li>
+  </ul></li>
+  <li><a href="#dilated-hamiltonian-simulation" id="toc-dilated-hamiltonian-simulation" class="nav-link" data-scroll-target="#dilated-hamiltonian-simulation">Dilated Hamiltonian Simulation</a></li>
+  <li><a href="#quantum-state-register-estimates" id="toc-quantum-state-register-estimates" class="nav-link" data-scroll-target="#quantum-state-register-estimates">Quantum State-Register Estimates</a></li>
+  <li><a href="#main-contributions" id="toc-main-contributions" class="nav-link" data-scroll-target="#main-contributions">Main Contributions</a></li>
+  <li><a href="#related-publication" id="toc-related-publication" class="nav-link" data-scroll-target="#related-publication">Related Publication</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 6 — Quantum Computing for Power System Dynamic Simulation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="hero">
+<p>This project develops a systematic computational framework for transforming nonlinear power-system dynamic models into forms compatible with quantum algorithms.</p>
+<p>The framework begins with nonlinear differential-algebraic equations (DAEs). Jacobian-based differential embedding is used to transform algebraic constraints into differential form, while phase reparameterization removes trigonometric nonlinearities from the dynamic equations.</p>
+<p>Center-shifted Carleman linearization is then applied to construct a lifted linear dynamic system that approximates the original nonlinear model. This representation provides a pathway for applying quantum linear-system algorithms and quantum dynamic-simulation methods to nonlinear power-system dynamics.</p>
+<p>The resulting framework establishes a structured connection between conventional power-system DAEs, polynomial state representations, Carleman lifting, and quantum-compatible linear dynamics.</p>
+</div>
+<hr>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>Modern power systems contain increasingly large numbers of converter-interfaced resources, high-order controllers, and nonlinear network interactions. Their dynamics are commonly represented as DAEs,</p>
+<p><span class="math display">\[
+\dot{\mathbf{x}}
+=
+f(\mathbf{x},\mathbf{y}),
+\qquad
+\mathbf{0}
+=
+g(\mathbf{x},\mathbf{y}),
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\mathbf{x}\)</span> contains differential states,</li>
+<li><span class="math inline">\(\mathbf{y}\)</span> contains algebraic network variables.</li>
+</ul>
+<p>Conventional time-domain simulation advances these states sequentially using numerical integration while repeatedly enforcing the algebraic constraints.</p>
+<p>Quantum algorithms, in contrast, are particularly well developed for <strong>linear systems and linear evolution operators</strong>. This creates a representation gap:</p>
+<p><span class="math display">\[
+\text{nonlinear power-system DAEs}
+\quad\not\rightarrow\quad
+\text{quantum linear-algebra primitives directly}.
+\]</span></p>
+<p>This project addresses that gap by transforming the nonlinear DAE model into a structured lifted linear system while retaining high trajectory accuracy.</p>
+<hr>
+</section>
+<section id="framework" class="level2">
+<h2 class="anchored" data-anchor-id="framework">Framework</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/carleman_quantum_workflow.png" class="img-fluid figure-img" style="width:98.0%"></p>
+<figcaption>Overall Carleman-linearization-based quantum simulation framework, from nonlinear power-system dynamics to polynomial ODEs, lifted linear dynamics, and two representative quantum-solver paradigms.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="core-idea" class="level2">
+<h2 class="anchored" data-anchor-id="core-idea">Core Idea</h2>
+<p>The complete transformation can be summarized as</p>
+<p><span class="math display">\[
+\boxed{
+\text{DAEs}
+\rightarrow
+\text{ODEs}
+\rightarrow
+\text{Polynomial ODEs}
+\rightarrow
+\text{Carleman Linear System}
+\rightarrow
+\text{Quantum Solver}
+}
+\]</span></p>
+<p>After the DAE elimination and polynomial reformulation, the system can be represented as</p>
+<p><span class="math display">\[
+\dot{\mathbf{u}}
+=
+\mathbf{F}_0
++
+\mathbf{F}_1\mathbf{u}
++
+\mathbf{F}_2\mathbf{u}^{\otimes 2}
++\cdots+
+\mathbf{F}_R\mathbf{u}^{\otimes R}.
+\]</span></p>
+<p>Carleman lifting augments the state using higher-order tensor powers,</p>
+<p><span class="math display">\[
+\widetilde{\mathbf{u}}
+=
+\left[
+\mathbf{u},
+\mathbf{u}^{\otimes 2},
+\ldots,
+\mathbf{u}^{\otimes R}
+\right]^{\mathsf T},
+\]</span></p>
+<p>which produces the finite-dimensional linear approximation</p>
+<p><span class="math display">\[
+\dot{\widetilde{\mathbf{u}}}
+=
+\mathbf{A}\widetilde{\mathbf{u}}
++
+\mathbf{b}.
+\]</span></p>
+<p>This lifted linear representation is the interface between the original nonlinear power-system model and the quantum simulation algorithms.</p>
+<hr>
+</section>
+<section id="dae-to-ode-reformulation" class="level2">
+<h2 class="anchored" data-anchor-id="dae-to-ode-reformulation">DAE-to-ODE Reformulation</h2>
+<p>Carleman linearization requires a unified ODE representation, so the algebraic constraints must first be converted into differential form.</p>
+<p>For</p>
+<p><span class="math display">\[
+g(\mathbf{x},\mathbf{y})=0,
+\]</span></p>
+<p>implicit differentiation gives</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}\mathbf{y}}{\mathrm{d}t}
+\approx
+-
+\left(
+\frac{\partial g}{\partial\mathbf{y}}
+\right)^{-1}
+\frac{g(\mathbf{x},\mathbf{y})}{\Delta t}
+-
+\left(
+\frac{\partial g}{\partial\mathbf{y}}
+\right)^{-1}
+\frac{\partial g}{\partial\mathbf{x}}
+\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}.
+\]</span></p>
+<p>For the power-system network equation, this produces an explicit evolution equation for the algebraic variables,</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}\mathbf{y}}{\mathrm{d}t}
+=
+\frac{
+\mathbf{Y}^{-1}\mathbf{I}(\mathbf{x})
+-
+\mathbf{y}
+}{\Delta t}
++
+\mathbf{Y}^{-1}
+\frac{\mathrm{d}\mathbf{I}(\mathbf{x})}{\mathrm{d}\mathbf{x}}
+\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}.
+\]</span></p>
+<p>The first term drives the variables toward the original algebraic manifold, while the second term propagates the instantaneous sensitivity generated by the differential states.</p>
+<hr>
+</section>
+<section id="polynomial-reformulation" class="level2">
+<h2 class="anchored" data-anchor-id="polynomial-reformulation">Polynomial Reformulation</h2>
+<p>A major source of nonpolynomial dynamics in inverter controllers is the trigonometric dependence introduced by phase-locked loops.</p>
+<p>Instead of directly approximating <span class="math inline">\(\sin x_2\)</span> and <span class="math inline">\(\cos x_2\)</span> around a local operating point, the phase state is reparameterized as</p>
+<p><span class="math display">\[
+x_c=\cos x_2,
+\qquad
+x_s=\sin x_2.
+\]</span></p>
+<p>Their dynamics satisfy</p>
+<p><span class="math display">\[
+\dot{x}_c=-x_s\dot{x}_2,
+\qquad
+\dot{x}_s=x_c\dot{x}_2.
+\]</span></p>
+<p>Because sine and cosine are closed under differentiation in this representation, the explicit trigonometric functions can be removed from the state equations.</p>
+<p>After this transformation, only a small number of remaining nonpolynomial terms, such as voltage magnitude, require local polynomial approximation.</p>
+<hr>
+</section>
+<section id="center-shifted-carleman-linearization" class="level2">
+<h2 class="anchored" data-anchor-id="center-shifted-carleman-linearization">Center-Shifted Carleman Linearization</h2>
+<p>For a quadratic polynomial system,</p>
+<p><span class="math display">\[
+\dot{\mathbf{u}}
+=
+\mathbf{F}_2\mathbf{u}^{\otimes 2}
++
+\mathbf{F}_1\mathbf{u}
++
+\mathbf{F}_0,
+\]</span></p>
+<p>the Carleman construction treats higher-order monomials as additional states.</p>
+<p>To improve numerical behavior, the dynamics are shifted around a reference point <span class="math inline">\(\mathbf{u}^{*}\)</span>,</p>
+<p><span class="math display">\[
+\mathbf{v}
+=
+\mathbf{u}
+-
+\mathbf{u}^{*}.
+\]</span></p>
+<p>Near the shift center, the state deviations remain smaller, reducing the magnitude of higher-order lifted terms and improving the practical accuracy of a truncated Carleman representation.</p>
+<p>For truncation order <span class="math inline">\(R\)</span>, the lifted dimension is</p>
+<p><span class="math display">\[
+N
+=
+\sum_{i=1}^{R}n^i
+=
+\frac{n^{R+1}-n}{n-1}
+=
+\mathcal{O}(n^R).
+\]</span></p>
+<p>The resulting matrix has a sparse block-banded structure because each monomial degree interacts only with nearby degrees.</p>
+<hr>
+</section>
+<section id="quantum-solver-1-dilated-hamiltonian-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-solver-1-dilated-hamiltonian-simulation">Quantum Solver 1 — Dilated Hamiltonian Simulation</h2>
+<p>The lifted system is generally nonunitary,</p>
+<p><span class="math display">\[
+\dot{\widetilde{\mathbf{v}}}
+=
+\mathbf{A}\widetilde{\mathbf{v}}
++
+\mathbf{b},
+\]</span></p>
+<p>so standard Hamiltonian simulation cannot be applied directly.</p>
+<p>After converting the system to homogeneous form, the linear operator can be decomposed as</p>
+<p><span class="math display">\[
+\mathbf{A}
+=
+-i\mathbf{L}
++
+\mathbf{K},
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{L}\)</span> and <span class="math inline">\(\mathbf{K}\)</span> are Hermitian.</p>
+<p>A larger Hermitian operator is then constructed,</p>
+<p><span class="math display">\[
+\widetilde{\mathbf{H}}
+=
+\mathbf{I}_C\otimes\mathbf{L}
++
+i\mathbf{M}\otimes\mathbf{K},
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{M}\)</span> is an anti-Hermitian auxiliary operator.</p>
+<p>The enlarged quantum state evolves unitarily,</p>
+<p><span class="math display">\[
+|\Psi(t)\rangle
+=
+e^{-i\widetilde{\mathbf{H}}t}
+|\Psi(0)\rangle,
+\]</span></p>
+<p>and the original nonunitary linear dynamics can be recovered through an appropriate projection.</p>
+<p>This formulation provides a route for connecting the Carleman-linearized power-system model to Hamiltonian-simulation techniques.</p>
+<hr>
+</section>
+<section id="quantum-solver-2-qlsa-based-time-marching" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-solver-2-qlsa-based-time-marching">Quantum Solver 2 — QLSA-Based Time Marching</h2>
+<p>A second approach discretizes the lifted ODE in time. Using forward Euler for illustration,</p>
+<p><span class="math display">\[
+\widetilde{\mathbf{v}}^{(k+1)}
+=
+\widetilde{\mathbf{v}}^{(k)}
++
+\Delta t\,
+\mathbf{A}\widetilde{\mathbf{v}}^{(k)}
++
+\Delta t\,\mathbf{b}.
+\]</span></p>
+<p>All time steps can be stacked into a single linear system,</p>
+<p><span class="math display">\[
+\mathbf{G}\boldsymbol{\mu}
+=
+\boldsymbol{\beta},
+\]</span></p>
+<p>with the block lower-bidiagonal history matrix</p>
+<p><span class="math display">\[
+\mathbf{G}
+=
+\begin{pmatrix}
+\mathbf{I} &amp; &amp; &amp; \\
+-(\mathbf{I}+\mathbf{A}\Delta t) &amp; \mathbf{I} &amp; &amp; \\
+&amp; \ddots &amp; \ddots &amp; \\
+&amp; &amp; -(\mathbf{I}+\mathbf{A}\Delta t) &amp; \mathbf{I}
+\end{pmatrix}.
+\]</span></p>
+<p>A quantum linear-system algorithm can then be used conceptually to prepare a state proportional to</p>
+<p><span class="math display">\[
+|\boldsymbol{\mu}\rangle
+\propto
+\mathbf{G}^{-1}
+|\boldsymbol{\beta}\rangle.
+\]</span></p>
+<p>This formulation converts time-domain simulation into a global linear-algebra problem over the entire time horizon.</p>
+<hr>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
+<p>The workflow used in this project is:</p>
+<ol type="1">
+<li><strong>Construct the nonlinear inverter-based power-system DAEs.</strong></li>
+<li><strong>Differentiate the algebraic constraints</strong> using the algebraic Jacobian.</li>
+<li><strong>Separate real and imaginary network variables</strong> to obtain real-valued ODEs.</li>
+<li><strong>Reparameterize phase states</strong> using sine/cosine state pairs.</li>
+<li><strong>Approximate the remaining nonpolynomial terms</strong> to obtain polynomial ODEs.</li>
+<li><strong>Shift the system around a reference point</strong> to improve truncation behavior.</li>
+<li><strong>Apply finite-order Carleman lifting</strong> to obtain a structured linear ODE.</li>
+<li><strong>Validate the lifted model</strong> against the original nonlinear time-domain simulation.</li>
+<li><strong>Map the linear model to quantum solvers</strong>, including dilated Hamiltonian simulation and QLSA-based time marching.</li>
+<li><strong>Evaluate state-register scaling and numerical accuracy</strong> on benchmark power systems.</li>
+</ol>
+<hr>
+</section>
+<section id="representative-python-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="representative-python-implementation">Representative Python Implementation</h2>
+<p>The following snippets illustrate the main computational modules of the framework.</p>
+<section id="jacobian-based-dae-embedding" class="level3">
+<h3 class="anchored" data-anchor-id="jacobian-based-dae-embedding">1. Jacobian-Based DAE Embedding</h3>
+<p>The algebraic constraint</p>
+<p><span class="math display">\[
+g(x,y)=0
+\]</span></p>
+<p>is converted into an ODE-like evolution using the Jacobians with respect to differential and algebraic variables.</p>
+<p>Instead of explicitly computing <span class="math inline">\(J_y^{-1}\)</span>, the implementation solves the corresponding linear system directly.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> algebraic_derivative(x, y, dx, g, Jx, Jy, dt):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    rhs <span class="op">=</span> g(x, y) <span class="op">/</span> dt <span class="op">+</span> Jx(x, y) <span class="op">@</span> dx</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.linalg.solve(Jy(x, y), rhs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This module provides the derivative of the algebraic variables so that differential and algebraic states can be handled in a unified dynamical model.</p>
+<hr>
+</section>
+<section id="phase-reparameterization" class="level3">
+<h3 class="anchored" data-anchor-id="phase-reparameterization">2. Phase Reparameterization</h3>
+<p>Trigonometric PLL states are replaced by</p>
+<p><span class="math display">\[
+x_c=\cos\theta,
+\qquad
+x_s=\sin\theta,
+\]</span></p>
+<p>with dynamics</p>
+<p><span class="math display">\[
+\dot{x}_c=-x_s\dot{\theta},
+\qquad
+\dot{x}_s=x_c\dot{\theta}.
+\]</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phase_states(theta, theta_dot):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    xc, xs <span class="op">=</span> np.cos(theta), np.sin(theta)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xc, xs, <span class="op">-</span>xs <span class="op">*</span> theta_dot, xc <span class="op">*</span> theta_dot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This removes explicit sine and cosine functions from the state equations and makes the model compatible with polynomial lifting.</p>
+<hr>
+</section>
+<section id="carleman-state-lifting" class="level3">
+<h3 class="anchored" data-anchor-id="carleman-state-lifting">3. Carleman State Lifting</h3>
+<p>For a polynomial system, Carleman linearization augments the original state with higher-order tensor products,</p>
+<p><span class="math display">\[
+z=
+\left[
+u,\,
+u^{\otimes2},
+\ldots,
+u^{\otimes R}
+\right].
+\]</span></p>
+<p>The lifted state can be generated recursively.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> carleman_state(u, R):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    blocks <span class="op">=</span> [np.asarray(u)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, R <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        blocks.append(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            np.kron(blocks[<span class="op">-</span><span class="dv">1</span>], u)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate(blocks)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For a quadratic model</p>
+<p><span class="math display">\[
+\dot{u}
+=
+F_0+F_1u+F_2u^{\otimes2},
+\]</span></p>
+<p>each Carleman block is assembled from Kronecker products of the polynomial operators.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lift_block(F, n, degree):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    block <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(degree):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        block <span class="op">+=</span> np.kron(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            np.kron(np.eye(n<span class="op">**</span>i), F),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            np.eye(n<span class="op">**</span>(degree<span class="op">-</span>i<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> block</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The complete truncated Carleman matrix is obtained by arranging these blocks according to polynomial degree and discarding terms above order <span class="math inline">\(R\)</span>.</p>
+<p>This separation keeps the implementation modular: <code>carleman_state()</code> constructs the lifted state, while <code>lift_block()</code> provides the building block for the lifted dynamics.</p>
+<hr>
+</section>
+<section id="classical-validation" class="level3">
+<h3 class="anchored" data-anchor-id="classical-validation">4. Classical Validation</h3>
+<p>The nonlinear model and the lifted linear system are simulated side by side to evaluate truncation accuracy.</p>
+<p>A compact RK4 integrator is used for both models.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4(f, x, dt):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> f(x)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    k2 <span class="op">=</span> f(x <span class="op">+</span> dt<span class="op">*</span>k1<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    k3 <span class="op">=</span> f(x <span class="op">+</span> dt<span class="op">*</span>k2<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    k4 <span class="op">=</span> f(x <span class="op">+</span> dt<span class="op">*</span>k3)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> dt<span class="op">*</span>(k1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>k2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>k3 <span class="op">+</span> k4)<span class="op">/</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The validation loop then becomes</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate(f, A, b, u0, R, dt, steps):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> u0.copy()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> carleman_state(u0, R)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    original, lifted <span class="op">=</span> [], []</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        u <span class="op">=</span> rk4(f, u, dt)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> rk4(<span class="kw">lambda</span> z: A <span class="op">@</span> z <span class="op">+</span> b, z, dt)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        original.append(u.copy())</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        lifted.append(z[:<span class="bu">len</span>(u0)].copy())</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(original), np.array(lifted)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first-order components of the lifted state are directly compared with the original nonlinear trajectories.</p>
+<hr>
+</section>
+<section id="qlsa-history-system" class="level3">
+<h3 class="anchored" data-anchor-id="qlsa-history-system">5. QLSA History System</h3>
+<p>After time discretization,</p>
+<p><span class="math display">\[
+v^{(k+1)}
+=
+(I+A\Delta t)v^{(k)}
++
+b\Delta t,
+\]</span></p>
+<p>all time steps can be combined into a sparse block lower-bidiagonal linear system,</p>
+<p><span class="math display">\[
+G\mu=\beta.
+\]</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> eye, bmat</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> history_matrix(A, dt, T):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> eye(A.shape[<span class="dv">0</span>], <span class="bu">format</span><span class="op">=</span><span class="st">"csr"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    step <span class="op">=</span> I <span class="op">+</span> dt <span class="op">*</span> A</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    blocks <span class="op">=</span> [</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            I <span class="cf">if</span> i <span class="op">==</span> j</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span> <span class="op">-</span>step <span class="cf">if</span> i <span class="op">==</span> j <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(T)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bmat(blocks, <span class="bu">format</span><span class="op">=</span><span class="st">"csr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The right-hand side contains the initial state followed by the forcing terms.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> history_rhs(v0, b, dt, T):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        [v0] <span class="op">+</span> [dt <span class="op">*</span> b] <span class="op">*</span> (T <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This module converts sequential time marching into a single structured linear-algebra problem suitable for a QLSA formulation.</p>
+<hr>
+</section>
+<section id="hermitian-dilation" class="level3">
+<h3 class="anchored" data-anchor-id="hermitian-dilation">6. Hermitian Dilation</h3>
+<p>The Carleman matrix is generally non-Hermitian. It is first decomposed as</p>
+<p><span class="math display">\[
+A=-iL+K,
+\]</span></p>
+<p>where <span class="math inline">\(L\)</span> and <span class="math inline">\(K\)</span> are Hermitian.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hermitian_parts(A):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> (A <span class="op">+</span> A.conj().T) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="ot">0.5j</span> <span class="op">*</span> (A <span class="op">-</span> A.conj().T)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> L, K</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A larger Hermitian operator can then embed the original nonunitary dynamics.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dilated_hamiltonian(A):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    L, K <span class="op">=</span> hermitian_parts(A)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> np.array([</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        [<span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    ], dtype<span class="op">=</span><span class="bu">complex</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        np.kron(np.eye(<span class="dv">2</span>), L)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> np.kron(M, K)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This produces the Hermitian operator used by the dilation-based quantum simulation.</p>
+<hr>
+</section>
+<section id="representative-qiskit-evolution" class="level3">
+<h3 class="anchored" data-anchor-id="representative-qiskit-evolution">7. Representative Qiskit Evolution</h3>
+<p>For a small proof-of-concept system, one evolution step can be emulated with a unitary generated from the dilated Hamiltonian.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> expm</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit <span class="im">import</span> QuantumCircuit</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit.circuit.library <span class="im">import</span> UnitaryGate</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dilation_circuit(H, dt):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> expm(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> H <span class="op">*</span> dt)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(np.log2(H.shape[<span class="dv">0</span>]))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    qc.append(UnitaryGate(U), <span class="bu">range</span>(n))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The dense matrix exponential is used here only for numerical demonstration. A scalable quantum implementation would instead require an efficient Hamiltonian representation and corresponding Hamiltonian-simulation primitives.</p>
+<hr>
+</section>
+</section>
+<section id="bus-case-study" class="level2">
+<h2 class="anchored" data-anchor-id="bus-case-study">10-Bus Case Study</h2>
+<p>The first benchmark uses a <strong>10-bus inverter-based power system</strong> with</p>
+<ul>
+<li>a voltage-frequency controlled generation unit at Bus 1,</li>
+<li>a PQ-controlled generation unit at Bus 6,</li>
+<li>five constant-power loads.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ten_bus_system.png" class="img-fluid figure-img" style="width:68.0%"></p>
+<figcaption>10-bus test system with inverter-interfaced generation and dual-loop converter control.</figcaption>
+</figure>
+</div>
+<p>The model is tested under multiple disturbances:</p>
+<ul>
+<li>at <span class="math inline">\(t=0\)</span>, the load at Bus 7 is increased by <strong>300%</strong>;</li>
+<li>at <span class="math inline">\(t=0.5\,\mathrm{s}\)</span>, the voltage reference changes from <span class="math inline">\(1.0\)</span> to <span class="math inline">\(0.95\)</span> p.u.;</li>
+<li>at <span class="math inline">\(t=1.0\,\mathrm{s}\)</span>, the Bus 7 load is restored;</li>
+<li>at <span class="math inline">\(t=1.5\,\mathrm{s}\)</span>, a current injection of <span class="math inline">\(0.05+j0.01\)</span> p.u. is applied at Bus 1 while the voltage reference changes to <span class="math inline">\(1.02\)</span> p.u.</li>
+</ul>
+<p>The Carleman-linearized system closely follows the original nonlinear dynamics through all of these events.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ten_bus_trajectories.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Voltage magnitude and phase-angle trajectories at Bus 1: original nonlinear model versus the Carleman-linearized model.</figcaption>
+</figure>
+</div>
+<section id="truncation-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="truncation-accuracy">Truncation Accuracy</h3>
+<p>The RMSE at Bus 1 remains extremely small even for a low Carleman truncation order.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th style="text-align: right;"><span class="math inline">\(R=2\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(R=3\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(R=4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(9.009\times10^{-10}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(7.943\times10^{-11}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(7.731\times10^{-11}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\cos x_2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(3.654\times10^{-10}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(5.547\times10^{-12}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2.586\times10^{-12}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sin x_2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(7.612\times10^{-9}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(6.169\times10^{-10}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(5.987\times10^{-10}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(V\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(1.629\times10^{-8}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(1.195\times10^{-8}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(1.195\times10^{-8}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\angle V\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(5.218\times10^{-9}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(8.420\times10^{-8}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(8.420\times10^{-8}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The results show that <span class="math inline">\(R=2\)</span> already provides a favorable accuracy-efficiency trade-off for this study.</p>
+<hr>
+</section>
+</section>
+<section id="state-register-scaling" class="level2">
+<h2 class="anchored" data-anchor-id="state-register-scaling">State-Register Scaling</h2>
+<p>The lifted dimension grows polynomially with the original system dimension, but an amplitude-encoded quantum state requires only logarithmically many state-register qubits.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/state_register_scaling.png" class="img-fluid figure-img" style="width:82.0%"></p>
+<figcaption>State-register scaling for classical state storage and the Carleman-lifted quantum representation at different truncation orders.</figcaption>
+</figure>
+</div>
+<p>For a lifted dimension <span class="math inline">\(N\)</span>, the state register requires approximately</p>
+<p><span class="math display">\[
+n_q
+=
+\left\lceil
+\log_2 N
+\right\rceil
+\]</span></p>
+<p>qubits, excluding ancillary resources required by the complete quantum algorithm.</p>
+<hr>
+</section>
+<section id="ieee-39-bus-case-study" class="level2">
+<h2 class="anchored" data-anchor-id="ieee-39-bus-case-study">IEEE 39-Bus Case Study</h2>
+<p>The second benchmark uses the <strong>IEEE 39-bus New England system</strong> with 10 generation units. Bus 31 uses voltage-frequency control and the remaining generation units use PQ control.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee39_system.png" class="img-fluid figure-img" style="width:72.0%"></p>
+<figcaption>IEEE 39-bus New England benchmark system used for the large-system validation.</figcaption>
+</figure>
+</div>
+<p>The test applies multiple disturbances:</p>
+<ul>
+<li>at <span class="math inline">\(t=0\)</span>, the active-power demand at Bus 31 is increased by <strong>10×</strong>;</li>
+<li>at <span class="math inline">\(t=0.3\,\mathrm{s}\)</span>, the Bus 31 voltage reference changes from <span class="math inline">\(0.982\)</span> to <span class="math inline">\(1.02\)</span> p.u.;</li>
+<li>at <span class="math inline">\(t=0.6\,\mathrm{s}\)</span>, the reference is restored.</li>
+</ul>
+<section id="voltage-magnitude" class="level3">
+<h3 class="anchored" data-anchor-id="voltage-magnitude">Voltage Magnitude</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee39_voltage_magnitude.png" class="img-fluid figure-img" style="width:98.0%"></p>
+<figcaption>Voltage-magnitude trajectories at Buses 30–39: original nonlinear dynamics versus the Carleman-linearized model.</figcaption>
+</figure>
+</div>
+</section>
+<section id="voltage-angle" class="level3">
+<h3 class="anchored" data-anchor-id="voltage-angle">Voltage Angle</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee39_voltage_angle.png" class="img-fluid figure-img" style="width:98.0%"></p>
+<figcaption>Voltage-angle trajectories at Buses 30–39: original nonlinear dynamics versus the Carleman-linearized model.</figcaption>
+</figure>
+</div>
+<p>For <span class="math inline">\(R\geq2\)</span>, the aggregate trajectory error remains around <span class="math inline">\(10^{-7}\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee39_rmse.png" class="img-fluid figure-img" style="width:78.0%"></p>
+<figcaption>RMSE of voltage magnitude and phase angle for Buses 30–39.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="dilated-hamiltonian-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="dilated-hamiltonian-simulation">Dilated Hamiltonian Simulation</h2>
+<p>The dilated Hamiltonian formulation is numerically emulated on a reduced 10-bus test case to demonstrate that the quantum-compatible linear representation reproduces the physical trajectories.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/dilated_hamiltonian_simulation.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Voltage magnitude and voltage-angle trajectories produced by the dilated Hamiltonian simulation compared with the classical ground truth.</figcaption>
+</figure>
+</div>
+<p>The resulting trajectories closely match the classical integration baseline over the simulated horizon.</p>
+<p>This experiment is intended as a numerical validation of the <strong>dilation-based formulation</strong> rather than an end-to-end fault-tolerant quantum implementation.</p>
+<hr>
+</section>
+<section id="quantum-state-register-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-state-register-estimates">Quantum State-Register Estimates</h2>
+<p>For the <span class="math inline">\(R=2\)</span> lifted systems used in the analysis:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>System</th>
+<th style="text-align: right;">Lifted Dimension <span class="math inline">\(N\)</span></th>
+<th style="text-align: right;">State-Register Qubits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10-Bus</td>
+<td style="text-align: right;">272</td>
+<td style="text-align: right;"><strong>9</strong></td>
+</tr>
+<tr class="even">
+<td>IEEE 39-Bus</td>
+<td style="text-align: right;">6480</td>
+<td style="text-align: right;"><strong>13</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The lifted dimension therefore grows by almost <span class="math inline">\(24\times\)</span> between the two benchmark systems, while the state register increases from only 9 to 13 qubits.</p>
+<p>These numbers refer only to storage of the lifted state. Practical implementations additionally require ancilla qubits for Hamiltonian encoding, block encoding, amplitude amplification, or other algorithmic subroutines.</p>
+<hr>
+</section>
+<section id="main-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="main-contributions">Main Contributions</h2>
+<ul>
+<li><p>Developed a <strong>systematic DAE-to-linear transformation pipeline</strong> that makes nonlinear power-system dynamics compatible with quantum linear-algebraic solvers.</p></li>
+<li><p>Introduced a <strong>Jacobian-based differential embedding</strong> that converts algebraic network constraints into explicit ODE-compatible dynamics.</p></li>
+<li><p>Applied <strong>phase reparameterization</strong> to remove trigonometric nonlinearities before Carleman lifting.</p></li>
+<li><p>Developed a <strong>center-shifted Carleman formulation</strong> that preserves nonlinear polynomial structure while producing a structured finite-dimensional linear system.</p></li>
+<li><p>Connected the transformed model to two complementary quantum paradigms: <strong>dilated Hamiltonian simulation</strong> and <strong>QLSA-based global time marching</strong>.</p></li>
+<li><p>Demonstrated high trajectory accuracy on both <strong>10-bus</strong> and <strong>IEEE 39-bus</strong> benchmark systems under large disturbances and changing operating points.</p></li>
+<li><p>Numerically demonstrated that a <strong>dilated Hamiltonian formulation</strong> can closely reproduce power-system voltage trajectories.</p></li>
+<li><p>Quantified the logarithmic scaling of the <strong>quantum state register</strong>, requiring 9 and 13 state-register qubits for the lifted 10-bus and IEEE 39-bus examples, respectively.</p></li>
+</ul>
+<hr>
+</section>
+<section id="related-publication" class="level2">
+<h2 class="anchored" data-anchor-id="related-publication">Related Publication</h2>
+<p><strong>J. Chen, X. Li, Y. Li, H. P. Paudel, Y. Duan, M. Ismail, and W. Saad</strong>,<br>
+<em>“From Power System DAEs to Quantum Solvers: A Carleman-Based Dynamic Simulation Framework.”</em></p>
+<p>This work develops the DAE reformulation, polynomialization, Carleman lifting, and quantum-solver interfaces presented on this page.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/JianingChen1215\.github\.io\/research-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

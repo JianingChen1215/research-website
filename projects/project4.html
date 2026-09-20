@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Project 4 — Quantum Computing for Contingency Analysis – CyberTraining</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e9b1289f5f353c49b617ce48ad2bc38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+window.MathJax = {
+  options: {
+    enableExplorerHelp: false
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CyberTraining</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../presentation.html"> 
+<span class="menu-text">Presentations &amp; Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">People</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#framework" id="toc-framework" class="nav-link" data-scroll-target="#framework">Framework</a></li>
+  <li><a href="#core-idea" id="toc-core-idea" class="nav-link" data-scroll-target="#core-idea">Core Idea</a></li>
+  <li><a href="#line-contingency-formulation" id="toc-line-contingency-formulation" class="nav-link" data-scroll-target="#line-contingency-formulation">Line Contingency Formulation</a></li>
+  <li><a href="#overall-contingency-formulation" id="toc-overall-contingency-formulation" class="nav-link" data-scroll-target="#overall-contingency-formulation">Overall Contingency Formulation</a></li>
+  <li><a href="#qaoa-formulation" id="toc-qaoa-formulation" class="nav-link" data-scroll-target="#qaoa-formulation">QAOA Formulation</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
+  <li><a href="#representative-python-implementation" id="toc-representative-python-implementation" class="nav-link" data-scroll-target="#representative-python-implementation">Representative Python Implementation</a>
+  <ul class="collapse">
+  <li><a href="#dc-power-flow" id="toc-dc-power-flow" class="nav-link" data-scroll-target="#dc-power-flow">1. DC Power Flow</a></li>
+  <li><a href="#line-outage-update" id="toc-line-outage-update" class="nav-link" data-scroll-target="#line-outage-update">2. Line-Outage Update</a></li>
+  <li><a href="#contingency-objective" id="toc-contingency-objective" class="nav-link" data-scroll-target="#contingency-objective">3. Contingency Objective</a></li>
+  <li><a href="#qaoa-circuit" id="toc-qaoa-circuit" class="nav-link" data-scroll-target="#qaoa-circuit">4. QAOA Circuit</a></li>
+  </ul></li>
+  <li><a href="#ieee-9-bus-case-study" id="toc-ieee-9-bus-case-study" class="nav-link" data-scroll-target="#ieee-9-bus-case-study">IEEE 9-Bus Case Study</a>
+  <ul class="collapse">
+  <li><a href="#minimum-active-power-outage" id="toc-minimum-active-power-outage" class="nav-link" data-scroll-target="#minimum-active-power-outage">Minimum Active-Power Outage</a></li>
+  </ul></li>
+  <li><a href="#ieee-14-bus-case-study" id="toc-ieee-14-bus-case-study" class="nav-link" data-scroll-target="#ieee-14-bus-case-study">IEEE 14-Bus Case Study</a>
+  <ul class="collapse">
+  <li><a href="#line-contingency" id="toc-line-contingency" class="nav-link" data-scroll-target="#line-contingency">Line Contingency</a></li>
+  <li><a href="#overall-contingency" id="toc-overall-contingency" class="nav-link" data-scroll-target="#overall-contingency">Overall Contingency</a></li>
+  </ul></li>
+  <li><a href="#qaoa-parameter-study" id="toc-qaoa-parameter-study" class="nav-link" data-scroll-target="#qaoa-parameter-study">QAOA Parameter Study</a>
+  <ul class="collapse">
+  <li><a href="#number-of-qaoa-layers" id="toc-number-of-qaoa-layers" class="nav-link" data-scroll-target="#number-of-qaoa-layers">Number of QAOA Layers</a></li>
+  <li><a href="#circuit-repetitions" id="toc-circuit-repetitions" class="nav-link" data-scroll-target="#circuit-repetitions">Circuit Repetitions</a></li>
+  <li><a href="#classical-optimization-iterations" id="toc-classical-optimization-iterations" class="nav-link" data-scroll-target="#classical-optimization-iterations">Classical Optimization Iterations</a></li>
+  </ul></li>
+  <li><a href="#comparison-with-classical-baselines" id="toc-comparison-with-classical-baselines" class="nav-link" data-scroll-target="#comparison-with-classical-baselines">Comparison with Classical Baselines</a></li>
+  <li><a href="#scalability-discussion" id="toc-scalability-discussion" class="nav-link" data-scroll-target="#scalability-discussion">Scalability Discussion</a></li>
+  <li><a href="#main-contributions" id="toc-main-contributions" class="nav-link" data-scroll-target="#main-contributions">Main Contributions</a></li>
+  <li><a href="#related-publication" id="toc-related-publication" class="nav-link" data-scroll-target="#related-publication">Related Publication</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 4 — Quantum Computing for Contingency Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="hero">
+<p>This project develops QAOA-based formulations for <span class="math inline">\(N-k\)</span> contingency analysis in power systems. Two scenarios are considered: transmission-line contingencies and system-wide contingencies involving transmission lines, generators, and loads.</p>
+<p>Both problems are formulated as quadratic unconstrained binary optimization models and mapped to QAOA Hamiltonians. The resulting hybrid quantum-classical framework searches for critical outage combinations while incorporating power-system operating constraints into the optimization objective.</p>
+<p>Tests on the IEEE 9-bus system show that QAOA consistently produces near-optimal solutions. Resource analysis further shows that circuit depth and gate count increase approximately linearly with the number of QAOA layers, providing insight into implementation tradeoffs for noisy intermediate-scale quantum (NISQ) hardware.</p>
+</div>
+<hr>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>Traditional contingency analysis often begins with the <span class="math inline">\(N-1\)</span> security criterion, in which the grid is tested against the failure of one component.</p>
+<p>More severe operating conditions require higher-order criteria,</p>
+<p><span class="math display">\[
+N-k,
+\qquad
+k&gt;1.
+\]</span></p>
+<p>For a system with <span class="math inline">\(N\)</span> candidate components, the number of <span class="math inline">\(k\)</span>-component outage combinations is</p>
+<p><span class="math display">\[
+\binom{N}{k}
+=
+\frac{N!}{k!(N-k)!}.
+\]</span></p>
+<p>For example, an <span class="math inline">\(N-4\)</span> study with 300 candidate components contains</p>
+<p><span class="math display">\[
+\binom{300}{4}
+=
+330{,}791{,}175
+\]</span></p>
+<p>possible combinations.</p>
+<p>Each candidate scenario may require additional power-system analysis, making higher-order contingency screening computationally intensive.</p>
+<p>This project investigates whether QAOA can provide a scalable quantum optimization framework for searching these combinatorial outage spaces.</p>
+<hr>
+</section>
+<section id="framework" class="level2">
+<h2 class="anchored" data-anchor-id="framework">Framework</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/qaoa_contingency_workflow.png" class="img-fluid figure-img" style="width:92.0%"></p>
+<figcaption>Hybrid quantum-classical workflow for QAOA-based power-system contingency analysis.</figcaption>
+</figure>
+</div>
+<p>The quantum circuit prepares and samples candidate outage configurations, while the classical optimization loop updates the QAOA parameters to reduce the contingency objective.</p>
+<hr>
+</section>
+<section id="core-idea" class="level2">
+<h2 class="anchored" data-anchor-id="core-idea">Core Idea</h2>
+<p>The power grid is modeled as a graph</p>
+<p><span class="math display">\[
+G=(\mathcal{V},E),
+\]</span></p>
+<p>with bus set <span class="math inline">\(\mathcal{V}\)</span> and branch set <span class="math inline">\(E\)</span>.</p>
+<p>Under the DC power-flow model,</p>
+<p><span class="math display">\[
+B\theta=P,
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(B\)</span> is the bus susceptance matrix,</li>
+<li><span class="math inline">\(\theta\)</span> is the vector of voltage phase angles,</li>
+<li><span class="math inline">\(P\)</span> is the vector of net active-power injections.</li>
+</ul>
+<p>The contingency objective is constructed from three components:</p>
+<p><span class="math display">\[
+C(Z)
+=
+C_{\mathrm{outage}}(Z)
++
+\vartheta C_{N-k}(Z)
++
+\lambda C_{\mathrm{flow}}(Z).
+\]</span></p>
+<p>Here,</p>
+<ul>
+<li><span class="math inline">\(C_{\mathrm{outage}}\)</span> measures the power associated with removed components,</li>
+<li><span class="math inline">\(C_{N-k}\)</span> enforces the required number of outages,</li>
+<li><span class="math inline">\(C_{\mathrm{flow}}\)</span> penalizes deviation from the pre-contingency operating state.</li>
+</ul>
+<p>The resulting binary optimization problem is mapped to a QAOA problem Hamiltonian.</p>
+<hr>
+</section>
+<section id="line-contingency-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="line-contingency-formulation">Line Contingency Formulation</h2>
+<p>For line contingency, the decision variables represent transmission-line status.</p>
+<p>A line outage modifies the DC susceptance matrix as</p>
+<p><span class="math display">\[
+B_{\mathrm{lc}}
+=
+B
+-
+\sum_{i\in E}
+b_i
+(e_{u_i}-e_{v_i})
+(e_{u_i}-e_{v_i})^{\mathsf T},
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(b_i\)</span> is the susceptance of line <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(u_i\)</span> and <span class="math inline">\(v_i\)</span> are its terminal buses,</li>
+<li><span class="math inline">\(e_{u_i}\)</span> and <span class="math inline">\(e_{v_i}\)</span> are one-hot bus vectors.</li>
+</ul>
+<p>The optimization favors outage sets that</p>
+<ol type="1">
+<li>satisfy the required <span class="math inline">\(N-k\)</span> contingency order,</li>
+<li>remove components carrying relatively small active power, and</li>
+<li>keep the post-contingency DC power-flow state close to the original operating condition.</li>
+</ol>
+<p>A larger penalty is imposed when the post-contingency deviation exceeds the allowed generator-compensation range. In the numerical study, the maximum allowable percentage deviation <span class="math inline">\(H\)</span> is set to <strong>5%</strong>.</p>
+<hr>
+</section>
+<section id="overall-contingency-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="overall-contingency-formulation">Overall Contingency Formulation</h2>
+<p>The overall contingency scenario expands the binary search space to include</p>
+<ul>
+<li>transmission lines,</li>
+<li>loads, and</li>
+<li>generators.</li>
+</ul>
+<p>If there are</p>
+<ul>
+<li><span class="math inline">\(M\)</span> transmission lines,</li>
+<li><span class="math inline">\(D\)</span> load buses,</li>
+<li><span class="math inline">\(F\)</span> generator buses,</li>
+</ul>
+<p>the total number of binary decision variables becomes</p>
+<p><span class="math display">\[
+T=M+D+F.
+\]</span></p>
+<p>At bus <span class="math inline">\(s\)</span>, the pre-contingency net active-power injection is</p>
+<p><span class="math display">\[
+P_s=P_{J,s}-P_{L,s}.
+\]</span></p>
+<p>After load and generator outages, the power-injection vector is updated as</p>
+<p><span class="math display">\[
+P_{\mathrm{oc}}
+=
+P
++
+\sum_{l=1}^{D}w_l z_l e_l
+-
+\sum_{m=1}^{F}w_m z_m e_m.
+\]</span></p>
+<p>The overall objective therefore extends the line-contingency formulation by jointly accounting for line, load, and generation outages.</p>
+<hr>
+</section>
+<section id="qaoa-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="qaoa-formulation">QAOA Formulation</h2>
+<p>The classical binary variables are mapped to spin variables,</p>
+<p><span class="math display">\[
+y_q=-2z_q+1,
+\qquad
+y_q\in\{-1,+1\}.
+\]</span></p>
+<p>Each decision variable is represented by one qubit, and the contingency objective is encoded into a problem Hamiltonian</p>
+<p><span class="math display">\[
+H_C=C(
+\sigma_1^z,
+\sigma_2^z,
+\ldots,
+\sigma_T^z
+).
+\]</span></p>
+<p>The mixer Hamiltonian is</p>
+<p><span class="math display">\[
+H_B
+=
+\sum_{q=1}^{T}\sigma_q^x.
+\]</span></p>
+<p>For an <span class="math inline">\(r\)</span>-layer QAOA circuit,</p>
+<p><span class="math display">\[
+|\psi_r(\boldsymbol{\gamma},\boldsymbol{\beta})\rangle
+=
+e^{-i\beta_rH_B}
+e^{-i\gamma_rH_C}
+\cdots
+e^{-i\beta_1H_B}
+e^{-i\gamma_1H_C}
+|+\rangle^{\otimes T}.
+\]</span></p>
+<p>The QAOA parameters are optimized classically by minimizing</p>
+<p><span class="math display">\[
+F_r(
+\boldsymbol{\gamma},
+\boldsymbol{\beta}
+)
+=
+\langle
+\psi_r
+|
+H_C
+|
+\psi_r
+\rangle.
+\]</span></p>
+<p>COBYLA is used as the derivative-free classical optimizer in the numerical study.</p>
+<hr>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
+<p>The overall workflow consists of:</p>
+<ol type="1">
+<li><strong>Construct the pre-contingency DC power-flow model.</strong></li>
+<li><strong>Define binary variables for candidate component outages.</strong></li>
+<li><strong>Build the line or overall contingency objective.</strong></li>
+<li><strong>Map the binary objective to the QAOA problem Hamiltonian.</strong></li>
+<li><strong>Prepare the parameterized QAOA state.</strong></li>
+<li><strong>Measure candidate outage configurations.</strong></li>
+<li><strong>Update QAOA parameters using the classical optimizer.</strong></li>
+<li><strong>Select the lowest-cost contingency configuration.</strong></li>
+<li><strong>Compare the quantum result with classical baselines and brute-force search.</strong></li>
+<li><strong>Study the sensitivity to QAOA depth, circuit repetitions, and classical optimization iterations.</strong></li>
+</ol>
+<hr>
+</section>
+<section id="representative-python-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="representative-python-implementation">Representative Python Implementation</h2>
+<p>The following snippets show the main software modules behind the hybrid workflow.<br>
+The code is intentionally compact: <strong>power-flow modeling, contingency evaluation, and QAOA circuit construction</strong> are kept separate.</p>
+<section id="dc-power-flow" class="level3">
+<h3 class="anchored" data-anchor-id="dc-power-flow">1. DC Power Flow</h3>
+<p>This module solves the post-contingency DC power-flow equations after removing the slack bus.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dc_power_flow(B, P, slack<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    keep <span class="op">=</span> np.arange(<span class="bu">len</span>(P)) <span class="op">!=</span> slack</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> np.zeros(<span class="bu">len</span>(P))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    theta[keep] <span class="op">=</span> np.linalg.solve(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        B[np.ix_(keep, keep)],</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        P[keep]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="line-outage-update" class="level3">
+<h3 class="anchored" data-anchor-id="line-outage-update">2. Line-Outage Update</h3>
+<p>Each selected outage removes the corresponding branch contribution from the susceptance matrix.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_line_outages(B, branches, z):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Bc <span class="op">=</span> B.copy()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> off, (u, v, b) <span class="kw">in</span> <span class="bu">zip</span>(z, branches):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> off:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> np.zeros(<span class="bu">len</span>(B))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        a[u], a[v] <span class="op">=</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        Bc <span class="op">-=</span> b <span class="op">*</span> np.outer(a, a)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Bc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This module corresponds directly to the line-contingency model used in the optimization objective.</p>
+</section>
+<section id="contingency-objective" class="level3">
+<h3 class="anchored" data-anchor-id="contingency-objective">3. Contingency Objective</h3>
+<p>The classical evaluator combines the required <span class="math inline">\(N-k\)</span> condition with the post-contingency power-flow deviation.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contingency_cost(z, B, P, branches, k, lam):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Bc <span class="op">=</span> apply_line_outages(B, branches, z)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> dc_power_flow(Bc, P)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> np.linalg.LinAlgError:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1e6</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    count_penalty <span class="op">=</span> (<span class="bu">sum</span>(z) <span class="op">-</span> k) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    flow_penalty <span class="op">=</span> np.linalg.norm(B <span class="op">@</span> theta <span class="op">-</span> P) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(z) <span class="op">+</span> lam <span class="op">*</span> (</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        count_penalty <span class="op">+</span> flow_penalty</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The same interface can be extended to the overall-contingency case by updating both <span class="math inline">\(B\)</span> and <span class="math inline">\(P\)</span> when lines, loads, or generators are removed.</p>
+</section>
+<section id="qaoa-circuit" class="level3">
+<h3 class="anchored" data-anchor-id="qaoa-circuit">4. QAOA Circuit</h3>
+<p>Once the binary objective has been converted to an Ising operator, Qiskit can construct the parameterized QAOA ansatz directly.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qiskit.circuit.library <span class="im">import</span> QAOAAnsatz</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_qaoa(cost_operator, layers):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> QAOAAnsatz(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        cost_operator,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        reps<span class="op">=</span>layers</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="ieee-9-bus-case-study" class="level2">
+<h2 class="anchored" data-anchor-id="ieee-9-bus-case-study">IEEE 9-Bus Case Study</h2>
+<p>The IEEE 9-bus test system contains</p>
+<ul>
+<li>9 transmission lines,</li>
+<li>3 generators,</li>
+<li>3 loads.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee9_system.png" class="img-fluid figure-img" style="width:68.0%"></p>
+<figcaption>IEEE 9-bus system used for line and overall contingency studies.</figcaption>
+</figure>
+</div>
+<p>For the line-contingency case, the QAOA study uses 5 layers and 200,000 circuit repetitions. For the overall-contingency case, 9 layers and 350,000 repetitions are used.</p>
+<p>For both LC and OC scenarios, QAOA recovers the brute-force global optimum for all tested outage orders <span class="math inline">\(k=1,\ldots,5\)</span>.</p>
+<section id="minimum-active-power-outage" class="level3">
+<h3 class="anchored" data-anchor-id="minimum-active-power-outage">Minimum Active-Power Outage</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(k\)</span></th>
+<th style="text-align: right;">IEEE 9-bus LC</th>
+<th style="text-align: right;">IEEE 9-bus OC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">23.970 MW</td>
+<td style="text-align: right;">23.970 MW</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">52.940 MW</td>
+<td style="text-align: right;">52.940 MW</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">90.970 MW</td>
+<td style="text-align: right;">90.970 MW</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">152.000 MW</td>
+<td style="text-align: right;">152.000 MW</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">219.000 MW</td>
+<td style="text-align: right;">219.000 MW</td>
+</tr>
+</tbody>
+</table>
+<p>Representative optimal line-outage combinations include</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(k\)</span></th>
+<th>Optimal Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td>6–7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td>3–6, 6–7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td>3–8, 6–7, 4–9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td>3–6, 4–5, 6–7, 4–9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td>1–4, 3–6, 4–5, 6–7, 4–9</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="ieee-14-bus-case-study" class="level2">
+<h2 class="anchored" data-anchor-id="ieee-14-bus-case-study">IEEE 14-Bus Case Study</h2>
+<p>The IEEE 14-bus test system contains</p>
+<ul>
+<li>20 transmission lines,</li>
+<li>2 generators,</li>
+<li>8 loads.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ieee14_system.png" class="img-fluid figure-img" style="width:66.0%"></p>
+<figcaption>IEEE 14-bus system used for the larger contingency-analysis benchmark.</figcaption>
+</figure>
+</div>
+<p>The numerical settings use 9 QAOA layers with</p>
+<ul>
+<li>400,000 repetitions for line contingency,</li>
+<li>500,000 repetitions for overall contingency.</li>
+</ul>
+<section id="line-contingency" class="level3">
+<h3 class="anchored" data-anchor-id="line-contingency">Line Contingency</h3>
+<p>For <span class="math inline">\(k=1,\ldots,5\)</span>, QAOA returns the same global optimum as brute-force search.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(k\)</span></th>
+<th style="text-align: right;">Minimum Active-Power Outage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.010 MW</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1.507 MW</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4.736 MW</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">9.994 MW</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">15.766 MW</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="overall-contingency" class="level3">
+<h3 class="anchored" data-anchor-id="overall-contingency">Overall Contingency</h3>
+<p>For <span class="math inline">\(k=1,\ldots,4\)</span>, QAOA also reaches the brute-force global optimum.</p>
+<p>At <span class="math inline">\(k=5\)</span>,</p>
+<ul>
+<li>brute-force optimum: <strong>15.766 MW</strong>,</li>
+<li>QAOA result: <strong>16.7227 MW</strong>.</li>
+</ul>
+<p>The QAOA solution is therefore within approximately <strong>7%</strong> of the reported global optimum.</p>
+<p>The manuscript notes that this larger OC case requires approximately <strong>48 hours</strong> under the reported simulation settings and computing resources, highlighting the current cost of QAOA simulation in the NISQ era.</p>
+<hr>
+</section>
+</section>
+<section id="qaoa-parameter-study" class="level2">
+<h2 class="anchored" data-anchor-id="qaoa-parameter-study">QAOA Parameter Study</h2>
+<p>The project studies three major QAOA hyperparameters:</p>
+<ol type="1">
+<li>number of QAOA layers,</li>
+<li>number of circuit-execution repetitions,</li>
+<li>number of classical optimization iterations.</li>
+</ol>
+<p>The studies are performed on</p>
+<ul>
+<li>IEEE 9-bus line contingency,</li>
+<li>IEEE 14-bus line contingency,</li>
+<li>IEEE 9-bus overall contingency.</li>
+</ul>
+<section id="number-of-qaoa-layers" class="level3">
+<h3 class="anchored" data-anchor-id="number-of-qaoa-layers">Number of QAOA Layers</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/qaoa_layer_study.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Effect of the number of QAOA layers on contingency-analysis performance.</figcaption>
+</figure>
+</div>
+<p>For the smaller IEEE 9-bus line-contingency problem, increasing depth beyond a suitable level can make the parameter landscape more difficult for the classical optimizer.</p>
+<p>For the larger cases, additional layers generally improve expressive capability and can produce better contingency solutions.</p>
+<p>The result illustrates an important trade-off:</p>
+<p><span class="math display">\[
+\text{higher expressivity}
+\quad\leftrightarrow\quad
+\text{harder parameter optimization}.
+\]</span></p>
+<hr>
+</section>
+<section id="circuit-repetitions" class="level3">
+<h3 class="anchored" data-anchor-id="circuit-repetitions">Circuit Repetitions</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/qaoa_repetition_study.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Effect of quantum-circuit execution repetitions on the active-power outage objective.</figcaption>
+</figure>
+</div>
+<p>Increasing the number of circuit repetitions generally improves the quality and stability of the sampled QAOA solution, especially as the contingency problem becomes larger.</p>
+<p>The numerical study varies the repetition count from <strong>10,000 to 500,000</strong>.</p>
+<hr>
+</section>
+<section id="classical-optimization-iterations" class="level3">
+<h3 class="anchored" data-anchor-id="classical-optimization-iterations">Classical Optimization Iterations</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/classical_iteration_study.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Effect of the number of classical optimization iterations on contingency-analysis performance.</figcaption>
+</figure>
+</div>
+<p>Increasing the number of classical optimization steps generally improves the QAOA result until the optimization begins to converge.</p>
+<p>Together, the three studies show that practical QAOA performance depends not only on circuit depth but also on the sampling budget and classical optimization effort.</p>
+<hr>
+</section>
+</section>
+<section id="comparison-with-classical-baselines" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-with-classical-baselines">Comparison with Classical Baselines</h2>
+<p>The study compares QAOA with</p>
+<ul>
+<li>Genetic Algorithms,</li>
+<li>Simulated Annealing,</li>
+<li>Monte Carlo Sampling, and</li>
+<li>Brute-Force search.</li>
+</ul>
+<p>For the small benchmark problems where exhaustive search remains possible, brute force is used to verify the global optimum.</p>
+<p>The main observations are:</p>
+<ul>
+<li><strong>IEEE 9-bus LC:</strong> QAOA matches the global optimum for <span class="math inline">\(k=1,\ldots,5\)</span>.</li>
+<li><strong>IEEE 9-bus OC:</strong> QAOA matches the global optimum for <span class="math inline">\(k=1,\ldots,5\)</span>.</li>
+<li><strong>IEEE 14-bus LC:</strong> QAOA matches the global optimum for <span class="math inline">\(k=1,\ldots,5\)</span>.</li>
+<li><strong>IEEE 14-bus OC:</strong> QAOA matches the global optimum for <span class="math inline">\(k=1,\ldots,4\)</span> and produces a solution within approximately 7% of optimum for <span class="math inline">\(k=5\)</span>.</li>
+</ul>
+<p>These experiments demonstrate the feasibility of the QAOA formulation while also showing the current limitations associated with circuit expressivity, optimization landscapes, sampling requirements, and simulation cost.</p>
+<hr>
+</section>
+<section id="scalability-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="scalability-discussion">Scalability Discussion</h2>
+<p>The paper characterizes the logical QAOA circuit depth as</p>
+<p><span class="math display">\[
+\mathcal{O}(N^2r),
+\]</span></p>
+<p>where <span class="math inline">\(N\)</span> reflects problem size and <span class="math inline">\(r\)</span> is the number of QAOA layers.</p>
+<p>By contrast, exhaustive enumeration of <span class="math inline">\(N-k\)</span> outage combinations grows combinatorially with the number of candidate components.</p>
+<p>The current numerical results do <strong>not</strong> demonstrate a practical quantum speedup. Instead, they establish a quantum formulation of the contingency-analysis problem and identify the parameter-scaling challenges that must be addressed as quantum hardware improves.</p>
+<hr>
+</section>
+<section id="main-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="main-contributions">Main Contributions</h2>
+<ul>
+<li><p>Developed an <strong>end-to-end QAOA formulation for <span class="math inline">\(N-k\)</span> power-system contingency analysis</strong>.</p></li>
+<li><p>Constructed tailored objectives for both <strong>line contingency</strong> and <strong>overall contingency</strong> involving line, load, and generator outages.</p></li>
+<li><p>Incorporated <strong>DC power-flow deviation and contingency-order constraints</strong> into the QAOA optimization objective.</p></li>
+<li><p>Demonstrated the quantum formulation on <strong>IEEE 9-bus and IEEE 14-bus systems</strong> and validated small-case solutions against brute-force global optima.</p></li>
+<li><p>Conducted a systematic study of <strong>QAOA depth, quantum-circuit repetitions, and classical optimization iterations</strong>.</p></li>
+<li><p>Identified practical NISQ limitations including <strong>circuit expressivity, barren plateaus, sampling requirements, and simulation runtime</strong>.</p></li>
+</ul>
+<hr>
+</section>
+<section id="related-publication" class="level2">
+<h2 class="anchored" data-anchor-id="related-publication">Related Publication</h2>
+<p><strong>Y. Jiang, Z. Liang, Y. Li, Q. Guan, and G. K. Venayagamoorthy</strong>,<br>
+<em>“Quantum Computing-Enabled Contingency Analysis for Power Systems.”</em></p>
+<p>This work develops the QAOA contingency formulation, quantum objective encoding, numerical benchmarks, and parameter studies presented on this page.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/JianingChen1215\.github\.io\/research-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
