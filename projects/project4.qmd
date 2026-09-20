@@ -49,15 +49,6 @@ This project investigates whether QAOA can provide a scalable quantum optimizati
 
 ---
 
-## Framework
-
-![Hybrid quantum-classical workflow for QAOA-based power-system contingency analysis.](../images/qaoa_contingency_workflow.png){fig-align="center" width="92%"}
-
-The quantum circuit prepares and samples candidate outage configurations, while the classical optimization loop updates the QAOA parameters to reduce the contingency objective.
-
-
----
-
 ## Core Idea
 
 The power grid is modeled as a graph
