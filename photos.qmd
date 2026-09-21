@@ -1,0 +1,60 @@
+---
+title: "Photos"
+---
+
+## Visit Penn State Power Plant
+
+::: {layout-ncol="1"}
+![](images/photos/Visit.png)
+:::
+
+---
+
+## Guest Lecture
+
+::: {layout-ncol="1"}
+![](images/photos/Guestlecture1.png)
+:::
+::: {layout-ncol="1"}
+![](images/photos/Guestlecture2.png)
+:::
+
+---
+
+## Poster Competition
+
+::: {layout-ncol="1"}
+![](images/photos/Poster.png)
+:::
+
+---
+
+## PESGM Panel Discussion
+
+::: {layout-ncol="1"}
+![](images/photos/PESGM.png)
+:::
+
+---
+
+## QuEra Lecture
+
+::: {layout-ncol="1"}
+![](images/photos/QuEra.png)
+:::
+
+---
+
+## Invited Talk
+
+::: {layout-ncol="2"}
+![](images/photos/Invitedtalk.png)
+:::
+
+---
+
+## Webinar
+
+::: {layout-ncol="2"}
+![](images/photos/Webinar.png)
+:::

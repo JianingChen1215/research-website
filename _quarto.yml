@@ -12,7 +12,9 @@ website:
       - href: publications.qmd
         text: Publications
       - href: presentation.qmd
-        text: Presentations & Tutorials
+        text: Presentations
+      - href: photos.qmd
+        text: Photos
       - href: about.qmd
         text: People
   page-footer:

@@ -541,7 +541,7 @@
   {
     "objectID": "presentation.html",
     "href": "presentation.html",
-    "title": "Presentations & Tutorials",
+    "title": "Presentations",
     "section": "",
     "text": "[July 2026] Quantum Computing for Power Systems, 2026 IEEE Power & Energy Society General Meeting, Montreal, Canada\n[March 2026] Quantum Computing-Enabled Power System Islanding, HAIQ Workshop at HPCA 2026, Pittsburgh, PA, U.S.\n[February 2026] Quantum Computing-Enabled Power System Partitioning, Guest Lecture, Clemson University\n[January 2026] QAOA-Driven PMU Placement Optimization with Graph Learning-based Parameter Initialization Refinement, Quantum Machine Intelligence\n[October 2025] Enabling Resilient Cyber-Physical Power Systems: Integrating Quantum Computing and Machine Learning for Future Grids, ECE Department Seminar, Lehigh University\n[September 2025] Quantum Computing-Enabled Contingency Analysis for Power Systems, 2025 IEEE Quantum Week\n[July 2025] Quantum Computing for Power System Optimization, 2025 IEEE Power & Energy Society General Meeting, Austin, TX\n[July 2025] Opportunities and Challenges in Research and Education of Quantum Computing for Power Systems, 2025 IEEE Power & Energy Society General Meeting, Austin, TX\n[May 2025] Quantum-Accelerated Optimal Meter Placement in Energy Systems, North Carolina State Quantum Initiative’s Annual Symposium, North Carolina State University\n[March 2025] Enhancing Distribution Network Observability: A Quantum Solution, HAIQ Workshop at HPCA 2025, Las Vegas\n[January 2025] Cyber-Physical Power Systems, ECE Department Seminar, Huston University\n[January 2025] Enabling Resilient Cyber-Physical Microgrids, Department of Nuclear Engineering, Penn State University\n[November 2024] Power System Dynamic Simulation with Generalized Quantum Carleman Linearization, AVS 70 Mini Symposium on Quantum Science & Technology, Tampa, FL\n[October 2024] Quantum-Enabled Analysis in Renewable Energy Systems, Quantum Computing Applications and System Workshop, Newark, NJ\n[October 2024] Harnessing Quantum Computing For Power System Applications, Department of Computer Science, Rensselaer Polytechnic Institute\n[September 2024] Quantum-Enabled Optimal Placement of Meters in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada\n[September 2024] Quantum-Enabled Optimal Placement of PMUs in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada"
   },
@@ -1122,7 +1122,7 @@
   {
     "objectID": "presentation.html#selected-academic-talks-and-tutorials",
     "href": "presentation.html#selected-academic-talks-and-tutorials",
-    "title": "Presentations & Tutorials",
+    "title": "Presentations",
     "section": "",
     "text": "[July 2026] Quantum Computing for Power Systems, 2026 IEEE Power & Energy Society General Meeting, Montreal, Canada\n[March 2026] Quantum Computing-Enabled Power System Islanding, HAIQ Workshop at HPCA 2026, Pittsburgh, PA, U.S.\n[February 2026] Quantum Computing-Enabled Power System Partitioning, Guest Lecture, Clemson University\n[January 2026] QAOA-Driven PMU Placement Optimization with Graph Learning-based Parameter Initialization Refinement, Quantum Machine Intelligence\n[October 2025] Enabling Resilient Cyber-Physical Power Systems: Integrating Quantum Computing and Machine Learning for Future Grids, ECE Department Seminar, Lehigh University\n[September 2025] Quantum Computing-Enabled Contingency Analysis for Power Systems, 2025 IEEE Quantum Week\n[July 2025] Quantum Computing for Power System Optimization, 2025 IEEE Power & Energy Society General Meeting, Austin, TX\n[July 2025] Opportunities and Challenges in Research and Education of Quantum Computing for Power Systems, 2025 IEEE Power & Energy Society General Meeting, Austin, TX\n[May 2025] Quantum-Accelerated Optimal Meter Placement in Energy Systems, North Carolina State Quantum Initiative’s Annual Symposium, North Carolina State University\n[March 2025] Enhancing Distribution Network Observability: A Quantum Solution, HAIQ Workshop at HPCA 2025, Las Vegas\n[January 2025] Cyber-Physical Power Systems, ECE Department Seminar, Huston University\n[January 2025] Enabling Resilient Cyber-Physical Microgrids, Department of Nuclear Engineering, Penn State University\n[November 2024] Power System Dynamic Simulation with Generalized Quantum Carleman Linearization, AVS 70 Mini Symposium on Quantum Science & Technology, Tampa, FL\n[October 2024] Quantum-Enabled Analysis in Renewable Energy Systems, Quantum Computing Applications and System Workshop, Newark, NJ\n[October 2024] Harnessing Quantum Computing For Power System Applications, Department of Computer Science, Rensselaer Polytechnic Institute\n[September 2024] Quantum-Enabled Optimal Placement of Meters in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada\n[September 2024] Quantum-Enabled Optimal Placement of PMUs in Power Systems, 2024 IEEE Quantum Week, Montréal, Québec, Canada"
   },
@@ -1643,5 +1643,61 @@
     "title": "Project 6 — Quantum Computing for Power System Dynamic Simulation",
     "section": "Related Publication",
     "text": "Related Publication\nJ. Chen, X. Li, Y. Li, H. P. Paudel, Y. Duan, M. Ismail, and W. Saad,\n“From Power System DAEs to Quantum Solvers: A Carleman-Based Dynamic Simulation Framework.”\nThis work develops the DAE reformulation, polynomialization, Carleman lifting, and quantum-solver interfaces presented on this page."
+  },
+  {
+    "objectID": "photos.html",
+    "href": "photos.html",
+    "title": "Photos",
+    "section": "",
+    "text": "Visit Penn State Power Plant"
+  },
+  {
+    "objectID": "photos.html#visit-penn-state-power-plant",
+    "href": "photos.html#visit-penn-state-power-plant",
+    "title": "Photos",
+    "section": "",
+    "text": "Visit Penn State Power Plant"
+  },
+  {
+    "objectID": "photos.html#guest-lecture",
+    "href": "photos.html#guest-lecture",
+    "title": "Photos",
+    "section": "Guest Lecture",
+    "text": "Guest Lecture"
+  },
+  {
+    "objectID": "photos.html#poster-competition",
+    "href": "photos.html#poster-competition",
+    "title": "Photos",
+    "section": "Poster Competition",
+    "text": "Poster Competition"
+  },
+  {
+    "objectID": "photos.html#pesgm-panel-discussion",
+    "href": "photos.html#pesgm-panel-discussion",
+    "title": "Photos",
+    "section": "PESGM Panel Discussion",
+    "text": "PESGM Panel Discussion"
+  },
+  {
+    "objectID": "photos.html#quera-lecture",
+    "href": "photos.html#quera-lecture",
+    "title": "Photos",
+    "section": "QuEra Lecture",
+    "text": "QuEra Lecture"
+  },
+  {
+    "objectID": "photos.html#invited-talk",
+    "href": "photos.html#invited-talk",
+    "title": "Photos",
+    "section": "Invited Talk",
+    "text": "Invited Talk"
+  },
+  {
+    "objectID": "photos.html#webinar",
+    "href": "photos.html#webinar",
+    "title": "Photos",
+    "section": "Webinar",
+    "text": "Webinar"
   }
 ]
